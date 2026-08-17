@@ -121,7 +121,7 @@ class Character extends MoveableObjects {
             this.y -= (cvsH / 100) * 1;
             if (this.y < -150) this.y = -150;
         }
-        if (this.x <= 2200) aboveGround = true;
+        if (this.x <= -2200) aboveGround = true;
     }
     fall() {
         if (Keyboard.DOWN == true) {
