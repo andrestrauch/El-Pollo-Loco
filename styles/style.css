@@ -1,5 +1,6 @@
 canvas {
     background-color: black;
+    border: 5px solid black;
     border-radius: 40px;
     overflow: hidden;
 }
