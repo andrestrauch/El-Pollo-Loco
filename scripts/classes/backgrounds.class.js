@@ -3,7 +3,7 @@ class Background extends MoveableObjects {
         super().loadImage(imgPath);
         this.x = x;
         this.y = 0;
-        this.w = cvsW;
-        this.h = cvsH;
+        this.w = Globals.cvsW;
+        this.h = Globals.cvsH;
     }
 }

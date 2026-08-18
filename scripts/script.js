@@ -1,14 +1,10 @@
-let world;
-let cvsW;
-let cvsH;
-let cameraX = 0;
-let aboveGround = false;
-
 function init() {
     const canvas = document.getElementById("canvas");
-    cvsW = canvas.width;
-    cvsH = canvas.height;
-    world = new World(canvas);
+
+    Globals.cvsW = canvas.width;
+    Globals.cvsH = canvas.height;
+    level1 = new Level(enemies, clouds, -2, 20, Globals.cvsW, Globals.cvsH);
+    Globals.world = new World(canvas);
 
     EventListener.addEventListener();
 }
