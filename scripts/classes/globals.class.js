@@ -4,4 +4,5 @@ class Globals {
     static cvsH;
     static cameraX = 0;
     static aboveGround = false;
+    static currentX;
 }

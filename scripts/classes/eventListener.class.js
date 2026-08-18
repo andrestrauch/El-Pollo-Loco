@@ -3,7 +3,6 @@ class EventListener {
         document.addEventListener("keydown", function (event) {
             if (event.code == "Space") {
                 Keyboard.SPACE = true;
-                console.log("Test");
             }
             if (event.code == "ArrowUp") {
                 Keyboard.UP = true;

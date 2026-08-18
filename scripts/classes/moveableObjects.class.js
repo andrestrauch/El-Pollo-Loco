@@ -34,7 +34,6 @@ class MoveableObjects {
     moveLeft() {
         setInterval(() => {
             this.x -= this.speedX;
-            // if (this.x < -800) this.x = Globals.cvsW + 300;
         }, 1000 / 60);
     }
 }

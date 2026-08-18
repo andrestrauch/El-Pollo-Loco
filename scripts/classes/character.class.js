@@ -6,10 +6,11 @@ class Character extends MoveableObjects {
         super().loadImage(`assets/img/2_character_pepe/1_idle/idle/I-1.png`);
         this.loadImages(ImageHub.PEPE.idle);
         this.loadImages(ImageHub.PEPE.run);
-        this.x = 20;
+        this.x = 23651;
         this.y = 260;
         this.w = 200;
         this.h = 500;
+        Globals.currentX = this.x;
         this.animate();
     }
 
@@ -37,8 +38,10 @@ class Character extends MoveableObjects {
 
     moveRight() {
         if (Keyboard.RIGHT == true) {
-            if (this.x < 25000) this.x += (Globals.cvsW / 100) * 1;
-            // console.log(this.x);
+            if (this.x < 25000) {
+                this.x += (Globals.cvsW / 100) * 1;
+                Globals.currentX = this.x;
+            }
 
             if (Globals.aboveGround) {
                 if (this.x < 25000) this.x += (Globals.cvsW / 100) * 2;
@@ -49,7 +52,10 @@ class Character extends MoveableObjects {
 
     moveLeft() {
         if (Keyboard.LEFT == true) {
-            if (this.x > -2200) this.x -= (Globals.cvsW / 100) * 1;
+            if (this.x > -2200) {
+                this.x -= (Globals.cvsW / 100) * 1;
+                Globals.currentX = this.x;
+            }
             if (Globals.aboveGround) {
                 if (this.x > -2200) this.x -= (Globals.cvsW / 100) * 2;
             }
