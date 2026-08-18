@@ -66,16 +66,12 @@ class World {
 
     addBackgrounds() {
         for (let b = -2; b <= 20; b++) {
+            let x = 2;
+            if (b % 2) x = 1;
             this.backgrounds.push(new Background("assets/img/5_background/layers/air.png", cvsW * b));
-            if (b % 2) {
-                this.backgrounds.push(new Background("assets/img/5_background/layers/3_third_layer/2.png", cvsW * b));
-                this.backgrounds.push(new Background("assets/img/5_background/layers/2_second_layer/2.png", cvsW * b));
-                this.backgrounds.push(new Background("assets/img/5_background/layers/1_first_layer/2.png", cvsW * b));
-            } else {
-                this.backgrounds.push(new Background("assets/img/5_background/layers/3_third_layer/1.png", cvsW * b));
-                this.backgrounds.push(new Background("assets/img/5_background/layers/2_second_layer/1.png", cvsW * b));
-                this.backgrounds.push(new Background("assets/img/5_background/layers/1_first_layer/1.png", cvsW * b));
-            }
+            this.backgrounds.push(new Background("assets/img/5_background/layers/3_third_layer/" + x + ".png", cvsW * b));
+            this.backgrounds.push(new Background("assets/img/5_background/layers/2_second_layer/" + x + ".png", cvsW * b));
+            this.backgrounds.push(new Background("assets/img/5_background/layers/1_first_layer/" + x + ".png", cvsW * b));
         }
     }
 }
