@@ -9,4 +9,6 @@ function init() {
     cvsW = canvas.width;
     cvsH = canvas.height;
     world = new World(canvas);
+
+    EventListener.addEventListener();
 }
