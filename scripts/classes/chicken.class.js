@@ -14,10 +14,7 @@ class Chicken extends MoveableObjects {
 
     animate() {
         setInterval(() => {
-            let i = this.currentImg % ImageHub.Chicken.run.length;
-            let path = ImageHub.Chicken.run[i];
-            this.img = this.imgCache[path];
-            this.currentImg++;
+            this.animateObject(ImageHub.Chicken.run);
         }, 1000 / 4);
 
         this.moveLeft();

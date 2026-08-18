@@ -24,6 +24,13 @@ class MoveableObjects {
         });
     }
 
+    animateObject(obj) {
+        let i = this.currentImg % obj.length;
+        let path = obj[i];
+        this.img = this.imgCache[path];
+        this.currentImg++;
+    }
+
     moveLeft() {
         setInterval(() => {
             this.x -= this.speedX;

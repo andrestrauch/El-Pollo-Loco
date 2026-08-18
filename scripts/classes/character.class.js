@@ -16,19 +16,13 @@ class Character extends MoveableObjects {
     animate() {
         setInterval(() => {
             if (Keyboard.RIGHT == false || Keyboard.LEFT == false) {
-                let i = this.currentImg % ImageHub.PEPE.idle.length;
-                let path = ImageHub.PEPE.idle[i];
-                this.img = this.imgCache[path];
-                this.currentImg++;
+                this.animateObject(ImageHub.PEPE.idle);
             }
         }, 400);
 
         setInterval(() => {
             if (Keyboard.RIGHT == true || Keyboard.LEFT == true) {
-                let i = this.currentImg % ImageHub.PEPE.run.length;
-                let path = ImageHub.PEPE.run[i];
-                this.img = this.imgCache[path];
-                this.currentImg++;
+                this.animateObject(ImageHub.PEPE.run);
             }
         }, 1000 / 10);
 
