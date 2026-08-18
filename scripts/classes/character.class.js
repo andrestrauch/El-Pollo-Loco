@@ -1,40 +1,23 @@
 class Character extends MoveableObjects {
     energy = 100;
     bottle = 0;
-    images = [
-        "assets/img/2_character_pepe/1_idle/idle/I-1.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-2.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-3.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-4.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-5.png",
-        "assets/img/2_character_pepe/1_idle/idle/I-6.png",
-    ];
-    imagesWalking = [
-        "assets/img/2_character_pepe/2_walk/W-21.png",
-        "assets/img/2_character_pepe/2_walk/W-22.png",
-        "assets/img/2_character_pepe/2_walk/W-23.png",
-        "assets/img/2_character_pepe/2_walk/W-24.png",
-        "assets/img/2_character_pepe/2_walk/W-25.png",
-        "assets/img/2_character_pepe/2_walk/W-26.png",
-    ];
 
     constructor() {
         super().loadImage(`assets/img/2_character_pepe/1_idle/idle/I-1.png`);
-        this.loadImages(this.images);
-        this.loadImages(this.imagesWalking);
+        this.loadImages(ImageHub.PEPE.idle);
+        this.loadImages(ImageHub.PEPE.run);
         this.x = 20;
         this.y = 260;
         this.w = 200;
         this.h = 500;
-
         this.animate();
     }
 
     animate() {
         setInterval(() => {
             if (Keyboard.RIGHT == false || Keyboard.LEFT == false) {
-                let i = this.currentImg % this.images.length;
-                let path = this.images[i];
+                let i = this.currentImg % ImageHub.PEPE.idle.length;
+                let path = ImageHub.PEPE.idle[i];
                 this.img = this.imgCache[path];
                 this.currentImg++;
             }
@@ -42,8 +25,8 @@ class Character extends MoveableObjects {
 
         setInterval(() => {
             if (Keyboard.RIGHT == true || Keyboard.LEFT == true) {
-                let i = this.currentImg % this.imagesWalking.length;
-                let path = this.imagesWalking[i];
+                let i = this.currentImg % ImageHub.PEPE.run.length;
+                let path = ImageHub.PEPE.run[i];
                 this.img = this.imgCache[path];
                 this.currentImg++;
             }
