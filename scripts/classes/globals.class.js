@@ -7,4 +7,6 @@ export class Globals {
     static aboveGround = false;
     static currentX;
     static longIdle = false;
+    static isHurt = false;
+    static isDead = false;
 }

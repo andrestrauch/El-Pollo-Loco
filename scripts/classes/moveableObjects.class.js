@@ -5,6 +5,10 @@ export class MoveableObjects {
     y;
     w;
     h;
+    rX;
+    rY;
+    rW;
+    rH;
     speedX;
     speedY;
     otherDirection = false;
@@ -12,6 +16,7 @@ export class MoveableObjects {
     images = [];
     imgCache = {};
     currentImg = 0;
+    energy;
 
     mapDraw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
@@ -21,9 +26,21 @@ export class MoveableObjects {
         ctx.beginPath();
         ctx.lineWidth = "10";
         ctx.strokeStyle = "yellow";
-        ctx.rect(this.x, this.y, this.w, this.h);
+        ctx.rect(this.rX, this.rY, this.rW, this.rH);
         ctx.stroke();
+
+        // console.log(this.rX);
     }
+
+    isColliding(mo) {
+        return (
+            this.rX + this.rW > mo.rX &&
+            this.rY + this.rH > mo.rY &&
+            this.rX < mo.rX + mo.rW &&
+            this.rY < mo.rY + mo.rH
+        );
+    }
+
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
@@ -46,7 +63,7 @@ export class MoveableObjects {
 
     moveLeft() {
         setInterval(() => {
-            if (this.pausedGame != true) this.x -= this.speedX;
+            if (this.pausedGame != true && Globals.isDead == false) this.x -= this.speedX;
         }, 1000 / 60);
     }
 

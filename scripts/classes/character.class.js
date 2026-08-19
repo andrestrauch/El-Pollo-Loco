@@ -4,8 +4,14 @@ import { Keyboard } from "./keyboard.class.js";
 import { MoveableObjects } from "./moveableObjects.class.js";
 
 export class Character extends MoveableObjects {
-    energy = 100;
     bottle = 0;
+
+    offset = {
+        top: 250,
+        right: 50,
+        bottom: 30,
+        left: 40,
+    };
 
     constructor() {
         super();
@@ -14,20 +20,28 @@ export class Character extends MoveableObjects {
         this.w = 200;
         this.h = 500;
 
-        this.rX = 20;
-        this.rY = 260;
-        this.rW = 150;
-        this.rH = 200;
+        this.energy = 100;
         this.speedY = 0;
         Globals.currentX = this.x;
+        this.getRealFrame();
         this.imageLoading();
         this.applyGravity();
         this.animate();
     }
 
+    getRealFrame() {
+        setInterval(() => {
+            this.rX = this.x + this.offset.left;
+            this.rY = this.y + this.offset.top;
+            this.rW = this.w - this.offset.right - this.offset.right;
+            this.rH = this.h - this.offset.top - this.offset.bottom;
+        }, 1000 / 60);
+    }
     animate() {
         this.animateMove();
         this.animateIdle();
+        this.animateHurt();
+        this.animateDead();
         this.changePosition();
     }
 
@@ -37,12 +51,41 @@ export class Character extends MoveableObjects {
         this.loadImages(ImageHub.PEPE.longIdle);
         this.loadImages(ImageHub.PEPE.run);
         this.loadImages(ImageHub.PEPE.jump);
+        this.loadImages(ImageHub.PEPE.hurt);
+        this.loadImages(ImageHub.PEPE.dead);
+    }
+
+    animateHurt() {
+        let z = 0;
+        setInterval(() => {
+            if (Globals.isHurt) {
+                this.animateObject(ImageHub.PEPE.hurt);
+                z++;
+                if (z > 30) {
+                    Globals.isHurt = false;
+                    z = 0;
+                }
+            }
+        }, 1000 / 5);
+    }
+
+    animateDead() {
+        setInterval(() => {
+            if (this.energy == 0) {
+                this.animateObject(ImageHub.PEPE.dead);
+                this.otherDirection = false;
+            }
+        }, 1000 / 8);
     }
 
     animateMove() {
         setInterval(() => {
             if (Globals.aboveGround == true) this.animateObject(ImageHub.PEPE.jump);
-            if ((Keyboard.RIGHT == true || Keyboard.LEFT == true) && Globals.aboveGround == false) {
+            if (
+                (Keyboard.RIGHT == true || Keyboard.LEFT == true) &&
+                Globals.aboveGround == false &&
+                this.energy > 0
+            ) {
                 this.animateObject(ImageHub.PEPE.run);
             }
         }, 1000 / 10);
@@ -51,7 +94,11 @@ export class Character extends MoveableObjects {
     animateIdle() {
         let z = 0;
         setInterval(() => {
-            if ((Keyboard.RIGHT == false || Keyboard.LEFT == false) && Globals.aboveGround == false) {
+            if (
+                (Keyboard.RIGHT == false || Keyboard.LEFT == false) &&
+                Globals.aboveGround == false &&
+                this.energy > 0
+            ) {
                 if (z < 30) this.animateObject(ImageHub.PEPE.idle);
                 if (z >= 30) {
                     this.animateObject(ImageHub.PEPE.longIdle);
@@ -68,9 +115,14 @@ export class Character extends MoveableObjects {
 
     changePosition() {
         setInterval(() => {
-            if ((Keyboard.SPACE == true || Keyboard.UP == true) && Globals.aboveGround == false) this.jump();
-            if (Keyboard.RIGHT == true) this.moveRight();
-            if (Keyboard.LEFT == true) this.moveLeft();
+            if (
+                (Keyboard.SPACE == true || Keyboard.UP == true) &&
+                Globals.aboveGround == false &&
+                this.energy > 0
+            )
+                this.jump();
+            if (Keyboard.RIGHT == true && this.energy > 0) this.moveRight();
+            if (Keyboard.LEFT == true && this.energy > 0) this.moveLeft();
             if (this.x < 24000) Globals.cameraX = -this.x;
         }, 1000 / 60);
     }

@@ -1,5 +1,6 @@
 import { Character } from "./character.class.js";
 import { Chicken } from "./chicken.class.js";
+import { Endboss } from "./endboss.class.js";
 import { Globals } from "./globals.class.js";
 
 export class World {
@@ -17,11 +18,24 @@ export class World {
         this.canvas = canvas;
         this.ctx = canvas.getContext(`2d`);
         this.draw();
+        this.checkCollisions();
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    Globals.isHurt = true;
+                    if (this.character.energy > 0) this.character.energy -= 5;
+
+                    if (this.character.energy == 0) Globals.isDead = true;
+                }
+            });
+        }, 1000 / 5);
     }
 
     draw() {
         this.ctx.clearRect(9, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(Globals.cameraX, 0);
         this.addObjToMap(this.backgrounds);
         this.addToMap(this.clouds);
@@ -41,11 +55,12 @@ export class World {
         }
 
         mo.mapDraw(this.ctx);
-        if (mo instanceof Character || mo instanceof Chicken) mo.drawFrame(this.ctx);
+        if (mo instanceof Character || mo instanceof Chicken || mo instanceof Endboss)
+            if (mo.otherDirection) {
+                // mo.drawFrame(this.ctx);
 
-        if (mo.otherDirection) {
-            this.flipImageBack(mo);
-        }
+                this.flipImageBack(mo);
+            }
     }
 
     addObjToMap(mo) {

@@ -11,11 +11,22 @@ export class Chicken extends MoveableObjects {
         this.y = 600;
         this.w = 100;
         this.h = 150;
+
         this.speedX = 0.5 + Math.random() * 0.5;
         this.pausedGame = false;
 
+        this.getRealFrame();
         this.checkIdle();
         this.animate();
+    }
+
+    getRealFrame() {
+        setInterval(() => {
+            this.rX = this.x;
+            this.rY = this.y;
+            this.rW = this.w;
+            this.rH = this.h;
+        }, 300);
     }
 
     checkIdle() {
@@ -24,6 +35,7 @@ export class Chicken extends MoveableObjects {
             else this.pausedGame = false;
         }, 1000 / 60);
     }
+
     animate() {
         setInterval(() => {
             this.animateObject(ImageHub.CHICKEN.run);

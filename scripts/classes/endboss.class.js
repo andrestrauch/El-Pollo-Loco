@@ -15,7 +15,17 @@ export class Endboss extends MoveableObjects {
         this.h = 800;
         this.speedX = 1;
 
+        this.getRealFrame();
         this.animate();
+    }
+
+    getRealFrame() {
+        setInterval(() => {
+            this.rX = this.x;
+            this.rY = this.y;
+            this.rW = this.w;
+            this.rH = this.h;
+        }, 300);
     }
 
     animate() {
