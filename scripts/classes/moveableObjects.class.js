@@ -1,3 +1,5 @@
+import { Globals } from "./globals.class.js";
+
 export class MoveableObjects {
     x;
     y;
@@ -35,5 +37,21 @@ export class MoveableObjects {
         setInterval(() => {
             this.x -= this.speedX;
         }, 1000 / 60);
+    }
+
+    applyGravity() {
+        setInterval(() => {
+            this.isAboveGround();
+            if (Globals.aboveGround == true || this.speedY > 0) {
+                this.y -= this.speedY;
+                this.speedY -= 1;
+            }
+        }, 1000 / 30);
+    }
+
+    isAboveGround() {
+        Globals.aboveGround = false;
+        if (this.y < 260) Globals.aboveGround = true;
+        if (this.y == 260) Globals.aboveGround = false;
     }
 }
