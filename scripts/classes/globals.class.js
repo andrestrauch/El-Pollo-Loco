@@ -6,4 +6,5 @@ export class Globals {
     static cameraX = 0;
     static aboveGround = false;
     static currentX;
+    static longIdle = false;
 }

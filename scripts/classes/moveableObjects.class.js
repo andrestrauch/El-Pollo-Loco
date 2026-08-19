@@ -35,7 +35,7 @@ export class MoveableObjects {
 
     moveLeft() {
         setInterval(() => {
-            this.x -= this.speedX;
+            if (this.pausedGame != true) this.x -= this.speedX;
         }, 1000 / 60);
     }
 

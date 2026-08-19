@@ -26,7 +26,7 @@ export class Endboss extends MoveableObjects {
 
         setInterval(() => {
             let gap = this.x - Globals.currentX;
-            if (gap <= 700 && gap > 150) {
+            if (gap <= 700 && gap > 300) {
                 this.animateObject(ImageHub.BOSS.run);
                 // this.moveLeft();
             }
@@ -34,7 +34,7 @@ export class Endboss extends MoveableObjects {
 
         setInterval(() => {
             let gap = this.x - Globals.currentX;
-            if (gap <= 150) {
+            if (gap <= 300) {
                 this.animateObject(ImageHub.BOSS.attacking);
                 // this.moveLeft();
             }
