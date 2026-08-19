@@ -39,6 +39,14 @@ export class MoveableObjects {
         }, 1000 / 60);
     }
 
+    moveRight() {
+        if (this.x < 25000) {
+            this.x += (Globals.cvsW / 100) * 1;
+            Globals.currentX = this.x;
+        }
+        this.otherDirection = false;
+    }
+
     applyGravity() {
         setInterval(() => {
             this.isAboveGround();
@@ -53,5 +61,9 @@ export class MoveableObjects {
         Globals.aboveGround = false;
         if (this.y < 260) Globals.aboveGround = true;
         if (this.y == 260) Globals.aboveGround = false;
+    }
+
+    jump() {
+        this.speedY = 28;
     }
 }
