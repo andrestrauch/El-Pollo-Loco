@@ -1,3 +1,5 @@
+import { Character } from "./character.class.js";
+import { Chicken } from "./chicken.class.js";
 import { Globals } from "./globals.class.js";
 
 export class World {
@@ -35,21 +37,32 @@ export class World {
 
     addToMap(mo) {
         if (mo.otherDirection) {
-            this.ctx.save();
-            this.ctx.translate(mo.w, 0);
-            this.ctx.scale(-1, 1);
-            mo.x = mo.x * -1;
+            this.flipImage(mo);
         }
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.w, mo.h);
+
+        mo.mapDraw(this.ctx);
+        if (mo instanceof Character || mo instanceof Chicken) mo.drawFrame(this.ctx);
+
         if (mo.otherDirection) {
-            mo.x = mo.x * -1;
-            this.ctx.restore();
+            this.flipImageBack(mo);
         }
     }
 
     addObjToMap(mo) {
         mo.forEach((obj) => {
-            this.ctx.drawImage(obj.img, obj.x, obj.y, obj.w, obj.h);
+            this.addToMap(obj);
         });
+    }
+
+    flipImage(mo) {
+        this.ctx.save();
+        this.ctx.translate(mo.w, 0);
+        this.ctx.scale(-1, 1);
+        mo.x = mo.x * -1;
+    }
+
+    flipImageBack(mo) {
+        mo.x = mo.x * -1;
+        this.ctx.restore();
     }
 }

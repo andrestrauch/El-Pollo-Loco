@@ -13,6 +13,11 @@ export class Character extends MoveableObjects {
         this.y = 260;
         this.w = 200;
         this.h = 500;
+
+        this.rX = 20;
+        this.rY = 260;
+        this.rW = 150;
+        this.rH = 200;
         this.speedY = 0;
         Globals.currentX = this.x;
         this.imageLoading();

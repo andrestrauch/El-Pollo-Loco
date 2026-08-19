@@ -7,7 +7,7 @@ export class Chicken extends MoveableObjects {
         super().loadImage(`assets/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png`);
         this.loadImages(ImageHub.CHICKEN.run);
 
-        this.x = 600 + Math.random() * 8000;
+        this.x = 600 + Math.random() * 20000;
         this.y = 600;
         this.w = 100;
         this.h = 150;
