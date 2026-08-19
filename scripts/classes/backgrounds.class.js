@@ -1,4 +1,7 @@
-class Background extends MoveableObjects {
+import { Globals } from "./globals.class.js";
+import { MoveableObjects } from "./moveableObjects.class.js";
+
+export class Background extends MoveableObjects {
     constructor(imgPath, x) {
         super().loadImage(imgPath);
         this.x = x;

@@ -1,4 +1,8 @@
-class Endboss extends MoveableObjects {
+import { Globals } from "./globals.class.js";
+import { ImageHub } from "./imageHub.class.js";
+import { MoveableObjects } from "./moveableObjects.class.js";
+
+export class Endboss extends MoveableObjects {
     constructor() {
         super().loadImage(`assets/img/4_enemie_boss_chicken/2_alert/G5.png`);
         this.loadImages(ImageHub.BOSS.angry);

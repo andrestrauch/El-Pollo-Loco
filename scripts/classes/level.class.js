@@ -1,4 +1,7 @@
-class Level {
+import { Background } from "./backgrounds.class.js";
+import { Character } from "./character.class.js";
+
+export class Level {
     character;
     enemies = [];
     clouds;
@@ -6,16 +9,16 @@ class Level {
     lvStart;
     lvEnd;
 
-    constructor(enemies, clouds, lvStart, lvEnd, cvsW, cvsH) {
+    constructor(enemies, clouds, lvStart, lvEnd, cvsW) {
         this.character = new Character();
         this.enemies = enemies;
         this.clouds = clouds;
         this.lvStart = lvStart;
         this.lvEnd = lvEnd;
-        this.addBackgrounds(lvStart, lvEnd, cvsW, cvsH);
+        this.addBackgrounds(lvStart, lvEnd, cvsW);
     }
 
-    addBackgrounds(lvStart, lvEnd, cvsW, cvsH) {
+    addBackgrounds(lvStart, lvEnd, cvsW) {
         for (let b = lvStart; b <= lvEnd; b++) {
             let x = 2;
             if (b % 2) x = 1;

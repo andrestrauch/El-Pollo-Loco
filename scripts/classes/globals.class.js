@@ -1,5 +1,6 @@
-class Globals {
+export class Globals {
     static world;
+    static level1;
     static cvsW;
     static cvsH;
     static cameraX = 0;

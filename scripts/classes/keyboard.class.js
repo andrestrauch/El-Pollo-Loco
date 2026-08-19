@@ -1,4 +1,4 @@
-class Keyboard {
+export class Keyboard {
     static UP = false;
     static DOWN = false;
     static LEFT = false;

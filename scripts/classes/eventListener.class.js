@@ -1,4 +1,6 @@
-class EventListener {
+import { Keyboard } from "./keyboard.class.js";
+
+export class EventListener {
     static addEventListener() {
         document.addEventListener("keydown", function (event) {
             if (event.code == "Space") {

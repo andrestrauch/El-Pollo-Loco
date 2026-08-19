@@ -1,4 +1,9 @@
-class Character extends MoveableObjects {
+import { Globals } from "./globals.class.js";
+import { ImageHub } from "./imageHub.class.js";
+import { Keyboard } from "./keyboard.class.js";
+import { MoveableObjects } from "./moveableObjects.class.js";
+
+export class Character extends MoveableObjects {
     energy = 100;
     bottle = 0;
 
@@ -6,7 +11,7 @@ class Character extends MoveableObjects {
         super().loadImage(`assets/img/2_character_pepe/1_idle/idle/I-1.png`);
         this.loadImages(ImageHub.PEPE.idle);
         this.loadImages(ImageHub.PEPE.run);
-        this.x = 23651;
+        this.x = 23650;
         this.y = 260;
         this.w = 200;
         this.h = 500;

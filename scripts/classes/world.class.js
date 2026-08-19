@@ -1,13 +1,15 @@
-class World {
+import { Globals } from "./globals.class.js";
+
+export class World {
     canvas;
     ctx;
 
-    character = level1.character;
-    enemies = level1.enemies;
-    clouds = level1.clouds;
-    lvStart = level1.lvStart;
-    lvEnd = level1.lvEnd;
-    backgrounds = level1.backgrounds;
+    character = Globals.level1.character;
+    enemies = Globals.level1.enemies;
+    clouds = Globals.level1.clouds;
+    lvStart = Globals.level1.lvStart;
+    lvEnd = Globals.level1.lvEnd;
+    backgrounds = Globals.level1.backgrounds;
 
     constructor(canvas) {
         this.canvas = canvas;

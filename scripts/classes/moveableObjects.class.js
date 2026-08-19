@@ -1,4 +1,4 @@
-class MoveableObjects {
+export class MoveableObjects {
     x;
     y;
     w;
