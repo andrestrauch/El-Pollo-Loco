@@ -91,4 +91,15 @@ export class ImageHub {
             "assets/img/4_enemie_boss_chicken/3_attack/G20.png",
         ],
     };
+
+    static STATUSBAR = {
+        healthbar: [
+            "assets/img/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png",
+            "assets/img/7_statusbars/1_statusbar/2_statusbar_health/blue/20.png",
+            "assets/img/7_statusbars/1_statusbar/2_statusbar_health/blue/40.png",
+            "assets/img/7_statusbars/1_statusbar/2_statusbar_health/blue/60.png",
+            "assets/img/7_statusbars/1_statusbar/2_statusbar_health/blue/80.png",
+            "assets/img/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png",
+        ],
+    };
 }

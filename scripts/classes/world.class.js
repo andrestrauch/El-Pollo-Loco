@@ -2,6 +2,7 @@ import { Character } from "./character.class.js";
 import { Chicken } from "./chicken.class.js";
 import { Endboss } from "./endboss.class.js";
 import { Globals } from "./globals.class.js";
+import { healthbar } from "./healthbar.js";
 
 export class World {
     canvas;
@@ -13,10 +14,12 @@ export class World {
     lvStart = Globals.level1.lvStart;
     lvEnd = Globals.level1.lvEnd;
     backgrounds = Globals.level1.backgrounds;
+    healthStatusBar = new healthbar();
 
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = canvas.getContext(`2d`);
+
         this.draw();
         this.checkCollisions();
     }
@@ -26,8 +29,10 @@ export class World {
             this.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     Globals.isHurt = true;
-                    if (this.character.energy > 0) this.character.energy -= 5;
-
+                    if (this.character.energy > 0) {
+                        this.character.energy -= 5;
+                    }
+                    this.healthStatusBar.setCurrentImg(this.character.energy);
                     if (this.character.energy == 0) Globals.isDead = true;
                 }
             });
@@ -42,6 +47,8 @@ export class World {
         this.addObjToMap(this.enemies);
         this.addToMap(this.character);
         this.ctx.translate(-Globals.cameraX, 0);
+
+        this.addToMap(this.healthStatusBar);
 
         let self = this;
         requestAnimationFrame(function () {
