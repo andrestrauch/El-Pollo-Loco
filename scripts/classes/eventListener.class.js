@@ -18,6 +18,9 @@ export class EventListener {
             if (event.code == "ArrowRight") {
                 Keyboard.RIGHT = true;
             }
+            if (event.code == "KeyD") {
+                Keyboard.D = true;
+            }
         });
 
         document.addEventListener("keyup", function (event) {
@@ -35,6 +38,9 @@ export class EventListener {
             }
             if (event.code == "ArrowRight") {
                 Keyboard.RIGHT = false;
+            }
+            if (event.code == "KeyD") {
+                Keyboard.D = false;
             }
         });
     }

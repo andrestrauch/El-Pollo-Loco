@@ -3,6 +3,7 @@ import { Chicken } from "./chicken.class.js";
 import { Endboss } from "./endboss.class.js";
 import { Globals } from "./globals.class.js";
 import { healthbar } from "./healthbar.js";
+import { ThrowableObject } from "./throwableObject.class.js";
 
 export class World {
     canvas;
@@ -15,13 +16,14 @@ export class World {
     lvEnd = Globals.level1.lvEnd;
     backgrounds = Globals.level1.backgrounds;
     healthStatusBar = new healthbar();
+    bottles = [new ThrowableObject()];
 
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = canvas.getContext(`2d`);
 
         this.draw();
-        this.checkCollisions();
+        // this.checkCollisions();
     }
 
     checkCollisions() {
@@ -44,8 +46,9 @@ export class World {
         this.ctx.translate(Globals.cameraX, 0);
         this.addObjToMap(this.backgrounds);
         this.addToMap(this.clouds);
-        this.addObjToMap(this.enemies);
+        // this.addObjToMap(this.enemies);
         this.addToMap(this.character);
+        this.addObjToMap(this.bottles);
         this.ctx.translate(-Globals.cameraX, 0);
 
         this.addToMap(this.healthStatusBar);
