@@ -24,12 +24,10 @@ export class MoveableObjects {
 
     drawFrame(ctx) {
         ctx.beginPath();
-        ctx.lineWidth = "10";
-        ctx.strokeStyle = "yellow";
+        ctx.lineWidth = "5";
+        ctx.strokeStyle = "red";
         ctx.rect(this.rX, this.rY, this.rW, this.rH);
         ctx.stroke();
-
-        // console.log(this.rX);
     }
 
     isColliding(mo) {
@@ -62,9 +60,7 @@ export class MoveableObjects {
     }
 
     moveLeft() {
-        setInterval(() => {
-            if (this.pausedGame != true && Globals.isDead == false) this.x -= this.speedX;
-        }, 1000 / 60);
+        if (this.pausedGame != true && Globals.isDead == false) this.x -= this.speedX;
     }
 
     moveRight() {
@@ -75,15 +71,13 @@ export class MoveableObjects {
         this.otherDirection = false;
     }
 
-    applyGravity() {
-        setInterval(() => {
-            this.isAboveGround();
-            if (Globals.aboveGround == true || this.speedY > 0) {
-                this.y -= this.speedY;
-                this.speedY -= 1;
-            }
-        }, 1000 / 30);
-    }
+    applyGravity = () => {
+        this.isAboveGround();
+        if (Globals.aboveGround == true || this.speedY > 0) {
+            this.y -= this.speedY;
+            this.speedY -= 1;
+        }
+    };
 
     isAboveGround() {
         Globals.aboveGround = false;

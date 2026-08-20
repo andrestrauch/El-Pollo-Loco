@@ -57,10 +57,9 @@ export class World {
         mo.mapDraw(this.ctx);
         if (mo instanceof Character || mo instanceof Chicken || mo instanceof Endboss)
             if (mo.otherDirection) {
-                // mo.drawFrame(this.ctx);
-
                 this.flipImageBack(mo);
             }
+        // mo.drawFrame(this.ctx);
     }
 
     addObjToMap(mo) {
