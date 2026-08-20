@@ -7,17 +7,14 @@ export class Chicken extends MoveableObjects {
     constructor() {
         super();
 
-        this.x = 600 + Math.random() * 20000;
+        this.x = 200 + Math.random() * 20000;
         this.y = 600;
         this.w = 100;
         this.h = 150;
 
         this.speedX = 0.5 + Math.random() * 0.5;
-        this.pausedGame = false;
 
         this.imageLoading();
-        IntervalHub.startInterval(this.getRealFrame, 1000 / 60);
-        IntervalHub.startInterval(this.checkIdle, 1000 / 60);
         this.animate();
     }
 
@@ -33,12 +30,9 @@ export class Chicken extends MoveableObjects {
         this.loadImages(ImageHub.CHICKEN.run);
     }
 
-    checkIdle = () => {
-        if (Globals.longIdle) this.pausedGame = Globals.longIdle;
-        else this.pausedGame = false;
-    };
-
     animate() {
+        IntervalHub.startInterval(this.getRealFrame, 1000 / 60);
+        IntervalHub.startInterval(this.checkIdle, 1000 / 60);
         IntervalHub.startInterval(this.animateChicken, 1000 / 4);
         IntervalHub.startInterval(this.animateMove, 1000 / 60);
     }
@@ -50,10 +44,4 @@ export class Chicken extends MoveableObjects {
     animateMove = () => {
         this.moveLeft();
     };
-
-    //     animateChicken() {
-    //         setInterval(() => {
-    //             this.animateObject(ImageHub.CHICKEN.run);
-    //         }, 1000 / 4);
-    //     }
 }

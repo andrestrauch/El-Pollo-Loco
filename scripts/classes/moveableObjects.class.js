@@ -12,6 +12,7 @@ export class MoveableObjects {
     speedX;
     speedY;
     otherDirection = false;
+    pausedGame = false;
     img;
     images = [];
     imgCache = {};
@@ -88,4 +89,9 @@ export class MoveableObjects {
     jump() {
         this.speedY = 28;
     }
+
+    checkIdle = () => {
+        if (Globals.longIdle) this.pausedGame = Globals.longIdle;
+        else this.pausedGame = false;
+    };
 }

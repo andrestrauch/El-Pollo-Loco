@@ -4,7 +4,6 @@ import { IntervalHub } from "./intervalHub.class.js";
 import { MoveableObjects } from "./moveableObjects.class.js";
 
 export class Endboss extends MoveableObjects {
-    gap;
     constructor() {
         super();
         this.x = 24650;
@@ -23,8 +22,6 @@ export class Endboss extends MoveableObjects {
         this.rY = this.y;
         this.rW = this.w;
         this.rH = this.h;
-
-        console.log("test");
     };
 
     imageLoading() {
@@ -34,38 +31,48 @@ export class Endboss extends MoveableObjects {
         this.loadImages(ImageHub.BOSS.attacking);
     }
 
-    checkGap(gap) {
-        setInterval(() => {
-            gap = this.x - Globals.currentX;
-            // console.log(this.x, Globals.currentX);
-            // console.log(gap);
-        }, 1000 / 60);
-        return gap;
+    checkGap(kleiner, größer, x, pepeX) {
+        let isInGap = false;
+        let newGap = x - pepeX;
+        if (newGap > kleiner && newGap < größer) isInGap = true;
+
+        // console.log(newGap, isInGap);
+        return isInGap;
     }
 
     animate() {
-        IntervalHub.startInterval(this.animateAngry, 500);
+        IntervalHub.startInterval(this.animateAngry, 400);
         IntervalHub.startInterval(this.animateAttacking, 1000 / 2.5);
-        IntervalHub.startInterval(this.animateRun, 1000 / 2.5);
+        IntervalHub.startInterval(this.animateRun, 1000 / 3);
     }
 
     animateAngry = () => {
-        if (this.checkGap(this.gap) > 700) this.animateObject(ImageHub.BOSS.angry);
+        if (this.checkGap(700, 1200, this.x, Globals.currentX))
+            this.animateObject(ImageHub.BOSS.angry);
     };
 
     animateAttacking = () => {
-        let gap = this.x - Globals.currentX;
-        if (gap <= 300) {
+        if (
+            this.checkGap(0, 301, this.x, Globals.currentX) &&
+            this.pausedGame != true &&
+            Globals.isDead == false
+        )
             this.animateObject(ImageHub.BOSS.attacking);
-            // this.moveLeft();
-        }
     };
 
-    animateRun() {
-        let gap = this.x - Globals.currentX;
-        if (gap <= 700 && gap > 300) {
+    animateRun = () => {
+        if (
+            this.checkGap(300, 700, this.x, Globals.currentX) &&
+            this.pausedGame != true &&
+            Globals.isDead == false
+        )
             this.animateObject(ImageHub.BOSS.run);
-            // this.moveLeft();
-        }
-    }
+
+        if (this.checkGap(100, 700, this.x, Globals.currentX))
+            IntervalHub.startInterval(this.animateMove, 1000 / 20);
+    };
+
+    animateMove = () => {
+        if (this.checkGap(100, 700, this.x, Globals.currentX)) this.moveLeft();
+    };
 }

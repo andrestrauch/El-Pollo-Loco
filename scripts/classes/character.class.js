@@ -18,7 +18,7 @@ export class Character extends MoveableObjects {
 
     constructor() {
         super();
-        this.x = 23950;
+        this.x = 20;
         this.y = 260;
         this.w = 200;
         this.h = 500;
