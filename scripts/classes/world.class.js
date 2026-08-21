@@ -1,8 +1,10 @@
+import { bottlebar } from "./bottlebar.class.js";
 import { Character } from "./character.class.js";
 import { Chicken } from "./chicken.class.js";
+import { coinsbar } from "./coinsbar.class.js";
 import { Endboss } from "./endboss.class.js";
 import { Globals } from "./globals.class.js";
-import { healthbar } from "./healthbar.js";
+import { healthbar } from "./healthbar.class..js";
 import { ThrowableObject } from "./throwableObject.class.js";
 
 export class World {
@@ -16,6 +18,8 @@ export class World {
     lvEnd = Globals.level1.lvEnd;
     backgrounds = Globals.level1.backgrounds;
     healthStatusBar = new healthbar();
+    coinsStatusBar = new coinsbar();
+    bottleStatusBar = new bottlebar();
     bottles = [new ThrowableObject()];
 
     constructor(canvas) {
@@ -23,7 +27,7 @@ export class World {
         this.ctx = canvas.getContext(`2d`);
 
         this.draw();
-        this.checkCollisions();
+        // this.checkCollisions();
     }
 
     checkCollisions() {
@@ -46,12 +50,14 @@ export class World {
         this.ctx.translate(Globals.cameraX, 0);
         this.addObjToMap(this.backgrounds);
         this.addToMap(this.clouds);
-        this.addObjToMap(this.enemies);
+        // this.addObjToMap(this.enemies);
         this.addToMap(this.character);
         this.addObjToMap(this.bottles);
         this.ctx.translate(-Globals.cameraX, 0);
 
         this.addToMap(this.healthStatusBar);
+        this.addToMap(this.coinsStatusBar);
+        this.addToMap(this.bottleStatusBar);
 
         let self = this;
         requestAnimationFrame(function () {

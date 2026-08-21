@@ -15,7 +15,7 @@ function init() {
     EventListener.addEventListener();
 }
 
-// init();
+init();
 
 function showFullscreen() {
     let fullscreen = document.getElementById("fullscreen");

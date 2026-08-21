@@ -1,29 +1,29 @@
 import { ImageHub } from "./imageHub.class.js";
 import { MoveableObjects } from "./moveableObjects.class.js";
 
-export class healthbar extends MoveableObjects {
-    health;
+export class bottlebar extends MoveableObjects {
+    bottle;
 
     constructor() {
         super();
 
-        this.x = 20;
-        this.y = 0;
-        this.w = 200;
-        this.h = 100;
-        this.health = 100;
+        this.x = 0;
+        this.y = 130;
+        this.w = 350;
+        this.h = 200;
+        this.bottle = 0;
 
-        this.imageLoading(this.health);
+        this.imageLoading(this.bottle);
     }
 
-    imageLoading(health) {
-        this.loadImages(ImageHub.STATUSBAR.healthbar);
-        this.setCurrentImg(health);
+    imageLoading(bottle) {
+        this.loadImages(ImageHub.STATUSBAR.bottlebar);
+        this.setCurrentImg(bottle);
     }
 
     setCurrentImg(percentage) {
         let index = this.setIndex(percentage);
-        let newPath = ImageHub.STATUSBAR.healthbar[index];
+        let newPath = ImageHub.STATUSBAR.bottlebar[index];
         this.img = this.imgCache[newPath];
     }
 
