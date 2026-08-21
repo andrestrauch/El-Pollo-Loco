@@ -23,7 +23,7 @@ export class World {
         this.ctx = canvas.getContext(`2d`);
 
         this.draw();
-        // this.checkCollisions();
+        this.checkCollisions();
     }
 
     checkCollisions() {
@@ -46,7 +46,7 @@ export class World {
         this.ctx.translate(Globals.cameraX, 0);
         this.addObjToMap(this.backgrounds);
         this.addToMap(this.clouds);
-        // this.addObjToMap(this.enemies);
+        this.addObjToMap(this.enemies);
         this.addToMap(this.character);
         this.addObjToMap(this.bottles);
         this.ctx.translate(-Globals.cameraX, 0);
