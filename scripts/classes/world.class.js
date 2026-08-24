@@ -31,21 +31,21 @@ export class World {
         this.ctx = canvas.getContext(`2d`);
 
         this.draw();
-        this.checkCollisions();
+        // this.checkCollisions();
     }
 
     checkCollisions() {
         setInterval(() => {
-            // this.enemies.forEach((enemy) => {
-            //     if (this.character.isColliding(enemy)) {
-            //         Globals.isHurt = true;
-            //         if (this.character.energy > 0) {
-            //             this.character.energy -= 5;
-            //         }
-            //         this.healthStatusBar.setCurrentImg(this.character.energy);
-            //         if (this.character.energy == 0) Globals.isDead = true;
-            //     }
-            // });
+            this.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    Globals.isHurt = true;
+                    if (this.character.energy > 0) {
+                        this.character.energy -= 5;
+                    }
+                    this.healthStatusBar.setCurrentImg(this.character.energy);
+                    if (this.character.energy == 0) Globals.isDead = true;
+                }
+            });
 
             for (let i = 0; i < this.coins.length; i++) {
                 if (this.character.isColliding(this.coins[i])) {
@@ -82,9 +82,9 @@ export class World {
         this.ctx.translate(Globals.cameraX, 0);
         this.addObjToMap(this.backgrounds);
         this.addToMap(this.clouds);
-        // this.addObjToMap(this.enemies);
-        this.addObjToMap(this.coins);
-        this.addObjToMap(this.bottles);
+        this.addObjToMap(this.enemies);
+        // this.addObjToMap(this.coins);
+        // this.addObjToMap(this.bottles);
         this.addObjToMap(this.throwBottles);
         this.addToMap(this.character);
         this.ctx.translate(-Globals.cameraX, 0);
@@ -106,7 +106,7 @@ export class World {
             if (mo.otherDirection) {
                 this.flipImageBack(mo);
             }
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
     }
 
     addObjToMap(mo) {

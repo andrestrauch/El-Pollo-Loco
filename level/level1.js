@@ -3,6 +3,7 @@ import { Cloud } from "../scripts/classes/clouds.class.js";
 import { CollectableBottle } from "../scripts/classes/collectableBottle.class.js";
 import { Coins } from "../scripts/classes/collectableCoins.class.js";
 import { Endboss } from "../scripts/classes/endboss.class.js";
+import { MiniChicken } from "../scripts/classes/miniChicken.class.js";
 
 export const enemies = [
     new Chicken(),
@@ -17,6 +18,13 @@ export const enemies = [
     new Chicken(),
     new Chicken(),
     new Chicken(),
+
+    new MiniChicken(),
+    new MiniChicken(),
+    new MiniChicken(),
+    new MiniChicken(),
+    new MiniChicken(),
+
     new Endboss(),
 ];
 export const clouds = new Cloud();
