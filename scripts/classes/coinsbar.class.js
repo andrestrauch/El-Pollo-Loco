@@ -29,7 +29,7 @@ export class coinsbar extends MoveableObjects {
 
     setIndex(percentage) {
         let newIndex;
-        if (percentage == 100) newIndex = 5;
+        if (percentage >= 100) newIndex = 5;
         else if (percentage > 80) newIndex = 4;
         else if (percentage > 60) newIndex = 3;
         else if (percentage > 40) newIndex = 2;

@@ -6,6 +6,7 @@ import { MoveableObjects } from "./moveableObjects.class.js";
 
 export class Character extends MoveableObjects {
     bottle = 0;
+    coins = 0;
     hurtZ;
     idleZ;
 
