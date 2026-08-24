@@ -26,7 +26,7 @@ export class MoveableObjects {
     drawFrame(ctx) {
         ctx.beginPath();
         ctx.lineWidth = "5";
-        ctx.strokeStyle = "red";
+        ctx.strokeStyle = "blue";
         ctx.rect(this.rX, this.rY, this.rW, this.rH);
         ctx.stroke();
     }

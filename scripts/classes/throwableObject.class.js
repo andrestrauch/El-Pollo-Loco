@@ -3,18 +3,27 @@ import { Keyboard } from "./keyboard.class.js";
 import { MoveableObjects } from "./moveableObjects.class.js";
 
 export class ThrowableObject extends MoveableObjects {
-    constructor() {
+    x;
+    y;
+    constructor(_x, _y) {
         super();
 
-        this.x = 20;
-        this.y = 800;
-        this.w = 200;
-        this.h = 200;
+        this.x = _x;
+        this.y = _y;
+        this.w = 100;
+        this.h = 150;
 
         this.loadImage("assets/img/6_salsa_bottle/salsa_bottle.png");
-        IntervalHub.startInterval(this.applyGravity, 1000 / 60);
-        IntervalHub.startInterval(this.applyBottle, 1000 / 10);
+        IntervalHub.startInterval(this.getRealFrame, 1000 / 60);
+        // IntervalHub.startInterval(this.applyBottle, 1000 / 10);
     }
+
+    getRealFrame = () => {
+        this.rX = this.x + 40;
+        this.rY = this.y + 30;
+        this.rW = this.w - 80;
+        this.rH = this.h - 30;
+    };
 
     applyBottle = () => {
         if (Keyboard.D) this.throw(0, 300);
@@ -26,6 +35,7 @@ export class ThrowableObject extends MoveableObjects {
         this.y = y;
         this.x = x;
 
+        // IntervalHub.startInterval(this.applyGravity, 1000 / 60);
         setInterval(() => {
             this.x += this.speedX;
         }, 10);

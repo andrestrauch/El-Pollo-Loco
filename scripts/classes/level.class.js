@@ -7,14 +7,16 @@ export class Level {
     enemies = [];
     backgrounds = [];
     coins = [];
+    bottles = [];
     lvStart;
     lvEnd;
 
-    constructor(_enemies, _clouds, _coins, lvStart, lvEnd, cvsW) {
+    constructor(_enemies, _clouds, _coins, _bottles, lvStart, lvEnd, cvsW) {
         this.character = new Character();
         this.enemies = _enemies;
         this.clouds = _clouds;
         this.coins = _coins;
+        this.bottles = _bottles;
         this.lvStart = lvStart;
         this.lvEnd = lvEnd;
         this.addBackgrounds(lvStart, lvEnd, cvsW);

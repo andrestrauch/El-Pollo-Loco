@@ -2,7 +2,6 @@ import { bottlebar } from "./bottlebar.class.js";
 import { Character } from "./character.class.js";
 import { Chicken } from "./chicken.class.js";
 import { coinsbar } from "./coinsbar.class.js";
-import { Coins } from "./collectableCoins.class.js";
 import { Endboss } from "./endboss.class.js";
 import { Globals } from "./globals.class.js";
 import { healthbar } from "./healthbar.class..js";
@@ -18,11 +17,11 @@ export class World {
     lvStart = Globals.level1.lvStart;
     lvEnd = Globals.level1.lvEnd;
     backgrounds = Globals.level1.backgrounds;
+    bottles = Globals.level1.bottles;
+    coins = Globals.level1.coins;
     healthStatusBar = new healthbar();
     coinsStatusBar = new coinsbar();
     bottleStatusBar = new bottlebar();
-    bottles = [new ThrowableObject()];
-    coins = Globals.level1.coins;
 
     constructor(canvas) {
         this.canvas = canvas;
@@ -47,9 +46,17 @@ export class World {
 
             for (let i = 0; i < this.coins.length; i++) {
                 if (this.character.isColliding(this.coins[i])) {
-                    this.character.coins += 5;
+                    this.character.coins += 2;
                     this.coins.splice(i, 1);
                     this.coinsStatusBar.setCurrentImg(this.character.coins);
+                }
+            }
+
+            for (let i = 0; i < this.bottles.length; i++) {
+                if (this.character.isColliding(this.bottles[i])) {
+                    this.character.bottles += 1;
+                    this.bottles.splice(i, 1);
+                    this.bottleStatusBar.setCurrentImg(this.character.bottles);
                 }
             }
         }, 1000 / 5);
