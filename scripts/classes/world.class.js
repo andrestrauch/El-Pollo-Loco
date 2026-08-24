@@ -59,10 +59,7 @@ export class World {
         this.addToMap(this.coinsStatusBar);
         this.addToMap(this.bottleStatusBar);
 
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        });
+        requestAnimationFrame(() => this.draw());
     }
 
     addToMap(mo) {
