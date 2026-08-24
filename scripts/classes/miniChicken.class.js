@@ -6,7 +6,7 @@ export class MiniChicken extends MoveableObjects {
     constructor() {
         super();
 
-        this.x = 10000 + Math.random() * 10000;
+        this.x = 7000 + Math.random() * 2000;
         this.y = 658;
         this.w = 60;
         this.h = 90;

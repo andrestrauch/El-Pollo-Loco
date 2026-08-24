@@ -65,7 +65,7 @@ export class MoveableObjects {
     }
 
     moveRight() {
-        if (this.x < 25000) {
+        if (this.x < Globals.lvEnd) {
             this.x += (Globals.cvsW / 100) * 1;
             Globals.currentX = this.x;
         }

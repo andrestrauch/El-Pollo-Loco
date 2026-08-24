@@ -18,13 +18,11 @@ export const enemies = [
     new Chicken(),
     new Chicken(),
     new Chicken(),
-
     new MiniChicken(),
     new MiniChicken(),
     new MiniChicken(),
     new MiniChicken(),
     new MiniChicken(),
-
     new Endboss(),
 ];
 export const clouds = new Cloud();

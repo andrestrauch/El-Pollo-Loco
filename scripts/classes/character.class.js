@@ -118,7 +118,7 @@ export class Character extends MoveableObjects {
             this.jump();
         if (Keyboard.RIGHT == true && this.energy > 0) this.moveRight();
         if (Keyboard.LEFT == true && this.energy > 0) this.moveLeft();
-        if (this.x < 24000) Globals.cameraX = -this.x;
+        if (this.x < Globals.lvEnd - 1000) Globals.cameraX = -this.x;
     };
 
     moveLeft() {

@@ -6,11 +6,16 @@ import { Level } from "./classes/level.class.js";
 import { World } from "./classes/world.class.js";
 
 function init() {
-    const canvas = document.getElementById("canvas");
     // IntervalHub.stopAllIntervals();
+    const canvas = document.getElementById("canvas");
+    let lvStart = -2;
+    let lvEnd = 7;
     Globals.cvsW = canvas.width;
     Globals.cvsH = canvas.height;
-    Globals.level1 = new Level(enemies, clouds, coins, bottles, -2, 20, Globals.cvsW);
+    Globals.lvStart = canvas.width * lvStart;
+    Globals.lvEnd = canvas.width * lvEnd;
+
+    Globals.level1 = new Level(enemies, clouds, coins, bottles, lvStart, lvEnd, Globals.cvsW);
     Globals.world = new World(canvas);
     EventListener.addEventListener();
 }

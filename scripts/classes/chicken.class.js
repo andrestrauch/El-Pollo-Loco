@@ -6,7 +6,7 @@ export class Chicken extends MoveableObjects {
     constructor() {
         super();
 
-        this.x = 200 + Math.random() * 20000;
+        this.x = 200 + Math.random() * 8000;
         this.y = 600;
         this.w = 100;
         this.h = 150;

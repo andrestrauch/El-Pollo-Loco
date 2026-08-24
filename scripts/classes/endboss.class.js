@@ -6,7 +6,7 @@ import { MoveableObjects } from "./moveableObjects.class.js";
 export class Endboss extends MoveableObjects {
     constructor() {
         super();
-        this.x = 24650;
+        this.x = 8000;
         this.y = 0;
         this.w = 500;
         this.h = 800;
@@ -41,13 +41,14 @@ export class Endboss extends MoveableObjects {
     }
 
     animate() {
+        IntervalHub.startInterval(this.checkIdle, 1000 / 60);
         IntervalHub.startInterval(this.animateAngry, 400);
         IntervalHub.startInterval(this.animateAttacking, 1000 / 2.5);
         IntervalHub.startInterval(this.animateRun, 1000 / 3);
     }
 
     animateAngry = () => {
-        if (this.checkGap(700, 1200, this.x, Globals.currentX))
+        if (this.checkGap(700, 1200, this.x, Globals.currentX) || this.pausedGame)
             this.animateObject(ImageHub.BOSS.angry);
     };
 

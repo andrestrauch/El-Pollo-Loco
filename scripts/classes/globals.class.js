@@ -3,6 +3,8 @@ export class Globals {
     static level1;
     static cvsW;
     static cvsH;
+    static lvStart;
+    static lvEnd;
     static cameraX = 0;
     static aboveGround = false;
     static currentX;
