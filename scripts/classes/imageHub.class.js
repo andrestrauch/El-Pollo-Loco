@@ -118,4 +118,13 @@ export class ImageHub {
             "assets/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png",
         ],
     };
+
+    static BOTTLE = {
+        throw: [
+            "assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png",
+            "assets/img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png",
+            "assets/img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png",
+            "assets/img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png",
+        ],
+    };
 }

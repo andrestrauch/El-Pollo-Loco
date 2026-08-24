@@ -84,6 +84,8 @@ export class MoveableObjects {
         Globals.aboveGround = false;
         if (this.y < 260) Globals.aboveGround = true;
         if (this.y == 260) Globals.aboveGround = false;
+
+        // if (this instanceof ThrowableObject) Globals.aboveGround = true;
     }
 
     jump() {

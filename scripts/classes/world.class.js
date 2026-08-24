@@ -63,11 +63,14 @@ export class World {
                 }
             }
 
-            if (Keyboard.D && this.character.bottles > 0) {
+            if (
+                Keyboard.D &&
+                this.character.bottles > 0 &&
+                this.character.otherDirection == false &&
+                Globals.aboveGround == false
+            ) {
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 200);
-                this.bottles.push(bottle);
-                this.throw(bottle, this.character.x + 100, this.character.y + 200);
-                this.bottles.splice(0, 1);
+                this.throwBottles.push(bottle);
                 this.character.bottles -= 1;
                 this.bottleStatusBar.setCurrentImg(this.character.bottles);
             }
@@ -82,6 +85,7 @@ export class World {
         // this.addObjToMap(this.enemies);
         this.addObjToMap(this.coins);
         this.addObjToMap(this.bottles);
+        this.addObjToMap(this.throwBottles);
         this.addToMap(this.character);
         this.ctx.translate(-Globals.cameraX, 0);
 
@@ -121,20 +125,5 @@ export class World {
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
-    }
-
-    throw(bottle, x, y) {
-        bottle.speedX = 25;
-        bottle.speedY = 30;
-        bottle.x = x;
-        bottle.y = y;
-
-        // IntervalHub.startInterval(this.applyGravity, 1000 / 60);
-
-        setInterval(() => {
-            bottle.y -= bottle.speedY;
-            bottle.speedY -= 2;
-            bottle.x += bottle.speedX;
-        }, 30);
     }
 }

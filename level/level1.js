@@ -1,8 +1,8 @@
 import { Chicken } from "../scripts/classes/chicken.class.js";
 import { Cloud } from "../scripts/classes/clouds.class.js";
+import { CollectableBottle } from "../scripts/classes/collectableBottle.class.js";
 import { Coins } from "../scripts/classes/collectableCoins.class.js";
 import { Endboss } from "../scripts/classes/endboss.class.js";
-import { ThrowableObject } from "../scripts/classes/throwableObject.class.js";
 
 export const enemies = [
     new Chicken(),
@@ -76,6 +76,16 @@ export const coins = [
     new Coins(3200, 390),
     new Coins(3200, 280),
 
+    new Coins(3500, 610),
+    new Coins(3500, 500),
+    new Coins(3500, 390),
+    new Coins(3500, 280),
+
+    new Coins(3800, 610),
+    new Coins(3800, 500),
+    new Coins(3800, 390),
+    new Coins(3800, 280),
+
     new Coins(-500, 610),
     new Coins(-500, 500),
     new Coins(-500, 390),
@@ -93,9 +103,12 @@ export const coins = [
 ];
 
 export const bottles = [
-    new ThrowableObject(200, 600),
-    new ThrowableObject(-200, 600),
-    new ThrowableObject(-2200, 600),
-    new ThrowableObject(1050, 600),
-    new ThrowableObject(2250, 600),
+    new CollectableBottle(200, 600),
+    new CollectableBottle(-200, 600),
+    new CollectableBottle(-2050, 600),
+    new CollectableBottle(1050, 600),
+    new CollectableBottle(1950, 600),
+    new CollectableBottle(2350, 600),
+    new CollectableBottle(3050, 600),
+    new CollectableBottle(3700, 600),
 ];
