@@ -97,7 +97,7 @@ export class World {
         this.ctx.clearRect(9, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(Globals.cameraX, 0);
         this.addObjToMap(this.backgrounds);
-        this.addToMap(this.clouds);
+        this.addObjToMap(this.clouds);
         this.addObjToMap(this.enemies);
         this.addObjToMap(this.coins);
         this.addObjToMap(this.bottles);

@@ -25,7 +25,19 @@ export const enemies = [
     new MiniChicken(),
     new Endboss(),
 ];
-export const clouds = new Cloud();
+export const clouds = [
+    new Cloud(-2000, 1 + Math.random() * 2),
+    new Cloud(-1000, 1 + Math.random() * 2),
+    new Cloud(0, 1 + Math.random() * 2),
+    new Cloud(1000, 1 + Math.random() * 2),
+    new Cloud(2000, 1 + Math.random() * 2),
+    new Cloud(3000, 1 + Math.random() * 2),
+    new Cloud(4000, 1 + Math.random() * 2),
+    new Cloud(5000, 1 + Math.random() * 2),
+    new Cloud(6000, 1 + Math.random() * 2),
+    new Cloud(7000, 1 + Math.random() * 2),
+    new Cloud(8000, 1 + Math.random() * 2),
+];
 
 export const coins = [
     new Coins(300, 610),
