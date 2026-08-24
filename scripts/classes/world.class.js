@@ -5,6 +5,8 @@ import { coinsbar } from "./coinsbar.class.js";
 import { Endboss } from "./endboss.class.js";
 import { Globals } from "./globals.class.js";
 import { healthbar } from "./healthbar.class..js";
+import { IntervalHub } from "./intervalHub.class.js";
+import { Keyboard } from "./keyboard.class.js";
 import { ThrowableObject } from "./throwableObject.class.js";
 
 export class World {
@@ -18,6 +20,7 @@ export class World {
     lvEnd = Globals.level1.lvEnd;
     backgrounds = Globals.level1.backgrounds;
     bottles = Globals.level1.bottles;
+    throwBottles = [];
     coins = Globals.level1.coins;
     healthStatusBar = new healthbar();
     coinsStatusBar = new coinsbar();
@@ -58,6 +61,15 @@ export class World {
                     this.bottles.splice(i, 1);
                     this.bottleStatusBar.setCurrentImg(this.character.bottles);
                 }
+            }
+
+            if (Keyboard.D && this.character.bottles > 0) {
+                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 200);
+                this.bottles.push(bottle);
+                this.throw(bottle, this.character.x + 100, this.character.y + 200);
+                this.bottles.splice(0, 1);
+                this.character.bottles -= 1;
+                this.bottleStatusBar.setCurrentImg(this.character.bottles);
             }
         }, 1000 / 5);
     }
@@ -109,5 +121,20 @@ export class World {
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
+    }
+
+    throw(bottle, x, y) {
+        bottle.speedX = 25;
+        bottle.speedY = 30;
+        bottle.x = x;
+        bottle.y = y;
+
+        // IntervalHub.startInterval(this.applyGravity, 1000 / 60);
+
+        setInterval(() => {
+            bottle.y -= bottle.speedY;
+            bottle.speedY -= 2;
+            bottle.x += bottle.speedX;
+        }, 30);
     }
 }
