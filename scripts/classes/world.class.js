@@ -19,9 +19,10 @@ export class World {
     lvStart = Globals.level1.lvStart;
     lvEnd = Globals.level1.lvEnd;
     backgrounds = Globals.level1.backgrounds;
+    coins = Globals.level1.coins;
     bottles = Globals.level1.bottles;
     throwBottles = [];
-    coins = Globals.level1.coins;
+
     healthStatusBar = new healthbar();
     coinsStatusBar = new coinsbar();
     bottleStatusBar = new bottlebar();
@@ -31,50 +32,65 @@ export class World {
         this.ctx = canvas.getContext(`2d`);
 
         this.draw();
-        // this.checkCollisions();
+        IntervalHub.startInterval(this.run, 1000 / 5);
     }
 
+    run = () => {
+        this.collectItems();
+        // this.checkCollisions();
+        this.bottleThrow();
+    };
+
     checkCollisions() {
-        setInterval(() => {
-            this.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    Globals.isHurt = true;
-                    if (this.character.energy > 0) {
-                        this.character.energy -= 5;
-                    }
-                    this.healthStatusBar.setCurrentImg(this.character.energy);
-                    if (this.character.energy == 0) Globals.isDead = true;
+        this.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                Globals.isHurt = true;
+                if (this.character.energy > 0) {
+                    this.character.energy -= 5;
                 }
-            });
-
-            for (let i = 0; i < this.coins.length; i++) {
-                if (this.character.isColliding(this.coins[i])) {
-                    this.character.coins += 2;
-                    this.coins.splice(i, 1);
-                    this.coinsStatusBar.setCurrentImg(this.character.coins);
-                }
+                this.healthStatusBar.setCurrentImg(this.character.energy);
+                if (this.character.energy == 0) Globals.isDead = true;
             }
+        });
+    }
 
-            for (let i = 0; i < this.bottles.length; i++) {
-                if (this.character.isColliding(this.bottles[i])) {
-                    this.character.bottles += 1;
-                    this.bottles.splice(i, 1);
-                    this.bottleStatusBar.setCurrentImg(this.character.bottles);
-                }
+    collectItems() {
+        this.collectCoins();
+        this.collectBottles();
+    }
+
+    collectCoins() {
+        for (let i = 0; i < this.coins.length; i++) {
+            if (this.character.isColliding(this.coins[i])) {
+                this.character.coins += 2;
+                this.coins.splice(i, 1);
+                this.coinsStatusBar.setCurrentImg(this.character.coins);
             }
+        }
+    }
 
-            if (
-                Keyboard.D &&
-                this.character.bottles > 0 &&
-                this.character.otherDirection == false &&
-                Globals.aboveGround == false
-            ) {
-                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 200);
-                this.throwBottles.push(bottle);
-                this.character.bottles -= 1;
+    collectBottles() {
+        for (let i = 0; i < this.bottles.length; i++) {
+            if (this.character.isColliding(this.bottles[i])) {
+                this.character.bottles += 1;
+                this.bottles.splice(i, 1);
                 this.bottleStatusBar.setCurrentImg(this.character.bottles);
             }
-        }, 1000 / 5);
+        }
+    }
+
+    bottleThrow() {
+        if (
+            Keyboard.D &&
+            this.character.bottles > 0 &&
+            this.character.otherDirection == false &&
+            Globals.aboveGround == false
+        ) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 200);
+            this.throwBottles.push(bottle);
+            this.character.bottles -= 1;
+            this.bottleStatusBar.setCurrentImg(this.character.bottles);
+        }
     }
 
     draw() {
