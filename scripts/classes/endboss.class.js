@@ -6,11 +6,12 @@ import { MoveableObjects } from "./moveableObjects.class.js";
 export class Endboss extends MoveableObjects {
     constructor() {
         super();
-        this.x = 8000;
-        this.y = 0;
+        this.x = 8200;
+        Globals.bossX = this.x;
+        this.y = 10;
         this.w = 500;
         this.h = 800;
-        this.speedX = 1;
+        this.speedX = 0.7;
 
         IntervalHub.startInterval(this.getRealFrame, 1000 / 60);
         this.imageLoading();
@@ -18,10 +19,10 @@ export class Endboss extends MoveableObjects {
     }
 
     getRealFrame = () => {
-        this.rX = this.x;
-        this.rY = this.y;
-        this.rW = this.w;
-        this.rH = this.h;
+        this.rX = this.x + 90;
+        this.rY = this.y + 310;
+        this.rW = this.w - 160;
+        this.rH = this.h - 460;
     };
 
     imageLoading() {
@@ -35,26 +36,24 @@ export class Endboss extends MoveableObjects {
         let isInGap = false;
         let newGap = x - pepeX;
         if (newGap > kleiner && newGap < größer) isInGap = true;
-
-        // console.log(newGap, isInGap);
         return isInGap;
     }
 
     animate() {
         IntervalHub.startInterval(this.checkIdle, 1000 / 60);
         IntervalHub.startInterval(this.animateAngry, 400);
-        IntervalHub.startInterval(this.animateAttacking, 1000 / 2.5);
-        IntervalHub.startInterval(this.animateRun, 1000 / 3);
+        IntervalHub.startInterval(this.animateRun, 300);
+        IntervalHub.startInterval(this.animateAttacking, 250);
     }
 
     animateAngry = () => {
-        if (this.checkGap(700, 1200, this.x, Globals.currentX) || this.pausedGame)
+        if (this.checkGap(800, 1200, this.x, Globals.currentX) || this.pausedGame)
             this.animateObject(ImageHub.BOSS.angry);
     };
 
     animateAttacking = () => {
         if (
-            this.checkGap(0, 301, this.x, Globals.currentX) &&
+            this.checkGap(-100, 100, this.x, Globals.currentX) &&
             this.pausedGame != true &&
             Globals.isDead == false
         )
@@ -62,18 +61,19 @@ export class Endboss extends MoveableObjects {
     };
 
     animateRun = () => {
+        Globals.bossX = this.x;
         if (
-            this.checkGap(300, 700, this.x, Globals.currentX) &&
+            this.checkGap(0, 900, this.x, Globals.currentX) &&
             this.pausedGame != true &&
             Globals.isDead == false
         )
             this.animateObject(ImageHub.BOSS.run);
 
-        if (this.checkGap(100, 700, this.x, Globals.currentX))
-            IntervalHub.startInterval(this.animateMove, 1000 / 20);
+        if (this.checkGap(0, 900, this.x, Globals.currentX))
+            IntervalHub.startInterval(this.animateMove, 1000 / 30);
     };
 
     animateMove = () => {
-        if (this.checkGap(100, 700, this.x, Globals.currentX)) this.moveLeft();
+        if (this.checkGap(0, 900, this.x, Globals.currentX)) this.moveLeft();
     };
 }

@@ -6,7 +6,7 @@ export class MiniChicken extends MoveableObjects {
     constructor() {
         super();
 
-        this.x = 7000 + Math.random() * 2000;
+        this.x = 6500 + Math.random() * 2000;
         this.y = 658;
         this.w = 60;
         this.h = 90;
@@ -17,10 +17,10 @@ export class MiniChicken extends MoveableObjects {
     }
 
     getRealFrame = () => {
-        this.rX = this.x;
-        this.rY = this.y;
-        this.rW = this.w;
-        this.rH = this.h;
+        this.rX = this.x + 10;
+        this.rY = this.y + 20;
+        this.rW = this.w - 20;
+        this.rH = this.h - 40;
     };
 
     imageLoading() {

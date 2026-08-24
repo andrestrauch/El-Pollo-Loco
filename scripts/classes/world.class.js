@@ -37,7 +37,7 @@ export class World {
 
     run = () => {
         this.collectItems();
-        // this.checkCollisions();
+        this.checkCollisions();
         this.bottleThrow();
     };
 
@@ -98,17 +98,15 @@ export class World {
         this.ctx.translate(Globals.cameraX, 0);
         this.addObjToMap(this.backgrounds);
         this.addObjToMap(this.clouds);
-        this.addObjToMap(this.enemies);
         this.addObjToMap(this.coins);
         this.addObjToMap(this.bottles);
+        this.addObjToMap(this.enemies);
         this.addObjToMap(this.throwBottles);
         this.addToMap(this.character);
         this.ctx.translate(-Globals.cameraX, 0);
-
         this.addToMap(this.healthStatusBar);
         this.addToMap(this.coinsStatusBar);
         this.addToMap(this.bottleStatusBar);
-
         requestAnimationFrame(() => this.draw());
     }
 

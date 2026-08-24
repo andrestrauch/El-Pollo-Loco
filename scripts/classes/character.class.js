@@ -11,10 +11,10 @@ export class Character extends MoveableObjects {
     idleZ;
 
     offset = {
-        top: 250,
-        right: 60,
-        bottom: 20,
-        left: 50,
+        top: 260,
+        right: 50,
+        bottom: 30,
+        left: 40,
     };
 
     constructor() {
@@ -116,7 +116,7 @@ export class Character extends MoveableObjects {
             this.energy > 0
         )
             this.jump();
-        if (Keyboard.RIGHT == true && this.energy > 0) this.moveRight();
+        if (Keyboard.RIGHT == true && this.energy > 0 && Globals.bossX > this.x) this.moveRight();
         if (Keyboard.LEFT == true && this.energy > 0) this.moveLeft();
         if (this.x < Globals.lvEnd - 1000) Globals.cameraX = -this.x;
     };

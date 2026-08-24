@@ -10,7 +10,6 @@ export class Chicken extends MoveableObjects {
         this.y = 600;
         this.w = 100;
         this.h = 150;
-
         this.speedX = 0.5 + Math.random() * 0.5;
 
         this.imageLoading();
@@ -18,10 +17,10 @@ export class Chicken extends MoveableObjects {
     }
 
     getRealFrame = () => {
-        this.rX = this.x;
-        this.rY = this.y;
-        this.rW = this.w;
-        this.rH = this.h;
+        this.rX = this.x + 20;
+        this.rY = this.y + 50;
+        this.rW = this.w - 30;
+        this.rH = this.h - 90;
     };
 
     imageLoading() {
