@@ -1,3 +1,4 @@
+import { AudioHub } from "./audioHub.class.js";
 import { Globals } from "./globals.class.js";
 
 export class MoveableObjects {
@@ -68,6 +69,7 @@ export class MoveableObjects {
         if (this.x < Globals.lvEnd) {
             this.x += (Globals.cvsW / 100) * 1;
             Globals.currentX = this.x;
+            AudioHub.playOne(AudioHub.PepeRun);
         }
         this.otherDirection = false;
     }

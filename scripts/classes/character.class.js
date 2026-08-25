@@ -1,3 +1,4 @@
+import { AudioHub } from "./audioHub.class.js";
 import { Globals } from "./globals.class.js";
 import { ImageHub } from "./imageHub.class.js";
 import { IntervalHub } from "./intervalHub.class.js";
@@ -87,7 +88,11 @@ export class Character extends MoveableObjects {
             this.energy > 0
         ) {
             this.animateObject(ImageHub.PEPE.run);
+            // AudioHub.playOne(AudioHub.PepeRun);
         }
+
+        // if ((Keyboard.RIGHT == false && Keyboard.LEFT == false) || Globals.aboveGround == true)
+        //     AudioHub.stopOne(AudioHub.PepeRun);
     };
 
     animateIdle = () => {
