@@ -46,7 +46,7 @@ export class World {
             if (this.character.isColliding(enemy)) {
                 Globals.isHurt = true;
                 if (this.character.energy > 0) {
-                    this.character.energy -= 5;
+                    this.character.energy -= 2;
                 }
                 this.healthStatusBar.setCurrentImg(this.character.energy);
                 if (this.character.energy == 0) Globals.isDead = true;
