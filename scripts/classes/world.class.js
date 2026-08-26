@@ -51,7 +51,16 @@ export class World {
                 this.healthStatusBar.setCurrentImg(this.character.energy);
                 if (this.character.energy == 0) Globals.isDead = true;
             }
+
+            if (this.throwBottles.length > 0) {
+                Globals.bottleContact = false;
+                if (this.throwBottles[this.throwBottles.length - 1].isColliding(enemy)) {
+                    // console.log("Test Kollision");
+                    Globals.bottleContact = true;
+                }
+            }
         });
+        // console.log(this.throwBottles);
     }
 
     collectItems() {
@@ -120,7 +129,7 @@ export class World {
             if (mo.otherDirection) {
                 this.flipImageBack(mo);
             }
-        // mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
     }
 
     addObjToMap(mo) {
