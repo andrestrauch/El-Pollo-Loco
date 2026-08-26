@@ -15,6 +15,7 @@ export class AudioHub {
     static playOne(sound) {
         sound.file.currentTime = 0;
         if (sound.file.readyState > 0 || sound.isLoaded) {
+            sound.file.volume = 0.2;
             sound.isLoaded = true;
             sound.file.play();
 
