@@ -1,3 +1,4 @@
+import { BossHealthbar } from "./bossHealthbar.class.js";
 import { bottlebar } from "./bottlebar.class.js";
 import { Character } from "./character.class.js";
 import { Chicken } from "./chicken.class.js";
@@ -27,6 +28,7 @@ export class World {
     healthStatusBar = new healthbar();
     coinsStatusBar = new coinsbar();
     bottleStatusBar = new bottlebar();
+    bossHealthStatusBar = new BossHealthbar();
 
     constructor(canvas) {
         this.canvas = canvas;
@@ -40,6 +42,8 @@ export class World {
         this.collectItems();
         this.checkCollisions();
         this.bottleThrow();
+
+        if (Globals.bossX - this.character.x < 1000) this.bossHealthStatusBar.y = -10;
     };
 
     checkCollisions() {
@@ -78,6 +82,7 @@ export class World {
                 Globals.bottleContact = true;
                 if (enemy.energy > 0) enemy.energy -= 1;
             }
+            if (enemy instanceof Endboss) this.bossHealthStatusBar.setCurrentImg(enemy.energy);
         }
     }
 
@@ -142,6 +147,7 @@ export class World {
         this.addToMap(this.healthStatusBar);
         this.addToMap(this.coinsStatusBar);
         this.addToMap(this.bottleStatusBar);
+        this.addToMap(this.bossHealthStatusBar);
         requestAnimationFrame(() => this.draw());
     }
 
