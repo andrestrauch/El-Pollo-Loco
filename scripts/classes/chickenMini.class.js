@@ -12,6 +12,7 @@ export class MiniChicken extends MoveableObjects {
         this.h = 90;
         this.energy = 1;
         this.speedX = 0.42 + Math.random() * 2;
+        this.isDead = false;
 
         this.imageLoading();
         this.animate();
@@ -34,12 +35,16 @@ export class MiniChicken extends MoveableObjects {
         IntervalHub.startInterval(this.checkIdle, 1000 / 60);
         IntervalHub.startInterval(this.animateChicken, 1000 / 3.5);
         IntervalHub.startInterval(this.animateMove, 1000 / 30);
+
+        IntervalHub.startInterval(this.fallOutBottom, 1000 / 60);
     }
 
     animateChicken = () => {
         if (this.energy > 0) this.animateObject(ImageHub.MINICHICKEN.run);
-        else {
-            this.loadImage(`assets/img/3_enemies_chicken/chicken_small/2_dead/dead.png`);
+        else this.loadImage(`assets/img/3_enemies_chicken/chicken_small/2_dead/dead.png`);
+
+        if (this.energy == 0 && this.isDead == false) {
+            this.isDead = true;
             this.w = 80;
             this.h = 100;
             this.y = 655;

@@ -100,4 +100,8 @@ export class MoveableObjects {
         if (Globals.longIdle) this.pausedGame = Globals.longIdle;
         else this.pausedGame = false;
     };
+
+    fallOutBottom = () => {
+        if (this.energy == 0 && this.y < 800) this.y += 0.1;
+    };
 }

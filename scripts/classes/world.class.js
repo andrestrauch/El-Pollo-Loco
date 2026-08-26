@@ -155,7 +155,7 @@ export class World {
             if (mo.otherDirection) {
                 this.flipImageBack(mo);
             }
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
     }
 
     addObjToMap(mo) {

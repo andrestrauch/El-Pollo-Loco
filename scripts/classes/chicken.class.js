@@ -12,6 +12,7 @@ export class Chicken extends MoveableObjects {
         this.h = 150;
         this.energy = 1;
         this.speedX = 0.3 + Math.random() * 1;
+        this.isDead = false;
 
         this.imageLoading();
         this.animate();
@@ -34,12 +35,16 @@ export class Chicken extends MoveableObjects {
         IntervalHub.startInterval(this.checkIdle, 1000 / 60);
         IntervalHub.startInterval(this.animateChicken, 1000 / 4);
         IntervalHub.startInterval(this.animateMove, 1000 / 60);
+
+        IntervalHub.startInterval(this.fallOutBottom, 1000 / 60);
     }
 
     animateChicken = () => {
         if (this.energy > 0) this.animateObject(ImageHub.CHICKEN.run);
-        else {
-            this.loadImage(`assets/img/3_enemies_chicken/chicken_normal/2_dead/dead.png`);
+        else this.loadImage(`assets/img/3_enemies_chicken/chicken_normal/2_dead/dead.png`);
+
+        if (this.energy == 0 && this.isDead == false) {
+            this.isDead = true;
             this.w = 100;
             this.h = 200;
             this.y = 550;
