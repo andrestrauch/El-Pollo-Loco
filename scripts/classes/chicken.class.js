@@ -10,7 +10,7 @@ export class Chicken extends MoveableObjects {
         this.y = 600;
         this.w = 100;
         this.h = 150;
-        this.energy = 100;
+        this.energy = 1;
         this.speedX = 0.3 + Math.random() * 1;
 
         this.imageLoading();
@@ -37,10 +37,16 @@ export class Chicken extends MoveableObjects {
     }
 
     animateChicken = () => {
-        this.animateObject(ImageHub.CHICKEN.run);
+        if (this.energy > 0) this.animateObject(ImageHub.CHICKEN.run);
+        else {
+            this.loadImage(`assets/img/3_enemies_chicken/chicken_normal/2_dead/dead.png`);
+            this.w = 100;
+            this.h = 200;
+            this.y = 550;
+        }
     };
 
     animateMove = () => {
-        this.moveLeft();
+        if (this.energy > 0) this.moveLeft();
     };
 }

@@ -4,6 +4,7 @@ import { IntervalHub } from "./intervalHub.class.js";
 import { MoveableObjects } from "./moveableObjects.class.js";
 
 export class Endboss extends MoveableObjects {
+    energyMax = 5;
     constructor() {
         super();
         this.x = 8200;
@@ -11,7 +12,7 @@ export class Endboss extends MoveableObjects {
         this.y = 10;
         this.w = 500;
         this.h = 800;
-        this.energy = 100;
+        this.energy = this.energyMax;
         this.speedX = 0.7;
 
         IntervalHub.startInterval(this.getRealFrame, 1000 / 60);
@@ -31,6 +32,8 @@ export class Endboss extends MoveableObjects {
         this.loadImages(ImageHub.BOSS.angry);
         this.loadImages(ImageHub.BOSS.run);
         this.loadImages(ImageHub.BOSS.attacking);
+        this.loadImages(ImageHub.BOSS.hurt);
+        this.loadImages(ImageHub.BOSS.dead);
     }
 
     checkGap(kleiner, größer, x, pepeX) {
@@ -44,11 +47,16 @@ export class Endboss extends MoveableObjects {
         IntervalHub.startInterval(this.checkIdle, 1000 / 60);
         IntervalHub.startInterval(this.animateAngry, 400);
         IntervalHub.startInterval(this.animateRun, 300);
+        IntervalHub.startInterval(this.animateHurt, 200);
         IntervalHub.startInterval(this.animateAttacking, 250);
+        IntervalHub.startInterval(this.animateDead, 400);
     }
 
     animateAngry = () => {
-        if (this.checkGap(800, 1200, this.x, Globals.currentX) || this.pausedGame)
+        if (
+            (this.checkGap(800, 1200, this.x, Globals.currentX) && this.energy > this.energyMax) ||
+            this.pausedGame
+        )
             this.animateObject(ImageHub.BOSS.angry);
     };
 
@@ -56,7 +64,8 @@ export class Endboss extends MoveableObjects {
         if (
             this.checkGap(-100, 100, this.x, Globals.currentX) &&
             this.pausedGame != true &&
-            Globals.isDead == false
+            Globals.isDead == false &&
+            this.energy > 0
         )
             this.animateObject(ImageHub.BOSS.attacking);
     };
@@ -66,15 +75,25 @@ export class Endboss extends MoveableObjects {
         if (
             this.checkGap(0, 900, this.x, Globals.currentX) &&
             this.pausedGame != true &&
-            Globals.isDead == false
+            Globals.isDead == false &&
+            this.energy > 0
         )
             this.animateObject(ImageHub.BOSS.run);
 
-        if (this.checkGap(0, 900, this.x, Globals.currentX))
+        if (this.checkGap(0, 900, this.x, Globals.currentX) && this.energy > 0)
             IntervalHub.startInterval(this.animateMove, 1000 / 30);
     };
 
     animateMove = () => {
-        if (this.checkGap(0, 900, this.x, Globals.currentX)) this.moveLeft();
+        if (this.checkGap(0, 900, this.x, Globals.currentX) && this.energy > 0) this.moveLeft();
+    };
+
+    animateHurt = () => {
+        if (this.energy < this.energyMax && this.energy > 0) this.animateObject(ImageHub.BOSS.hurt);
+        // console.log(this.energy);
+    };
+
+    animateDead = () => {
+        if (this.energy <= 0) this.animateObject(ImageHub.BOSS.dead);
     };
 }

@@ -44,8 +44,8 @@ export class World {
     checkCollisions() {
         this.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                Globals.isHurt = true;
-                if (this.character.energy > 0) {
+                if (this.character.energy > 0 && enemy.energy > 0) {
+                    Globals.isHurt = true;
                     this.character.energy -= 2;
                 }
                 this.healthStatusBar.setCurrentImg(this.character.energy);
@@ -55,8 +55,9 @@ export class World {
             if (this.throwBottles.length > 0) {
                 Globals.bottleContact = false;
                 if (this.throwBottles[this.throwBottles.length - 1].isColliding(enemy)) {
-                    // console.log("Test Kollision");
                     Globals.bottleContact = true;
+                    if (enemy.energy > 0) enemy.energy -= 1;
+                    // console.log("Test Kollision ", enemy);
                 }
             }
         });
@@ -106,7 +107,7 @@ export class World {
         this.ctx.translate(Globals.cameraX, 0);
         this.addObjToMap(this.backgrounds);
         this.addObjToMap(this.clouds);
-        this.addObjToMap(this.coins);
+        // this.addObjToMap(this.coins);
         this.addObjToMap(this.bottles);
         this.addObjToMap(this.enemies);
         this.addObjToMap(this.throwBottles);
