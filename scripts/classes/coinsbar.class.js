@@ -8,9 +8,9 @@ export class coinsbar extends MoveableObjects {
         super();
 
         this.x = 30;
-        this.y = 40;
+        this.y = 30;
         this.w = 322;
-        this.h = 200;
+        this.h = 150;
         this.coins = 0;
 
         this.imageLoading(this.coins);

@@ -8,9 +8,9 @@ export class healthbar extends MoveableObjects {
         super();
 
         this.x = 75;
-        this.y = -50;
+        this.y = -40;
         this.w = 275;
-        this.h = 200;
+        this.h = 150;
         this.health = 100;
 
         this.imageLoading(this.health);

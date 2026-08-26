@@ -8,9 +8,9 @@ export class bottlebar extends MoveableObjects {
         super();
 
         this.x = 0;
-        this.y = 130;
+        this.y = 100;
         this.w = 350;
-        this.h = 200;
+        this.h = 150;
         this.bottle = 0;
 
         this.imageLoading(this.bottle);
