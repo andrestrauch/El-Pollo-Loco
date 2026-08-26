@@ -22,7 +22,6 @@ export class ThrowableObject extends MoveableObjects {
         this.loadImages(ImageHub.BOTTLE.splash);
         IntervalHub.startInterval(this.getRealFrame, 1000 / 60);
         IntervalHub.startInterval(this.throw, 1000 / 30);
-        //30
         IntervalHub.startInterval(this.animateBottle, 1000 / 5);
     }
 

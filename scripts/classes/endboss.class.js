@@ -11,6 +11,7 @@ export class Endboss extends MoveableObjects {
         this.y = 10;
         this.w = 500;
         this.h = 800;
+        this.energy = 100;
         this.speedX = 0.7;
 
         IntervalHub.startInterval(this.getRealFrame, 1000 / 60);

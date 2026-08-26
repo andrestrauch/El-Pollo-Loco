@@ -10,6 +10,7 @@ export class MiniChicken extends MoveableObjects {
         this.y = 658;
         this.w = 60;
         this.h = 90;
+        this.energy = 100;
         this.speedX = 0.42 + Math.random() * 2;
 
         this.imageLoading();

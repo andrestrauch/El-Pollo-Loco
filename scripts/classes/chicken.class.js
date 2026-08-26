@@ -10,6 +10,7 @@ export class Chicken extends MoveableObjects {
         this.y = 600;
         this.w = 100;
         this.h = 150;
+        this.energy = 100;
         this.speedX = 0.3 + Math.random() * 1;
 
         this.imageLoading();
