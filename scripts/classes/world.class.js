@@ -1,6 +1,7 @@
 import { bottlebar } from "./bottlebar.class.js";
 import { Character } from "./character.class.js";
 import { Chicken } from "./chicken.class.js";
+import { MiniChicken } from "./chickenMini.class.js";
 import { coinsbar } from "./coinsbar.class.js";
 import { Endboss } from "./endboss.class.js";
 import { Globals } from "./globals.class.js";
@@ -42,25 +43,42 @@ export class World {
     };
 
     checkCollisions() {
-        this.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                if (this.character.energy > 0 && enemy.energy > 0) {
-                    Globals.isHurt = true;
-                    this.character.energy -= 2;
-                }
-                this.healthStatusBar.setCurrentImg(this.character.energy);
-                if (this.character.energy == 0) Globals.isDead = true;
-            }
+        this.checkFalling(this.character.y);
 
-            if (this.throwBottles.length > 0) {
-                Globals.bottleContact = false;
-                if (this.throwBottles[this.throwBottles.length - 1].isColliding(enemy)) {
-                    Globals.bottleContact = true;
-                    if (enemy.energy > 0) enemy.energy -= 1;
-                    // console.log("Test Kollision ", enemy);
-                }
-            }
+        this.enemies.forEach((enemy) => {
+            this.checkEnemyCollision(enemy);
+            this.checkBottleCollision(enemy);
         });
+
+        this.checkOnGround(this.character.y);
+    }
+
+    checkEnemyCollision(enemy) {
+        if (this.character.isColliding(enemy)) {
+            if (
+                this.character.energy > 0 &&
+                enemy.energy > 0 &&
+                (Globals.isFalling == false || enemy instanceof Endboss)
+            ) {
+                Globals.isHurt = true;
+                this.character.energy -= 2;
+            }
+            this.healthStatusBar.setCurrentImg(this.character.energy);
+            if (this.character.energy == 0) Globals.isDead = true;
+            if (Globals.isFalling && (enemy instanceof Chicken || enemy instanceof MiniChicken)) {
+                enemy.energy = 0;
+            }
+        }
+    }
+
+    checkBottleCollision(enemy) {
+        if (this.throwBottles.length > 0) {
+            Globals.bottleContact = false;
+            if (this.throwBottles[this.throwBottles.length - 1].isColliding(enemy)) {
+                Globals.bottleContact = true;
+                if (enemy.energy > 0) enemy.energy -= 1;
+            }
+        }
     }
 
     collectItems() {
@@ -102,12 +120,20 @@ export class World {
         }
     }
 
+    checkFalling(y) {
+        if (this.character.y < -170) Globals.isFalling = true;
+    }
+
+    checkOnGround(y) {
+        if (y == 260) Globals.isFalling = false;
+    }
+
     draw() {
         this.ctx.clearRect(9, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(Globals.cameraX, 0);
         this.addObjToMap(this.backgrounds);
         this.addObjToMap(this.clouds);
-        // this.addObjToMap(this.coins);
+        this.addObjToMap(this.coins);
         this.addObjToMap(this.bottles);
         this.addObjToMap(this.enemies);
         this.addObjToMap(this.throwBottles);
@@ -129,7 +155,7 @@ export class World {
             if (mo.otherDirection) {
                 this.flipImageBack(mo);
             }
-        // mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
     }
 
     addObjToMap(mo) {

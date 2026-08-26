@@ -9,6 +9,7 @@ export class Globals {
     static currentX;
     static bossX;
     static aboveGround = false;
+    static isFalling = false;
     static longIdle = false;
     static isHurt = false;
     static isDead = false;

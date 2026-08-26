@@ -33,7 +33,7 @@ export class Chicken extends MoveableObjects {
         IntervalHub.startInterval(this.getRealFrame, 1000 / 60);
         IntervalHub.startInterval(this.checkIdle, 1000 / 60);
         IntervalHub.startInterval(this.animateChicken, 1000 / 4);
-        // IntervalHub.startInterval(this.animateMove, 1000 / 60);
+        IntervalHub.startInterval(this.animateMove, 1000 / 60);
     }
 
     animateChicken = () => {

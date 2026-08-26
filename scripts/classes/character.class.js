@@ -12,9 +12,9 @@ export class Character extends MoveableObjects {
     idleZ;
 
     offset = {
-        top: 260,
+        top: 250,
         right: 50,
-        bottom: 30,
+        bottom: 20,
         left: 40,
     };
 
@@ -90,6 +90,8 @@ export class Character extends MoveableObjects {
             this.animateObject(ImageHub.PEPE.run);
             // AudioHub.playOne(AudioHub.PepeRun);
         }
+
+        // console.log(this.y);
 
         // if ((Keyboard.RIGHT == false && Keyboard.LEFT == false) || Globals.aboveGround == true)
         //     AudioHub.stopOne(AudioHub.PepeRun);

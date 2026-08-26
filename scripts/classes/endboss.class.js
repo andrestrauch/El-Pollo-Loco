@@ -90,7 +90,6 @@ export class Endboss extends MoveableObjects {
 
     animateHurt = () => {
         if (this.energy < this.energyMax && this.energy > 0) this.animateObject(ImageHub.BOSS.hurt);
-        // console.log(this.energy);
     };
 
     animateDead = () => {

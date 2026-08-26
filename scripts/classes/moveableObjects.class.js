@@ -69,7 +69,7 @@ export class MoveableObjects {
         if (this.x < Globals.lvEnd) {
             this.x += (Globals.cvsW / 100) * 1;
             Globals.currentX = this.x;
-            AudioHub.playOne(AudioHub.PepeRun);
+            // AudioHub.playOne(AudioHub.PepeRun);
         }
         this.otherDirection = false;
     }
@@ -79,6 +79,8 @@ export class MoveableObjects {
         if (Globals.aboveGround == true || this.speedY > 0) {
             this.y -= this.speedY;
             this.speedY -= 1;
+
+            if (this.y > 260) this.y = 260;
         }
     };
 
