@@ -42,8 +42,7 @@ export class World {
         this.collectItems();
         this.checkCollisions();
         this.bottleThrow();
-
-        if (Globals.bossX - this.character.x < 1000) this.bossHealthStatusBar.y = -10;
+        this.checkBossHealthbar();
     };
 
     checkCollisions() {
@@ -131,6 +130,11 @@ export class World {
 
     checkOnGround(y) {
         if (y == 260) Globals.isFalling = false;
+    }
+
+    checkBossHealthbar() {
+        if (Globals.bossX - this.character.x < 1000) this.bossHealthStatusBar.y = -10;
+        if (Globals.bossX - this.character.x > 1200) this.bossHealthStatusBar.y = -150;
     }
 
     draw() {
