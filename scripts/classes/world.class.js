@@ -31,7 +31,19 @@ export class World {
 		this.checkCollisions();
 		this.bottleThrow();
 		this.checkBossHealthbar();
+		this.checkHealing();
 	};
+
+	checkHealing() {
+		if (
+			Globals.longIdle == true &&
+			Globals.level1.character.coins >= 100 &&
+			Globals.level1.character.energy < 100
+		) {
+			Globals.level1.character.energy += 0.5;
+			this.healthStatusBar.setCurrentImg(Globals.level1.character.energy);
+		}
+	}
 
 	checkCollisions() {
 		this.checkFalling(Globals.level1.character.y);
