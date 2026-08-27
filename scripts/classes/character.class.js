@@ -46,7 +46,7 @@ export class Character extends MoveableObjects {
 
     animate() {
         IntervalHub.startInterval(this.animateMove, 1000 / 10);
-        IntervalHub.startInterval(this.animateIdle, 400);
+        IntervalHub.startInterval(this.animateIdle, 1000 / 2.5);
         IntervalHub.startInterval(this.animateHurt, 1000 / 5);
         IntervalHub.startInterval(this.animateDead, 1000 / 8);
         IntervalHub.startInterval(this.changePosition, 1000 / 60);
@@ -128,6 +128,7 @@ export class Character extends MoveableObjects {
         if (this.x < Globals.lvEnd - 1000) Globals.cameraX = -this.x;
     };
 
+    //auslagern in mo klasse
     moveLeft() {
         if (this.x > -2200) {
             this.x -= (Globals.cvsW / 100) * 1;

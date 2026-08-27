@@ -45,11 +45,11 @@ export class Endboss extends MoveableObjects {
 
     animate() {
         IntervalHub.startInterval(this.checkIdle, 1000 / 60);
-        IntervalHub.startInterval(this.animateAngry, 400);
-        IntervalHub.startInterval(this.animateRun, 300);
-        IntervalHub.startInterval(this.animateHurt, 200);
-        IntervalHub.startInterval(this.animateAttacking, 250);
-        IntervalHub.startInterval(this.animateDead, 400);
+        IntervalHub.startInterval(this.animateAngry, 1000 / 2.5);
+        IntervalHub.startInterval(this.animateRun, 1000 / 3.33);
+        IntervalHub.startInterval(this.animateHurt, 1000 / 5);
+        IntervalHub.startInterval(this.animateAttacking, 1000 / 4);
+        IntervalHub.startInterval(this.animateDead, 1000 / 2.5);
     }
 
     animateAngry = () => {

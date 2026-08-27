@@ -26,6 +26,8 @@ export class Level {
         for (let b = lvStart; b <= lvEnd; b++) {
             let x = 2;
             if (b % 2) x = 1;
+
+            // aufteilen in weitere Methoden
             this.backgrounds.push(
                 new Background("assets/img/5_background/layers/air.png", cvsW * b),
             );
