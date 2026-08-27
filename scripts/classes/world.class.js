@@ -8,6 +8,7 @@ import { IntervalHub } from "./interval-hub.class.js";
 import { Keyboard } from "./keyboard.class.js";
 import { Statusbar } from "./statusbars.class.js";
 import { ThrowableObject } from "./throwable-object.class.js";
+import { Collectables } from "./collectables.class.js";
 
 export class World {
 	canvas;
@@ -32,6 +33,7 @@ export class World {
 		this.bottleThrow();
 		this.checkBossHealthbar();
 		this.checkHealing();
+		this.checkNewBottleSpawn();
 	};
 
 	checkHealing() {
@@ -140,6 +142,16 @@ export class World {
 	checkBossHealthbar() {
 		if (Globals.bossX - Globals.level1.character.x < 1000) this.bossHealthStatusBar.y = -10;
 		if (Globals.bossX - Globals.level1.character.x > 1200) this.bossHealthStatusBar.y = -150;
+	}
+
+	checkNewBottleSpawn() {
+		if (Globals.level1.character.bottles == 0 && Globals.level1.bottles.length == 0) {
+			Globals.level1.bottles = [
+				new Collectables(-200, 600, "bottle"),
+				new Collectables(-1050, 600, "bottle"),
+				new Collectables(-2050, 600, "bottle"),
+			];
+		}
 	}
 
 	draw() {
