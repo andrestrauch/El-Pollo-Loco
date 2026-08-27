@@ -7,7 +7,7 @@ export class Endboss extends MoveableObjects {
 	energyMax = 5;
 	constructor() {
 		super();
-		this.x = 8200;
+		this.x = 1200;
 		Globals.bossX = this.x;
 		this.y = 10;
 		this.w = 500;
@@ -53,7 +53,7 @@ export class Endboss extends MoveableObjects {
 	}
 
 	animateAngry = () => {
-		if ((this.checkGap(800, 1200, this.x, Globals.currentX) && this.energy > this.energyMax) || this.pausedGame)
+		if ((this.checkGap(900, 1200, this.x, Globals.currentX) && this.energy > this.energyMax) || this.pausedGame)
 			this.animateObject(ImageHub.BOSS.angry);
 	};
 
@@ -82,7 +82,14 @@ export class Endboss extends MoveableObjects {
 	};
 
 	animateMove = () => {
-		if (this.checkGap(0, 900, this.x, Globals.currentX) && this.energy > 0) this.moveLeft();
+		if (this.checkGap(0, 900, this.x, Globals.currentX) && this.energy > 0) {
+			this.otherDirection = false;
+			this.moveLeft();
+		}
+
+		if (this.checkGap(1200, 8000, this.x, Globals.currentX) && this.energy > 0) {
+			this.moveRight();
+		}
 	};
 
 	animateHurt = () => {
@@ -92,4 +99,12 @@ export class Endboss extends MoveableObjects {
 	animateDead = () => {
 		if (this.energy <= 0) this.animateObject(ImageHub.BOSS.dead);
 	};
+
+	moveRight() {
+		if (this.x < 8200) {
+			this.otherDirection = true;
+			this.x += (Globals.cvsW / 100) * 0.5;
+		}
+		this.otherDirection = false;
+	}
 }
