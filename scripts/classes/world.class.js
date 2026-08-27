@@ -82,7 +82,11 @@ export class World {
 				Globals.bottleContact = true;
 				if (enemy.energy > 0) enemy.energy -= 1;
 			}
-			if (enemy instanceof Endboss) this.bossHealthStatusBar.setCurrentImg(enemy.energy);
+			if (enemy instanceof Endboss) {
+				this.bossHealthStatusBar.setCurrentImg(enemy.energy);
+				Globals.bossDead = false;
+				if (enemy.energy == 0) Globals.bossDead = true;
+			}
 		}
 	}
 

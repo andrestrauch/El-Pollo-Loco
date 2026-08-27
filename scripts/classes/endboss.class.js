@@ -7,7 +7,7 @@ export class Endboss extends MoveableObjects {
 	energyMax = 5;
 	constructor() {
 		super();
-		this.x = 1200;
+		this.x = 8200;
 		Globals.bossX = this.x;
 		this.y = 10;
 		this.w = 500;
