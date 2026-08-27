@@ -14,17 +14,7 @@ import { ThrowableObject } from "./throwableObject.class.js";
 export class World {
     canvas;
     ctx;
-
-    character = Globals.level1.character;
-    enemies = Globals.level1.enemies;
-    clouds = Globals.level1.clouds;
-    lvStart = Globals.level1.lvStart;
-    lvEnd = Globals.level1.lvEnd;
-    backgrounds = Globals.level1.backgrounds;
-    coins = Globals.level1.coins;
-    bottles = Globals.level1.bottles;
     throwBottles = [];
-
     healthStatusBar = new healthbar();
     coinsStatusBar = new coinsbar();
     bottleStatusBar = new bottlebar();
@@ -46,28 +36,29 @@ export class World {
     };
 
     checkCollisions() {
-        this.checkFalling(this.character.y);
+        this.checkFalling(Globals.level1.character.y);
 
-        this.enemies.forEach((enemy) => {
+        Globals.level1.enemies.forEach((enemy) => {
             this.checkEnemyCollision(enemy);
             this.checkBottleCollision(enemy);
         });
 
-        this.checkOnGround(this.character.y);
+        this.checkOnGround(Globals.level1.character.y);
     }
 
     checkEnemyCollision(enemy) {
-        if (this.character.isColliding(enemy)) {
+        // teile weiter auslagend in eigene methoden
+        if (Globals.level1.character.isColliding(enemy)) {
             if (
-                this.character.energy > 0 &&
+                Globals.level1.character.energy > 0 &&
                 enemy.energy > 0 &&
                 (Globals.isFalling == false || enemy instanceof Endboss)
             ) {
                 Globals.isHurt = true;
-                this.character.energy -= 2;
+                Globals.level1.character.energy -= 2;
             }
-            this.healthStatusBar.setCurrentImg(this.character.energy);
-            if (this.character.energy == 0) Globals.isDead = true;
+            this.healthStatusBar.setCurrentImg(Globals.level1.character.energy);
+            if (Globals.level1.character.energy == 0) Globals.isDead = true;
             if (Globals.isFalling && (enemy instanceof Chicken || enemy instanceof MiniChicken)) {
                 enemy.energy = 0;
             }
@@ -91,21 +82,21 @@ export class World {
     }
 
     collectCoins() {
-        for (let i = 0; i < this.coins.length; i++) {
-            if (this.character.isColliding(this.coins[i])) {
-                this.character.coins += 2;
-                this.coins.splice(i, 1);
-                this.coinsStatusBar.setCurrentImg(this.character.coins);
+        for (let i = 0; i < Globals.level1.coins.length; i++) {
+            if (Globals.level1.character.isColliding(Globals.level1.coins[i])) {
+                Globals.level1.character.coins += 2;
+                Globals.level1.coins.splice(i, 1);
+                this.coinsStatusBar.setCurrentImg(Globals.level1.character.coins);
             }
         }
     }
 
     collectBottles() {
-        for (let i = 0; i < this.bottles.length; i++) {
-            if (this.character.isColliding(this.bottles[i])) {
-                this.character.bottles += 1;
-                this.bottles.splice(i, 1);
-                this.bottleStatusBar.setCurrentImg(this.character.bottles);
+        for (let i = 0; i < Globals.level1.bottles.length; i++) {
+            if (Globals.level1.character.isColliding(Globals.level1.bottles[i])) {
+                Globals.level1.character.bottles += 1;
+                Globals.level1.bottles.splice(i, 1);
+                this.bottleStatusBar.setCurrentImg(Globals.level1.character.bottles);
             }
         }
     }
@@ -113,19 +104,22 @@ export class World {
     bottleThrow() {
         if (
             Keyboard.D &&
-            this.character.bottles > 0 &&
-            this.character.otherDirection == false &&
+            Globals.level1.character.bottles > 0 &&
+            Globals.level1.character.otherDirection == false &&
             Globals.aboveGround == false
         ) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 200);
+            let bottle = new ThrowableObject(
+                Globals.level1.character.x + 100,
+                Globals.level1.character.y + 200,
+            );
             this.throwBottles.push(bottle);
-            this.character.bottles -= 1;
-            this.bottleStatusBar.setCurrentImg(this.character.bottles);
+            Globals.level1.character.bottles -= 1;
+            this.bottleStatusBar.setCurrentImg(Globals.level1.character.bottles);
         }
     }
 
     checkFalling(y) {
-        if (this.character.y < -170) Globals.isFalling = true;
+        if (Globals.level1.character.y < -170) Globals.isFalling = true;
     }
 
     checkOnGround(y) {
@@ -133,20 +127,20 @@ export class World {
     }
 
     checkBossHealthbar() {
-        if (Globals.bossX - this.character.x < 1000) this.bossHealthStatusBar.y = -10;
-        if (Globals.bossX - this.character.x > 1200) this.bossHealthStatusBar.y = -150;
+        if (Globals.bossX - Globals.level1.character.x < 1000) this.bossHealthStatusBar.y = -10;
+        if (Globals.bossX - Globals.level1.character.x > 1200) this.bossHealthStatusBar.y = -150;
     }
 
     draw() {
         this.ctx.clearRect(9, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(Globals.cameraX, 0);
-        this.addObjToMap(this.backgrounds);
-        this.addObjToMap(this.clouds);
-        this.addObjToMap(this.coins);
-        this.addObjToMap(this.bottles);
-        this.addObjToMap(this.enemies);
+        this.addObjToMap(Globals.level1.backgrounds);
+        this.addObjToMap(Globals.level1.clouds);
+        this.addObjToMap(Globals.level1.coins);
+        this.addObjToMap(Globals.level1.bottles);
+        this.addObjToMap(Globals.level1.enemies);
         this.addObjToMap(this.throwBottles);
-        this.addToMap(this.character);
+        this.addToMap(Globals.level1.character);
         this.ctx.translate(-Globals.cameraX, 0);
         this.addToMap(this.healthStatusBar);
         this.addToMap(this.coinsStatusBar);
