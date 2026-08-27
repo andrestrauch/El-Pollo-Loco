@@ -1,57 +1,57 @@
-import { ImageHub } from "./imageHub.class.js";
-import { IntervalHub } from "./intervalHub.class.js";
-import { MoveableObjects } from "./moveableObjects.class.js";
+import { ImageHub } from "./image-hub.class.js";
+import { IntervalHub } from "./interval-hub.class.js";
+import { MoveableObjects } from "./moveable-objects.class.js";
 
 export class Chicken extends MoveableObjects {
-    constructor() {
-        super();
+	constructor() {
+		super();
 
-        this.x = 500 + Math.random() * 8000;
-        this.y = 600;
-        this.w = 100;
-        this.h = 150;
-        this.energy = 1;
-        this.speedX = 0.3 + Math.random() * 1;
-        this.isDead = false;
+		this.x = 500 + Math.random() * 8000;
+		this.y = 600;
+		this.w = 100;
+		this.h = 150;
+		this.energy = 1;
+		this.speedX = 0.3 + Math.random() * 1;
+		this.isDead = false;
 
-        this.imageLoading();
-        this.animate();
-    }
+		this.imageLoading();
+		this.animate();
+	}
 
-    getRealFrame = () => {
-        this.rX = this.x + 20;
-        this.rY = this.y + 50;
-        this.rW = this.w - 30;
-        this.rH = this.h - 90;
-    };
+	getRealFrame = () => {
+		this.rX = this.x + 20;
+		this.rY = this.y + 50;
+		this.rW = this.w - 30;
+		this.rH = this.h - 90;
+	};
 
-    imageLoading() {
-        this.loadImage(`assets/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png`);
-        this.loadImages(ImageHub.CHICKEN.run);
-    }
+	imageLoading() {
+		this.loadImage(`assets/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png`);
+		this.loadImages(ImageHub.CHICKEN.run);
+	}
 
-    animate() {
-        IntervalHub.startInterval(this.getRealFrame, 1000 / 60);
-        IntervalHub.startInterval(this.checkIdle, 1000 / 60);
-        IntervalHub.startInterval(this.animateChicken, 1000 / 4);
-        IntervalHub.startInterval(this.animateMove, 1000 / 60);
+	animate() {
+		IntervalHub.startInterval(this.getRealFrame, 1000 / 60);
+		IntervalHub.startInterval(this.checkIdle, 1000 / 60);
+		IntervalHub.startInterval(this.animateChicken, 1000 / 4);
+		IntervalHub.startInterval(this.animateMove, 1000 / 60);
 
-        IntervalHub.startInterval(this.fallOutBottom, 1000 / 60);
-    }
+		IntervalHub.startInterval(this.fallOutBottom, 1000 / 60);
+	}
 
-    animateChicken = () => {
-        if (this.energy > 0) this.animateObject(ImageHub.CHICKEN.run);
-        else this.loadImage(`assets/img/3_enemies_chicken/chicken_normal/2_dead/dead.png`);
+	animateChicken = () => {
+		if (this.energy > 0) this.animateObject(ImageHub.CHICKEN.run);
+		else this.loadImage(`assets/img/3_enemies_chicken/chicken_normal/2_dead/dead.png`);
 
-        if (this.energy == 0 && this.isDead == false) {
-            this.isDead = true;
-            this.w = 100;
-            this.h = 200;
-            this.y = 550;
-        }
-    };
+		if (this.energy == 0 && this.isDead == false) {
+			this.isDead = true;
+			this.w = 100;
+			this.h = 200;
+			this.y = 550;
+		}
+	};
 
-    animateMove = () => {
-        if (this.energy > 0) this.moveLeft();
-    };
+	animateMove = () => {
+		if (this.energy > 0) this.moveLeft();
+	};
 }

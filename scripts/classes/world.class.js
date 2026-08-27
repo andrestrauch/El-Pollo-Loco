@@ -1,13 +1,13 @@
 import { Character } from "./character.class.js";
 import { Chicken } from "./chicken.class.js";
-import { MiniChicken } from "./chickenMini.class.js";
+import { MiniChicken } from "./chicken-mini.class.js";
 import { Endboss } from "./endboss.class.js";
 import { Globals } from "./globals.class.js";
-import { ImageHub } from "./imageHub.class.js";
-import { IntervalHub } from "./intervalHub.class.js";
+import { ImageHub } from "./image-hub.class.js";
+import { IntervalHub } from "./interval-hub.class.js";
 import { Keyboard } from "./keyboard.class.js";
 import { Statusbar } from "./statusbars.class.js";
-import { ThrowableObject } from "./throwableObject.class.js";
+import { ThrowableObject } from "./throwable-object.class.js";
 
 export class World {
 	canvas;
