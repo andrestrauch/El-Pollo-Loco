@@ -24,6 +24,7 @@ export const enemies = [
 	new MiniChicken(),
 	new Endboss(),
 ];
+
 export const clouds = [
 	new Cloud(-2000, 1 + Math.random() * 2),
 	new Cloud(-1000, 1 + Math.random() * 2),
@@ -120,9 +121,10 @@ export const coins = [
 ];
 
 export const bottles = [
-	new Collectables(200, 600, "bottle"),
 	new Collectables(-200, 600, "bottle"),
+	new Collectables(-1050, 600, "bottle"),
 	new Collectables(-2050, 600, "bottle"),
+	new Collectables(200, 600, "bottle"),
 	new Collectables(1050, 600, "bottle"),
 	new Collectables(1950, 600, "bottle"),
 	new Collectables(2350, 600, "bottle"),

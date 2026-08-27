@@ -5,20 +5,29 @@ export class Cloud extends MoveableObjects {
 		super();
 
 		if (variante >= 2) {
-			this.loadImage(`assets/img/5_background/layers/4_clouds/2.png`);
-			this.y = -40;
-			this.h = 500;
-			this.w = 600;
+			this.setVersion2();
 		} else {
-			this.loadImage(`assets/img/5_background/layers/4_clouds/1.png`);
-			this.y = -20;
-			this.h = 700;
-			this.w = 900;
+			this.setVersion1();
 		}
+
 		this.x = _x;
 		this.speedX = 0.5;
 
 		IntervalHub.startInterval(this.animate, 1000 / 30);
+	}
+
+	setVersion1() {
+		this.loadImage(`assets/img/5_background/layers/4_clouds/1.png`);
+		this.y = -20;
+		this.h = 700;
+		this.w = 900;
+	}
+
+	setVersion2() {
+		this.loadImage(`assets/img/5_background/layers/4_clouds/2.png`);
+		this.y = -40;
+		this.h = 500;
+		this.w = 600;
 	}
 
 	animate = () => {

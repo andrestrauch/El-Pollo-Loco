@@ -58,27 +58,16 @@ export class Endboss extends MoveableObjects {
 	};
 
 	animateAttacking = () => {
-		if (
-			this.checkGap(-100, 100, this.x, Globals.currentX) &&
-			this.pausedGame != true &&
-			Globals.isDead == false &&
-			this.energy > 0
-		)
+		if (this.checkGap(-100, 100, this.x, Globals.currentX) && this.pausedGame != true && Globals.isDead == false && this.energy > 0)
 			this.animateObject(ImageHub.BOSS.attacking);
 	};
 
 	animateRun = () => {
 		Globals.bossX = this.x;
-		if (
-			this.checkGap(0, 900, this.x, Globals.currentX) &&
-			this.pausedGame != true &&
-			Globals.isDead == false &&
-			this.energy > 0
-		)
+		if (this.checkGap(0, 900, this.x, Globals.currentX) && this.pausedGame != true && Globals.isDead == false && this.energy > 0)
 			this.animateObject(ImageHub.BOSS.run);
 
-		if (this.checkGap(0, 900, this.x, Globals.currentX) && this.energy > 0)
-			IntervalHub.startInterval(this.animateMove, 1000 / 30);
+		if (this.checkGap(0, 900, this.x, Globals.currentX) && this.energy > 0) IntervalHub.startInterval(this.animateMove, 1000 / 30);
 	};
 
 	animateMove = () => {
@@ -93,8 +82,7 @@ export class Endboss extends MoveableObjects {
 	};
 
 	animateHurt = () => {
-		if (this.energy < this.energyMax && this.energy > 0 && Globals.level1.character.energy > 0)
-			this.animateObject(ImageHub.BOSS.hurt);
+		if (this.energy < this.energyMax && this.energy > 0 && Globals.level1.character.energy > 0) this.animateObject(ImageHub.BOSS.hurt);
 	};
 
 	animateDead = () => {

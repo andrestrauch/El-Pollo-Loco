@@ -33,9 +33,7 @@ export class MoveableObjects {
 	}
 
 	isColliding(mo) {
-		return (
-			this.rX + this.rW > mo.rX && this.rY + this.rH > mo.rY && this.rX < mo.rX + mo.rW && this.rY < mo.rY + mo.rH
-		);
+		return this.rX + this.rW > mo.rX && this.rY + this.rH > mo.rY && this.rX < mo.rX + mo.rW && this.rY < mo.rY + mo.rH;
 	}
 
 	loadImage(path) {
@@ -85,8 +83,6 @@ export class MoveableObjects {
 		Globals.aboveGround = false;
 		if (this.y < 260) Globals.aboveGround = true;
 		if (this.y == 260) Globals.aboveGround = false;
-
-		// if (this instanceof ThrowableObject) Globals.aboveGround = true;
 	}
 
 	jump() {

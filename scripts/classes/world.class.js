@@ -36,17 +36,6 @@ export class World {
 		this.checkNewBottleSpawn();
 	};
 
-	checkHealing() {
-		if (
-			Globals.longIdle == true &&
-			Globals.level1.character.coins >= 100 &&
-			Globals.level1.character.energy < 100
-		) {
-			Globals.level1.character.energy += 0.5;
-			this.healthStatusBar.setCurrentImg(Globals.level1.character.energy);
-		}
-	}
-
 	checkCollisions() {
 		this.checkFalling(Globals.level1.character.y);
 
@@ -59,17 +48,10 @@ export class World {
 	}
 
 	checkEnemyCollision(enemy) {
-		// teile weiter auslagend in eigene methoden
 		if (Globals.level1.character.isColliding(enemy)) {
-			if (
-				Globals.level1.character.energy > 0 &&
-				enemy.energy > 0 &&
-				(Globals.isFalling == false || enemy instanceof Endboss)
-			) {
-				Globals.isHurt = true;
-				Globals.level1.character.energy -= 2;
-			}
+			this.setPepeHealth(enemy);
 			this.healthStatusBar.setCurrentImg(Globals.level1.character.energy);
+
 			if (Globals.level1.character.energy == 0) Globals.isDead = true;
 			if (Globals.isFalling && (enemy instanceof Chicken || enemy instanceof MiniChicken)) {
 				enemy.energy = 0;
@@ -80,15 +62,36 @@ export class World {
 	checkBottleCollision(enemy) {
 		if (this.throwBottles.length > 0) {
 			Globals.bottleContact = false;
+
 			if (this.throwBottles[this.throwBottles.length - 1].isColliding(enemy)) {
 				Globals.bottleContact = true;
 				if (enemy.energy > 0) enemy.energy -= 1;
 			}
-			if (enemy instanceof Endboss) {
-				this.bossHealthStatusBar.setCurrentImg(enemy.energy);
-				Globals.bossDead = false;
-				if (enemy.energy == 0) Globals.bossDead = true;
-			}
+
+			this.checkBossBottleCollision(enemy);
+		}
+	}
+
+	checkBossBottleCollision(enemy) {
+		if (enemy instanceof Endboss) {
+			this.bossHealthStatusBar.setCurrentImg(enemy.energy);
+			Globals.bossDead = false;
+            
+			if (enemy.energy == 0) Globals.bossDead = true;
+		}
+	}
+
+	checkHealing() {
+		if (Globals.longIdle == true && Globals.level1.character.coins >= 100 && Globals.level1.character.energy < 100) {
+			Globals.level1.character.energy += 0.5;
+			this.healthStatusBar.setCurrentImg(Globals.level1.character.energy);
+		}
+	}
+
+	setPepeHealth(enemy) {
+		if (Globals.level1.character.energy > 0 && enemy.energy > 0 && (Globals.isFalling == false || enemy instanceof Endboss)) {
+			Globals.isHurt = true;
+			Globals.level1.character.energy -= 2;
 		}
 	}
 
@@ -118,12 +121,7 @@ export class World {
 	}
 
 	bottleThrow() {
-		if (
-			Keyboard.D &&
-			Globals.level1.character.bottles > 0 &&
-			Globals.level1.character.otherDirection == false &&
-			Globals.aboveGround == false
-		) {
+		if (Keyboard.D && Globals.level1.character.bottles > 0 && Globals.level1.character.otherDirection == false && Globals.aboveGround == false) {
 			let bottle = new ThrowableObject(Globals.level1.character.x + 100, Globals.level1.character.y + 200);
 			this.throwBottles.push(bottle);
 			Globals.level1.character.bottles -= 1;
