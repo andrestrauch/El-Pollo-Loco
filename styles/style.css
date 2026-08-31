@@ -66,12 +66,14 @@ body {
 
 .game-over {
 	width: 60%;
-	height: 50%;
+	height: 70%;
 	display: none;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 	position: absolute;
-	top: 20%;
+	top: 8%;
+	right: 13%;
 	/* background-color: red; */
 	gap: 16px;
 
