@@ -14,11 +14,10 @@
 		<script type="module" src="./scripts/script.js"></script>
 		<script type="module">
 			import { init } from "./scripts/script.js";
-			document.querySelector("#startBtn").addEventListener("click", init);
-		</script>
-		<script type="module">
 			import { gameRestart } from "./scripts/script.js";
+			document.querySelector("#startBtn").addEventListener("click", init);
 			document.querySelector("#restartBtn").addEventListener("click", gameRestart);
+			document.querySelector("#restartBtn2").addEventListener("click", gameRestart);
 		</script>
 	</head>
 
@@ -50,6 +49,11 @@
 			<section id="gameOver" class="game-over">
 				<img src="./assets/img/You won, you lost/Game over A.png" alt="" />
 				<button id="restartBtn" class="restart-btn">Restart</button>
+			</section>
+
+			<section id="gameEnd" class="game-end">
+				<img src="./assets/img/You won, you lost/You Won B.png" alt="" />
+				<button id="restartBtn2" class="restart-btn">Restart</button>
 			</section>
 		</section>
 	</body>

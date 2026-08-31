@@ -57,11 +57,11 @@ export class MoveableObjects {
 	}
 
 	moveLeft() {
-		if (this.pausedGame != true && Globals.isDead == false) this.x -= this.speedX;
+		if (this.pausedGame != true && Globals.isDead == false && Globals.bossDead != true) this.x -= this.speedX;
 	}
 
 	moveRight() {
-		if (this.x < Globals.lvEnd) {
+		if (this.x < Globals.lvEnd || (Globals.isDead == false && Globals.bossDead != true)) {
 			this.x += (Globals.cvsW / 100) * 1;
 			Globals.currentX = this.x;
 			// AudioHub.playOne(AudioHub.PepeRun);

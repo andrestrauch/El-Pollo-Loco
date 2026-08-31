@@ -33,11 +33,15 @@ export function gameRestart() {
 	document.getElementById(`gameOver`).classList.remove(`d-flex`);
 	document.getElementById(`gameOver`).classList.add(`d_none`);
 
+	document.getElementById(`gameEnd`).classList.remove(`d-flex`);
+	document.getElementById(`gameEnd`).classList.add(`d_none`);
+
 	Globals.isDead = false;
 	Globals.isHurt = false;
+	Globals.bossDead = false;
 	IntervalHub.stopAllIntervals();
 
 	setTimeout(() => {
 		init();
-	}, 1000);
+	}, 250);
 }

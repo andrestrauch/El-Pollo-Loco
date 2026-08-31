@@ -63,7 +63,7 @@ export class Character extends MoveableObjects {
 	}
 
 	animateHurt = () => {
-		if (Globals.isHurt) {
+		if (Globals.isHurt && Globals.bossDead != true) {
 			this.animateObject(ImageHub.PEPE.hurt);
 			this.hurtZ++;
 			if (this.hurtZ > 30) {
@@ -82,7 +82,7 @@ export class Character extends MoveableObjects {
 
 	animateMove = () => {
 		if (Globals.aboveGround == true) this.animateObject(ImageHub.PEPE.jump);
-		if ((Keyboard.RIGHT == true || Keyboard.LEFT == true) && Globals.aboveGround == false && this.energy > 0) {
+		if ((Keyboard.RIGHT == true || Keyboard.LEFT == true) && Globals.aboveGround == false && this.energy > 0 && Globals.bossDead != true) {
 			this.animateObject(ImageHub.PEPE.run);
 			// AudioHub.playOne(AudioHub.PepeRun);
 		}
@@ -94,7 +94,7 @@ export class Character extends MoveableObjects {
 	};
 
 	animateIdle = () => {
-		if ((Keyboard.RIGHT == false || Keyboard.LEFT == false) && Globals.aboveGround == false && this.energy > 0) {
+		if ((Keyboard.RIGHT == false || Keyboard.LEFT == false) && Globals.aboveGround == false && this.energy > 0 && Globals.bossDead != true) {
 			if (this.idleZ < 30) this.animateObject(ImageHub.PEPE.idle);
 			if (this.idleZ >= 30) {
 				this.animateObject(ImageHub.PEPE.longIdle);
@@ -109,9 +109,10 @@ export class Character extends MoveableObjects {
 	};
 
 	changePosition = () => {
-		if ((Keyboard.SPACE == true || Keyboard.UP == true) && Globals.aboveGround == false && this.energy > 0) this.jump();
-		if (Keyboard.RIGHT == true && this.energy > 0 && (Globals.bossX > this.x || Globals.bossDead == true)) this.moveRight();
-		if (Keyboard.LEFT == true && this.energy > 0) this.moveLeft();
+		if ((Keyboard.SPACE == true || Keyboard.UP == true) && Globals.aboveGround == false && this.energy > 0 && Globals.bossDead != true)
+			this.jump();
+		if (Keyboard.RIGHT == true && this.energy > 0 && Globals.bossX > this.x && Globals.bossDead != true) this.moveRight();
+		if (Keyboard.LEFT == true && this.energy > 0 && Globals.bossDead != true) this.moveLeft();
 		if (this.x < Globals.lvEnd - 1000) Globals.cameraX = -this.x;
 	};
 

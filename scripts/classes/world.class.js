@@ -39,9 +39,15 @@ export class World {
 	};
 
 	checkGameEnd() {
-		if (Globals.isDead && this.restart == false) {
+		if (Globals.isDead && this.restart != true) {
 			document.getElementById(`gameOver`).classList.add(`d-flex`);
 			this.restart = true;
+		}
+
+		if (Globals.bossDead && this.restart != true) {
+			document.getElementById(`gameEnd`).classList.add(`d-flex`);
+			this.restart = true;
+			Globals.level1.character.otherDirection = false;
 		}
 	}
 
@@ -130,7 +136,13 @@ export class World {
 	}
 
 	bottleThrow() {
-		if (Keyboard.D && Globals.level1.character.bottles > 0 && Globals.level1.character.otherDirection == false && Globals.aboveGround == false) {
+		if (
+			Keyboard.D &&
+			Globals.level1.character.bottles > 0 &&
+			Globals.bossDead != true &&
+			Globals.level1.character.otherDirection == false &&
+			Globals.aboveGround == false
+		) {
 			let bottle = new ThrowableObject(Globals.level1.character.x + 100, Globals.level1.character.y + 200);
 			this.throwBottles.push(bottle);
 			Globals.level1.character.bottles -= 1;

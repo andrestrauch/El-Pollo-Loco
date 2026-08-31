@@ -53,6 +53,17 @@ body {
 	font-weight: bold;
 }
 
+.restart-btn {
+	width: 150px;
+	height: 60px;
+
+	font-size: 30px;
+	font-weight: bold;
+	border: 3px solid black;
+	border-radius: 30px;
+	background-color: rgb(212, 175, 55);
+}
+
 .game-over {
 	width: 60%;
 	height: 50%;
@@ -67,16 +78,22 @@ body {
 	img {
 		height: auto;
 	}
+}
 
-	.restart-btn {
-		width: 150px;
-		height: 60px;
+.game-end {
+	width: 70%;
+	height: 80%;
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 10%;
+	/* background-color: red; */
+	gap: 16px;
 
-		font-size: 30px;
-		font-weight: bold;
-		border: 3px solid black;
-		border-radius: 30px;
-		background-color: rgb(212, 175, 55);
+	img {
+		width: 90%;
 	}
 }
 
