@@ -7,7 +7,7 @@ import { World } from "./classes/world.class.js";
 
 export function init() {
 	document.getElementById("startBtn").classList.add("d_none");
-	// IntervalHub.stopAllIntervals();
+
 	const canvas = document.getElementById("canvas");
 	let lvStart = -2;
 	let lvEnd = 7;
@@ -27,4 +27,17 @@ export function init() {
 function showFullscreen() {
 	let fullscreen = document.getElementById("fullscreen");
 	fullscreen.requestFullscreen();
+}
+
+export function gameRestart() {
+	document.getElementById(`gameOver`).classList.remove(`d-flex`);
+	document.getElementById(`gameOver`).classList.add(`d_none`);
+
+	Globals.isDead = false;
+	Globals.isHurt = false;
+	IntervalHub.stopAllIntervals();
+
+	setTimeout(() => {
+		init();
+	}, 1000);
 }

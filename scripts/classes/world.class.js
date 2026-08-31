@@ -14,6 +14,7 @@ export class World {
 	canvas;
 	ctx;
 	throwBottles = [];
+	restart = false;
 	healthStatusBar = new Statusbar(75, -40, 275, 150, 100, 100, ImageHub.STATUSBAR.healthbar);
 	coinsStatusBar = new Statusbar(30, 30, 322, 150, 0, 100, ImageHub.STATUSBAR.coinsbar);
 	bottleStatusBar = new Statusbar(0, 100, 350, 150, 0, 5, ImageHub.STATUSBAR.bottlebar);
@@ -34,7 +35,15 @@ export class World {
 		this.checkBossHealthbar();
 		this.checkHealing();
 		this.checkNewBottleSpawn();
+		this.checkGameEnd();
 	};
+
+	checkGameEnd() {
+		if (Globals.isDead && this.restart == false) {
+			document.getElementById(`gameOver`).classList.add(`d-flex`);
+			this.restart = true;
+		}
+	}
 
 	checkCollisions() {
 		this.checkFalling(Globals.level1.character.y);
@@ -76,7 +85,7 @@ export class World {
 		if (enemy instanceof Endboss) {
 			this.bossHealthStatusBar.setCurrentImg(enemy.energy);
 			Globals.bossDead = false;
-            
+
 			if (enemy.energy == 0) Globals.bossDead = true;
 		}
 	}

@@ -53,6 +53,33 @@ body {
 	font-weight: bold;
 }
 
+.game-over {
+	width: 60%;
+	height: 50%;
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	top: 20%;
+	/* background-color: red; */
+	gap: 16px;
+
+	img {
+		height: auto;
+	}
+
+	.restart-btn {
+		width: 150px;
+		height: 60px;
+
+		font-size: 30px;
+		font-weight: bold;
+		border: 3px solid black;
+		border-radius: 30px;
+		background-color: rgb(212, 175, 55);
+	}
+}
+
 .start-btn:hover {
 	cursor: pointer;
 }
@@ -97,6 +124,10 @@ body {
 
 .d_none {
 	display: none;
+}
+
+.d-flex {
+	display: flex;
 }
 
 @media only screen and (max-width: 1200px) {

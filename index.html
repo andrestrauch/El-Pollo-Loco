@@ -16,6 +16,10 @@
 			import { init } from "./scripts/script.js";
 			document.querySelector("#startBtn").addEventListener("click", init);
 		</script>
+		<script type="module">
+			import { gameRestart } from "./scripts/script.js";
+			document.querySelector("#restartBtn").addEventListener("click", gameRestart);
+		</script>
 	</head>
 
 	<body>
@@ -41,6 +45,11 @@
 						<img src="./assets/icons/bottle.png" alt="" />
 					</button>
 				</article>
+			</section>
+
+			<section id="gameOver" class="game-over">
+				<img src="./assets/img/You won, you lost/Game over A.png" alt="" />
+				<button id="restartBtn" class="restart-btn">Restart</button>
 			</section>
 		</section>
 	</body>

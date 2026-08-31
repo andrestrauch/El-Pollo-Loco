@@ -109,10 +109,8 @@ export class Character extends MoveableObjects {
 	};
 
 	changePosition = () => {
-		if ((Keyboard.SPACE == true || Keyboard.UP == true) && Globals.aboveGround == false && this.energy > 0)
-			this.jump();
-		if (Keyboard.RIGHT == true && this.energy > 0 && (Globals.bossX > this.x || Globals.bossDead == true))
-			this.moveRight();
+		if ((Keyboard.SPACE == true || Keyboard.UP == true) && Globals.aboveGround == false && this.energy > 0) this.jump();
+		if (Keyboard.RIGHT == true && this.energy > 0 && (Globals.bossX > this.x || Globals.bossDead == true)) this.moveRight();
 		if (Keyboard.LEFT == true && this.energy > 0) this.moveLeft();
 		if (this.x < Globals.lvEnd - 1000) Globals.cameraX = -this.x;
 	};
