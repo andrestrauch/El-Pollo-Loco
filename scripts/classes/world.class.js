@@ -9,6 +9,7 @@ import { Keyboard } from "./keyboard.class.js";
 import { Statusbar } from "./statusbars.class.js";
 import { ThrowableObject } from "./throwable-object.class.js";
 import { Collectables } from "./collectables.class.js";
+import { AudioHub } from "./audio-hub.class.js";
 
 export class World {
 	canvas;
@@ -42,12 +43,14 @@ export class World {
 		if (Globals.isDead && this.restart != true) {
 			document.getElementById(`gameOver`).classList.add(`d-flex`);
 			this.restart = true;
+			AudioHub.stopAll();
 		}
 
 		if (Globals.bossDead && this.restart != true) {
 			document.getElementById(`gameEnd`).classList.add(`d-flex`);
 			this.restart = true;
 			Globals.level1.character.otherDirection = false;
+			AudioHub.stopAll();
 		}
 	}
 
@@ -121,6 +124,12 @@ export class World {
 				Globals.level1.character.coins += 2;
 				Globals.level1.coins.splice(i, 1);
 				this.coinsStatusBar.setCurrentImg(Globals.level1.character.coins);
+
+				AudioHub.playOne(AudioHub.collectCoin);
+				setTimeout(() => {
+					AudioHub.stopOne(AudioHub.collectCoin);
+					AudioHub.collectCoin.isPlayed = false;
+				}, 500);
 			}
 		}
 	}
@@ -131,6 +140,12 @@ export class World {
 				Globals.level1.character.bottles += 1;
 				Globals.level1.bottles.splice(i, 1);
 				this.bottleStatusBar.setCurrentImg(Globals.level1.character.bottles);
+
+				AudioHub.playOne(AudioHub.collectBottle);
+				setTimeout(() => {
+					AudioHub.stopOne(AudioHub.collectBottle);
+					AudioHub.collectBottle.isPlayed = false;
+				}, 500);
 			}
 		}
 	}

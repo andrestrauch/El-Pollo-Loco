@@ -10,6 +10,8 @@ export class Character extends MoveableObjects {
 	coins = 0;
 	hurtZ;
 	idleZ;
+	walking;
+	jumping;
 
 	offset = {
 		top: 250,
@@ -35,6 +37,15 @@ export class Character extends MoveableObjects {
 		IntervalHub.startInterval(this.getRealFrame, 1000 / 60);
 		IntervalHub.startInterval(this.applyGravity, 1000 / 30);
 		this.animate();
+		this.playSounds();
+	}
+
+	playSounds() {
+		IntervalHub.startInterval(this.playWalking, 1000 / 1.5);
+		IntervalHub.startInterval(this.playJumping, 1000 / 1);
+		IntervalHub.startInterval(this.playSleeping, 2500 / 1);
+		IntervalHub.startInterval(this.playHurting, 3000 / 5.8);
+		IntervalHub.startInterval(this.playDead, 2000 / 1.5);
 	}
 
 	getRealFrame = () => {
@@ -84,13 +95,10 @@ export class Character extends MoveableObjects {
 		if (Globals.aboveGround == true) this.animateObject(ImageHub.PEPE.jump);
 		if ((Keyboard.RIGHT == true || Keyboard.LEFT == true) && Globals.aboveGround == false && this.energy > 0 && Globals.bossDead != true) {
 			this.animateObject(ImageHub.PEPE.run);
-			// AudioHub.playOne(AudioHub.PepeRun);
+			this.walking = true;
 		}
 
-		// console.log(this.y);
-
-		// if ((Keyboard.RIGHT == false && Keyboard.LEFT == false) || Globals.aboveGround == true)
-		//     AudioHub.stopOne(AudioHub.PepeRun);
+		if ((Keyboard.RIGHT == false && Keyboard.LEFT == false) || Globals.aboveGround == true) this.walking = false;
 	};
 
 	animateIdle = () => {
@@ -124,4 +132,44 @@ export class Character extends MoveableObjects {
 		}
 		this.otherDirection = true;
 	}
+
+	playWalking = () => {
+		if (this.walking) AudioHub.playOne(AudioHub.pepeRun);
+		else {
+			AudioHub.stopOne(AudioHub.pepeRun);
+			AudioHub.pepeRun.isPlayed = false;
+		}
+	};
+
+	playJumping = () => {
+		if (Globals.aboveGround) AudioHub.playOne(AudioHub.pepeJump);
+		else {
+			AudioHub.stopOne(AudioHub.pepeJump);
+			AudioHub.pepeJump.isPlayed = false;
+		}
+	};
+
+	playSleeping = () => {
+		if (Globals.longIdle) AudioHub.playOne(AudioHub.pepeSleep);
+		else {
+			AudioHub.stopOne(AudioHub.pepeSleep);
+			AudioHub.pepeSleep.isPlayed = false;
+		}
+	};
+
+	playHurting = () => {
+		if (Globals.isHurt) AudioHub.playOne(AudioHub.pepeDmg);
+		else {
+			AudioHub.stopOne(AudioHub.pepeDmg);
+			AudioHub.pepeDmg.isPlayed = false;
+		}
+	};
+
+	playDead = () => {
+		if (Globals.isDead) AudioHub.playOne(AudioHub.pepeDead);
+		else {
+			AudioHub.stopOne(AudioHub.pepeDead);
+			AudioHub.pepeDead.isPlayed = false;
+		}
+	};
 }

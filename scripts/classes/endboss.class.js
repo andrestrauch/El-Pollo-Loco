@@ -1,10 +1,12 @@
+import { AudioHub } from "./audio-hub.class.js";
 import { Globals } from "./globals.class.js";
 import { ImageHub } from "./image-hub.class.js";
 import { IntervalHub } from "./interval-hub.class.js";
 import { MoveableObjects } from "./moveable-objects.class.js";
 
 export class Endboss extends MoveableObjects {
-	energyMax = 5;
+	energyMax = 1;
+	firstEncounter = false;
 	constructor() {
 		super();
 		this.x = 8200;
@@ -15,10 +17,22 @@ export class Endboss extends MoveableObjects {
 		this.energy = this.energyMax;
 		this.speedX = 0.7;
 
-		IntervalHub.startInterval(this.getRealFrame, 1000 / 60);
 		this.imageLoading();
 		this.animate();
+		IntervalHub.startInterval(this.getRealFrame, 1000 / 60);
+		IntervalHub.startInterval(this.checkEncounter, 1000 / 2);
 	}
+
+	checkEncounter = () => {
+		if (this.x - Globals.currentX < 1000 && this.firstEncounter == false) {
+			this.firstEncounter = true;
+			AudioHub.playOne(AudioHub.bossEncounter);
+			setTimeout(() => {
+				AudioHub.stopOne(AudioHub.bossEncounter);
+				AudioHub.bossEncounter.isPlayed = false;
+			}, 2000);
+		}
+	};
 
 	getRealFrame = () => {
 		this.rX = this.x + 90;
@@ -86,7 +100,14 @@ export class Endboss extends MoveableObjects {
 	};
 
 	animateDead = () => {
-		if (this.energy <= 0) this.animateObject(ImageHub.BOSS.dead);
+		if (this.energy <= 0) {
+			this.animateObject(ImageHub.BOSS.dead);
+			AudioHub.playOne(AudioHub.bossDead);
+			setTimeout(() => {
+				AudioHub.stopOne(AudioHub.bossDead);
+				AudioHub.bossDead.isPlayed = false;
+			}, 500);
+		}
 	};
 
 	moveRight() {

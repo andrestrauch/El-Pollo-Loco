@@ -9,15 +9,40 @@ class MyAudio {
 }
 
 export class AudioHub {
-	static PepeRun = new MyAudio("./assets/sounds/character/characterRun.mp3");
+	static gameStart = new MyAudio("./assets/sounds/game/gameStart.mp3");
+	static pepeRun = new MyAudio("./assets/sounds/character/characterRun.mp3");
+	static pepeJump = new MyAudio("./assets/sounds/character/characterJump.wav");
+	static pepeSleep = new MyAudio("./assets/sounds/character/characterSnoring.mp3");
+	static pepeDmg = new MyAudio("./assets/sounds/character/characterDamage.mp3");
+	static pepeDead = new MyAudio("./assets/sounds/character/characterDead.wav");
+	static collectCoin = new MyAudio("./assets/sounds/collectibles/collectSound.wav");
+	static collectBottle = new MyAudio("./assets/sounds/collectibles/bottleCollectSound.wav");
+	static bottleBreak = new MyAudio("./assets/sounds/throwable/bottleBreak.mp3");
+	static bossEncounter = new MyAudio("./assets/sounds/endboss/endbossApproach.wav");
+	static bossDead = new MyAudio("./assets/sounds/chicken/chickenDead2.mp3");
+	static chickenDead = new MyAudio("./assets/sounds/chicken/chickenDead.mp3");
 
-	static allSounds = [AudioHub.PepeRun];
+	static allSounds = [
+		AudioHub.gameStart,
+		AudioHub.pepeRun,
+		AudioHub.pepeJump,
+		AudioHub.pepeSleep,
+		AudioHub.pepeDmg,
+		AudioHub.pepeDead,
+		AudioHub.collectCoin,
+		AudioHub.collectBottle,
+		AudioHub.bottleBreak,
+		AudioHub.bossEncounter,
+		AudioHub.bossDead,
+		AudioHub.chickenDead,
+	];
 
 	static playOne(sound) {
 		sound.file.currentTime = 0;
-		if (sound.file.readyState > 0 || sound.isLoaded) {
-			sound.file.volume = 0.2;
+		if ((sound.file.readyState > 0 || sound.isLoaded) && sound.isPlayed == false) {
+			sound.file.volume = 0.1;
 			sound.isLoaded = true;
+			sound.isPlayed = true;
 			sound.file.play();
 
 			// console.log("Sound wird abgespielt!");

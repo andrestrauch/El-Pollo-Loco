@@ -1,10 +1,10 @@
-// import { enemies, clouds, coins, bottles } from "./level/level1.js";
 import { EventListener } from "./classes/event-listener.class.js";
 import { Globals } from "./classes/globals.class.js";
 import { IntervalHub } from "./classes/interval-hub.class.js";
 import { Level } from "./classes/level.class.js";
-import { World } from "./classes/world.class.js";
 import { Level1 } from "./level/level1.js";
+import { World } from "./classes/world.class.js";
+import { AudioHub } from "./classes/audio-hub.class.js";
 
 export function init() {
 	document.getElementById("startBtn").classList.add("d_none");
@@ -24,6 +24,11 @@ export function init() {
 	setTimeout(() => {
 		Globals.world = new World(canvas);
 		EventListener.addEventListener();
+		AudioHub.playOne(AudioHub.gameStart);
+		setTimeout(() => {
+			AudioHub.stopOne(AudioHub.gameStart);
+			AudioHub.gameStart.isPlayed = false;
+		}, 2000);
 	}, 250);
 }
 

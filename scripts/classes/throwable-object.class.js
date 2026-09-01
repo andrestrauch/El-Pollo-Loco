@@ -1,3 +1,4 @@
+import { AudioHub } from "./audio-hub.class.js";
 import { Globals } from "./globals.class.js";
 import { ImageHub } from "./image-hub.class.js";
 import { IntervalHub } from "./interval-hub.class.js";
@@ -6,6 +7,7 @@ import { MoveableObjects } from "./moveable-objects.class.js";
 export class ThrowableObject extends MoveableObjects {
 	x;
 	y;
+	break = false;
 
 	constructor(_x, _y) {
 		super();
@@ -41,6 +43,20 @@ export class ThrowableObject extends MoveableObjects {
 	animateBottle = () => {
 		if (Globals.bottleContact == false) this.animateObject(ImageHub.BOTTLE.throw);
 
-		if (this.y >= 610 || Globals.bottleContac == true) this.animateObject(ImageHub.BOTTLE.splash);
+		if (this.y >= 610 || Globals.bottleContact == true) {
+			this.animateObject(ImageHub.BOTTLE.splash);
+			this.playBottleBreak();
+			this.break = true;
+		}
 	};
+
+	playBottleBreak() {
+		if (this.break == false) {
+			AudioHub.playOne(AudioHub.bottleBreak);
+			setTimeout(() => {
+				AudioHub.stopOne(AudioHub.bottleBreak);
+				AudioHub.bottleBreak.isPlayed = false;
+			}, 100);
+		}
+	}
 }

@@ -1,3 +1,4 @@
+import { AudioHub } from "./audio-hub.class.js";
 import { ImageHub } from "./image-hub.class.js";
 import { IntervalHub } from "./interval-hub.class.js";
 import { MoveableObjects } from "./moveable-objects.class.js";
@@ -47,6 +48,14 @@ export class Chicken extends MoveableObjects {
 			this.w = 100;
 			this.h = 200;
 			this.y = 550;
+		}
+
+		if (this.isDead & (this.y < 551)) {
+			AudioHub.playOne(AudioHub.chickenDead);
+			setTimeout(() => {
+				AudioHub.stopOne(AudioHub.chickenDead);
+				AudioHub.chickenDead.isPlayed = false;
+			}, 400);
 		}
 	};
 
