@@ -15,4 +15,5 @@ export class Globals {
 	static isHurt = false;
 	static isDead = false;
 	static bottleContact = false;
+	static TitleReturn = false;
 }

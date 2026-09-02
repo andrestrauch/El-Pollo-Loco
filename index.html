@@ -6,7 +6,6 @@
 		<title>El Pollo Loco</title>
 
 		<link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/x-icon" />
-
 		<link rel="stylesheet" href="./styles/standard.css" />
 		<link rel="stylesheet" href="./styles/standard.css" />
 		<link rel="stylesheet" href="./styles/style.css" />
@@ -16,10 +15,13 @@
 			import { init } from "./scripts/script.js";
 			import { gameRestart } from "./scripts/script.js";
 			import { setSoundBtn } from "./scripts/script.js";
+			import { backToStartscreen } from "./scripts/script.js";
+			document.querySelector("#muteBtn").addEventListener("click", setSoundBtn);
 			document.querySelector("#startBtn").addEventListener("click", init);
 			document.querySelector("#restartBtn").addEventListener("click", gameRestart);
 			document.querySelector("#restartBtn2").addEventListener("click", gameRestart);
-			document.querySelector("#muteBtn").addEventListener("click", setSoundBtn);
+			document.querySelector("#resetBtn").addEventListener("click", backToStartscreen);
+			document.querySelector("#resetBtn2").addEventListener("click", backToStartscreen);
 		</script>
 	</head>
 
@@ -28,6 +30,24 @@
 			<h1 id="title">El Pollo Loco</h1>
 			<canvas id="canvas" width="1200" height="800"></canvas>
 			<button id="startBtn" class="start-btn">Game start</button>
+
+			<section id="gameOver" class="game-over">
+				<img src="./assets/img/You won, you lost/Game over A.png" alt="" />
+				<button id="restartBtn" class="restart-btn">Restart</button>
+				<button id="resetBtn" class="reset-btn">Startscreen</button>
+			</section>
+
+			<section id="gameEnd" class="game-end">
+				<img src="./assets/img/You won, you lost/You Won B.png" alt="" />
+				<button id="restartBtn2" class="restart-btn">Restart</button>
+				<button id="resetBtn2" class="reset-btn">Startscreen</button>
+			</section>
+
+			<section class="sound-mute">
+				<button id="muteBtn" class="mute-btn">
+					<img src="./assets/icons/muted_btn.png" alt="" />
+				</button>
+			</section>
 
 			<section class="mobil-section">
 				<article class="mobil-btn">
@@ -46,22 +66,6 @@
 						<img src="./assets/icons/bottle.png" alt="" />
 					</button>
 				</article>
-			</section>
-
-			<section id="gameOver" class="game-over">
-				<img src="./assets/img/You won, you lost/Game over A.png" alt="" />
-				<button id="restartBtn" class="restart-btn">Restart</button>
-			</section>
-
-			<section id="gameEnd" class="game-end">
-				<img src="./assets/img/You won, you lost/You Won B.png" alt="" />
-				<button id="restartBtn2" class="restart-btn">Restart</button>
-			</section>
-
-			<section class="sound-mute">
-				<button id="muteBtn" class="mute-btn">
-					<img src="./assets/icons/muted_btn.png" alt="" />
-				</button>
 			</section>
 		</section>
 	</body>

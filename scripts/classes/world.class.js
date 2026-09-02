@@ -37,6 +37,10 @@ export class World {
 		this.checkHealing();
 		this.checkNewBottleSpawn();
 		this.checkGameEnd();
+
+		if (Globals.TitleReturn) {
+			this.ctx.clearRect(0, 0, 1200, 800);
+		}
 	};
 
 	checkGameEnd() {
@@ -189,20 +193,23 @@ export class World {
 	}
 
 	draw() {
-		this.ctx.clearRect(9, 0, this.canvas.width, this.canvas.height);
-		this.ctx.translate(Globals.cameraX, 0);
-		this.addObjToMap(Globals.level1.backgrounds);
-		this.addObjToMap(Globals.level1.clouds);
-		this.addObjToMap(Globals.level1.coins);
-		this.addObjToMap(Globals.level1.bottles);
-		this.addObjToMap(Globals.level1.enemies);
-		this.addObjToMap(this.throwBottles);
-		this.addToMap(Globals.level1.character);
-		this.ctx.translate(-Globals.cameraX, 0);
-		this.addToMap(this.healthStatusBar);
-		this.addToMap(this.coinsStatusBar);
-		this.addToMap(this.bottleStatusBar);
-		this.addToMap(this.bossHealthStatusBar);
+		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+		if (Globals.TitleReturn == false) {
+			this.ctx.translate(Globals.cameraX, 0);
+			this.addObjToMap(Globals.level1.backgrounds);
+			this.addObjToMap(Globals.level1.clouds);
+			this.addObjToMap(Globals.level1.coins);
+			this.addObjToMap(Globals.level1.bottles);
+			this.addObjToMap(Globals.level1.enemies);
+			this.addObjToMap(this.throwBottles);
+			this.addToMap(Globals.level1.character);
+			this.ctx.translate(-Globals.cameraX, 0);
+			this.addToMap(this.healthStatusBar);
+			this.addToMap(this.coinsStatusBar);
+			this.addToMap(this.bottleStatusBar);
+			this.addToMap(this.bossHealthStatusBar);
+		}
 		requestAnimationFrame(() => this.draw());
 	}
 

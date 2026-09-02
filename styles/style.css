@@ -53,8 +53,20 @@ body {
 	font-weight: bold;
 }
 
-.restart-btn {
+.restart-btn,
+.reset-btn {
 	width: 150px;
+	height: 60px;
+
+	font-size: 30px;
+	font-weight: bold;
+	border: 3px solid black;
+	border-radius: 30px;
+	background-color: rgb(212, 175, 55);
+}
+
+.reset-btn {
+	width: 200px;
 	height: 60px;
 
 	font-size: 30px;

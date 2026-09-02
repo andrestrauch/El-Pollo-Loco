@@ -9,7 +9,6 @@ import { AudioHub } from "./classes/audio-hub.class.js";
 playBackgroundSound();
 export function init() {
 	document.getElementById("startBtn").classList.add("d_none");
-
 	const canvas = document.getElementById("canvas");
 	let lvStart = -2;
 	let lvEnd = 7;
@@ -42,7 +41,9 @@ export function gameRestart() {
 	Globals.isHurt = false;
 	Globals.isDead = false;
 	Globals.bossDead = false;
+	Globals.TitleReturn = false;
 	IntervalHub.stopAllIntervals();
+	console.log(Globals.TitleReturn);
 
 	setTimeout(() => {
 		AudioHub.stopOne(AudioHub.backgroundMusic);
@@ -52,7 +53,7 @@ export function gameRestart() {
 	setTimeout(() => {
 		init();
 		playBackgroundSound();
-	}, 500);
+	}, 1000);
 }
 
 function showFullscreen() {
@@ -85,4 +86,13 @@ export function playBackgroundSound() {
 		AudioHub.playOne(AudioHub.backgroundMusic);
 		AudioHub.changeVolume(AudioHub.backgroundMusic);
 	}, 2000);
+}
+
+export function backToStartscreen() {
+	Globals.TitleReturn = true;
+	document.getElementById("startBtn").classList.remove("d_none");
+	document.getElementById(`gameOver`).classList.remove(`d-flex`);
+	document.getElementById(`gameOver`).classList.add(`d_none`);
+	document.getElementById(`gameEnd`).classList.remove(`d-flex`);
+	document.getElementById(`gameEnd`).classList.add(`d_none`);
 }
