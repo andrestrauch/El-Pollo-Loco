@@ -6,6 +6,7 @@ import { Level1 } from "./level/level1.js";
 import { World } from "./classes/world.class.js";
 import { AudioHub } from "./classes/audio-hub.class.js";
 
+playBackgroundSound();
 export function init() {
 	document.getElementById("startBtn").classList.add("d_none");
 
@@ -44,7 +45,13 @@ export function gameRestart() {
 	IntervalHub.stopAllIntervals();
 
 	setTimeout(() => {
+		AudioHub.stopOne(AudioHub.backgroundMusic);
+		AudioHub.backgroundMusic.isPlayed = false;
+	}, 2000);
+
+	setTimeout(() => {
 		init();
+		playBackgroundSound();
 	}, 500);
 }
 
@@ -58,16 +65,24 @@ export function setSoundBtn() {
 	soundRef.innerHTML = "";
 	if (AudioHub.mute) {
 		AudioHub.mute = false;
+		AudioHub.changeVolume(AudioHub.backgroundMusic);
 		soundRef.innerHTML = /*html*/ `
 				<img src="./assets/icons/sound_btn.png" alt="">
 			`;
 	} else {
 		// AudioHub.stopAll();
 		AudioHub.mute = true;
+		AudioHub.changeVolume(AudioHub.backgroundMusic);
 		soundRef.innerHTML = /*html*/ `
 				
 				<img src="./assets/icons/muted_btn.png" alt="">
 			`;
 	}
-	// console.log("Mute Button gelickt, Sound Mute: ", AudioHub.mute);
+}
+
+export function playBackgroundSound() {
+	setTimeout(() => {
+		AudioHub.playOne(AudioHub.backgroundMusic);
+		AudioHub.changeVolume(AudioHub.backgroundMusic);
+	}, 2000);
 }
