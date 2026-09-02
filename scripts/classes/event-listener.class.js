@@ -1,3 +1,4 @@
+import { AudioHub } from "./audio-hub.class.js";
 import { Keyboard } from "./keyboard.class.js";
 
 export class EventListener {

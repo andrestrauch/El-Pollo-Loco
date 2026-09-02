@@ -52,3 +52,22 @@ function showFullscreen() {
 	let fullscreen = document.getElementById("fullscreen");
 	fullscreen.requestFullscreen();
 }
+
+export function setSoundBtn() {
+	let soundRef = document.getElementById(`muteBtn`);
+	soundRef.innerHTML = "";
+	if (AudioHub.mute) {
+		AudioHub.mute = false;
+		soundRef.innerHTML = /*html*/ `
+				<img src="./assets/icons/sound_btn.png" alt="">
+			`;
+	} else {
+		// AudioHub.stopAll();
+		AudioHub.mute = true;
+		soundRef.innerHTML = /*html*/ `
+				
+				<img src="./assets/icons/muted_btn.png" alt="">
+			`;
+	}
+	// console.log("Mute Button gelickt, Sound Mute: ", AudioHub.mute);
+}

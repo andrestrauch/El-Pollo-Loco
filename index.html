@@ -15,9 +15,11 @@
 		<script type="module">
 			import { init } from "./scripts/script.js";
 			import { gameRestart } from "./scripts/script.js";
+			import { setSoundBtn } from "./scripts/script.js";
 			document.querySelector("#startBtn").addEventListener("click", init);
 			document.querySelector("#restartBtn").addEventListener("click", gameRestart);
 			document.querySelector("#restartBtn2").addEventListener("click", gameRestart);
+			document.querySelector("#muteBtn").addEventListener("click", setSoundBtn);
 		</script>
 	</head>
 
@@ -54,6 +56,12 @@
 			<section id="gameEnd" class="game-end">
 				<img src="./assets/img/You won, you lost/You Won B.png" alt="" />
 				<button id="restartBtn2" class="restart-btn">Restart</button>
+			</section>
+
+			<section class="sound-mute">
+				<button id="muteBtn" class="mute-btn">
+					<img src="./assets/icons/muted_btn.png" alt="" />
+				</button>
 			</section>
 		</section>
 	</body>

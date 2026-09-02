@@ -5,7 +5,7 @@ import { IntervalHub } from "./interval-hub.class.js";
 import { MoveableObjects } from "./moveable-objects.class.js";
 
 export class Endboss extends MoveableObjects {
-	energyMax = 1;
+	energyMax = 5;
 	firstEncounter = false;
 	constructor() {
 		super();

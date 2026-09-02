@@ -21,6 +21,7 @@ export class AudioHub {
 	static bossEncounter = new MyAudio("./assets/sounds/endboss/endbossApproach.wav");
 	static bossDead = new MyAudio("./assets/sounds/chicken/chickenDead2.mp3");
 	static chickenDead = new MyAudio("./assets/sounds/chicken/chickenDead.mp3");
+	static mute = true;
 
 	static allSounds = [
 		AudioHub.gameStart,
@@ -40,7 +41,8 @@ export class AudioHub {
 	static playOne(sound) {
 		sound.file.currentTime = 0;
 		if ((sound.file.readyState > 0 || sound.isLoaded) && sound.isPlayed == false) {
-			sound.file.volume = 0.1;
+			if (AudioHub.mute) sound.file.volume = 0;
+			else sound.file.volume = 0.02;
 			sound.isLoaded = true;
 			sound.isPlayed = true;
 			sound.file.play();
