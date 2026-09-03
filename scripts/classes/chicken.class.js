@@ -1,4 +1,5 @@
 import { AudioHub } from "./audio-hub.class.js";
+import { Globals } from "./globals.class.js";
 import { ImageHub } from "./image-hub.class.js";
 import { IntervalHub } from "./interval-hub.class.js";
 import { MoveableObjects } from "./moveable-objects.class.js";
@@ -40,26 +41,28 @@ export class Chicken extends MoveableObjects {
 	}
 
 	animateChicken = () => {
-		if (this.energy > 0) this.animateObject(ImageHub.CHICKEN.run);
-		else this.loadImage(`assets/img/3_enemies_chicken/chicken_normal/2_dead/dead.png`);
+		if (Globals.pause == false) {
+			if (this.energy > 0) this.animateObject(ImageHub.CHICKEN.run);
+			else this.loadImage(`assets/img/3_enemies_chicken/chicken_normal/2_dead/dead.png`);
 
-		if (this.energy == 0 && this.isDead == false) {
-			this.isDead = true;
-			this.w = 100;
-			this.h = 200;
-			this.y = 550;
-		}
+			if (this.energy == 0 && this.isDead == false) {
+				this.isDead = true;
+				this.w = 100;
+				this.h = 200;
+				this.y = 550;
+			}
 
-		if (this.isDead & (this.y < 551)) {
-			AudioHub.playOne(AudioHub.chickenDead);
-			setTimeout(() => {
-				AudioHub.stopOne(AudioHub.chickenDead);
-				AudioHub.chickenDead.isPlayed = false;
-			}, 400);
+			if (this.isDead & (this.y < 551)) {
+				AudioHub.playOne(AudioHub.chickenDead);
+				setTimeout(() => {
+					AudioHub.stopOne(AudioHub.chickenDead);
+					AudioHub.chickenDead.isPlayed = false;
+				}, 400);
+			}
 		}
 	};
 
 	animateMove = () => {
-		if (this.energy > 0) this.moveLeft();
+		if (this.energy > 0 && Globals.pause == false) this.moveLeft();
 	};
 }

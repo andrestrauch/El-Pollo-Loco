@@ -16,7 +16,7 @@ export function init() {
 	Globals.cvsH = canvas.height;
 	Globals.lvStart = canvas.width * lvStart;
 	Globals.lvEnd = canvas.width * lvEnd;
-	Globals.TitleReturn = false;
+	Globals.titleReturn = false;
 
 	Level1.addContent();
 	setTimeout(() => {
@@ -42,7 +42,7 @@ export function gameRestart() {
 	Globals.isHurt = false;
 	Globals.isDead = false;
 	Globals.bossDead = false;
-	Globals.TitleReturn = false;
+	Globals.titleReturn = false;
 	IntervalHub.stopAllIntervals();
 
 	setTimeout(() => {
@@ -89,7 +89,7 @@ export function playBackgroundMusic() {
 }
 
 export function backToStartscreen() {
-	Globals.TitleReturn = true;
+	Globals.titleReturn = true;
 	Globals.isHurt = false;
 	Globals.isDead = false;
 	Globals.bossDead = false;

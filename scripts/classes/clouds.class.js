@@ -1,3 +1,4 @@
+import { Globals } from "./globals.class.js";
 import { IntervalHub } from "./interval-hub.class.js";
 import { MoveableObjects } from "./moveable-objects.class.js";
 export class Cloud extends MoveableObjects {
@@ -32,6 +33,7 @@ export class Cloud extends MoveableObjects {
 
 	animate = () => {
 		if (this.x < -3000) this.x = 8100;
-		this.moveLeft();
+
+		if (Globals.pause == false) this.moveLeft();
 	};
 }

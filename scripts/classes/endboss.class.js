@@ -67,40 +67,51 @@ export class Endboss extends MoveableObjects {
 	}
 
 	animateAngry = () => {
-		if ((this.checkGap(900, 1200, this.x, Globals.currentX) && this.energy > this.energyMax) || this.pausedGame)
+		if ((Globals.pause == false && this.checkGap(900, 1200, this.x, Globals.currentX) && this.energy > this.energyMax) || this.pausedGame)
 			this.animateObject(ImageHub.BOSS.angry);
 	};
 
 	animateAttacking = () => {
-		if (this.checkGap(-100, 100, this.x, Globals.currentX) && this.pausedGame != true && Globals.isDead == false && this.energy > 0)
+		if (
+			Globals.pause == false &&
+			this.checkGap(-100, 100, this.x, Globals.currentX) &&
+			this.pausedGame != true &&
+			Globals.isDead == false &&
+			this.energy > 0
+		)
 			this.animateObject(ImageHub.BOSS.attacking);
 	};
 
 	animateRun = () => {
-		Globals.bossX = this.x;
-		if (this.checkGap(0, 900, this.x, Globals.currentX) && this.pausedGame != true && Globals.isDead == false && this.energy > 0)
-			this.animateObject(ImageHub.BOSS.run);
+		if (Globals.pause == false) {
+			Globals.bossX = this.x;
+			if (this.checkGap(0, 900, this.x, Globals.currentX) && this.pausedGame != true && Globals.isDead == false && this.energy > 0)
+				this.animateObject(ImageHub.BOSS.run);
 
-		if (this.checkGap(0, 900, this.x, Globals.currentX) && this.energy > 0) IntervalHub.startInterval(this.animateMove, 1000 / 30);
+			if (this.checkGap(0, 900, this.x, Globals.currentX) && this.energy > 0) IntervalHub.startInterval(this.animateMove, 1000 / 30);
+		}
 	};
 
 	animateMove = () => {
-		if (this.checkGap(0, 900, this.x, Globals.currentX) && this.energy > 0) {
-			this.otherDirection = false;
-			this.moveLeft();
-		}
+		if (Globals.pause == false) {
+			if (this.checkGap(0, 900, this.x, Globals.currentX) && this.energy > 0) {
+				this.otherDirection = false;
+				this.moveLeft();
+			}
 
-		if (this.checkGap(1200, 8000, this.x, Globals.currentX) && this.energy > 0) {
-			this.moveRight();
+			if (this.checkGap(1200, 8000, this.x, Globals.currentX) && this.energy > 0) {
+				this.moveRight();
+			}
 		}
 	};
 
 	animateHurt = () => {
-		if (this.energy < this.energyMax && this.energy > 0 && Globals.level1.character.energy > 0) this.animateObject(ImageHub.BOSS.hurt);
+		if (Globals.pause == false && this.energy < this.energyMax && this.energy > 0 && Globals.level1.character.energy > 0)
+			this.animateObject(ImageHub.BOSS.hurt);
 	};
 
 	animateDead = () => {
-		if (this.energy <= 0) {
+		if (this.energy <= 0 && Globals.pause == false) {
 			this.animateObject(ImageHub.BOSS.dead);
 			AudioHub.playOne(AudioHub.bossDead);
 			setTimeout(() => {

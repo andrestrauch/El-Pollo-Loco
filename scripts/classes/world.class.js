@@ -38,7 +38,7 @@ export class World {
 		this.checkNewBottleSpawn();
 		this.checkGameEnd();
 
-		if (Globals.TitleReturn) {
+		if (Globals.titleReturn) {
 			this.ctx.clearRect(0, 0, 1200, 800);
 		}
 	};
@@ -195,7 +195,7 @@ export class World {
 	draw() {
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-		if (Globals.TitleReturn == false) {
+		if (Globals.titleReturn == false) {
 			this.ctx.translate(Globals.cameraX, 0);
 			this.addObjToMap(Globals.level1.backgrounds);
 			this.addObjToMap(Globals.level1.clouds);

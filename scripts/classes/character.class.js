@@ -74,7 +74,7 @@ export class Character extends MoveableObjects {
 	}
 
 	animateHurt = () => {
-		if (Globals.isHurt && Globals.bossDead != true) {
+		if (Globals.isHurt && Globals.bossDead != true && Globals.pause == false) {
 			this.animateObject(ImageHub.PEPE.hurt);
 			this.hurtZ++;
 			if (this.hurtZ > 30) {
@@ -85,43 +85,49 @@ export class Character extends MoveableObjects {
 	};
 
 	animateDead = () => {
-		if (this.energy == 0) {
+		if (this.energy == 0 && Globals.pause == false) {
 			this.animateObject(ImageHub.PEPE.dead);
 			this.otherDirection = false;
 		}
 	};
 
 	animateMove = () => {
-		if (Globals.aboveGround == true) this.animateObject(ImageHub.PEPE.jump);
-		if ((Keyboard.RIGHT == true || Keyboard.LEFT == true) && Globals.aboveGround == false && this.energy > 0 && Globals.bossDead != true) {
-			this.animateObject(ImageHub.PEPE.run);
-			this.walking = true;
-		}
+		if (Globals.pause == false) {
+			if (Globals.aboveGround == true) this.animateObject(ImageHub.PEPE.jump);
+			if ((Keyboard.RIGHT == true || Keyboard.LEFT == true) && Globals.aboveGround == false && this.energy > 0 && Globals.bossDead != true) {
+				this.animateObject(ImageHub.PEPE.run);
+				this.walking = true;
+			}
 
-		if ((Keyboard.RIGHT == false && Keyboard.LEFT == false) || Globals.aboveGround == true) this.walking = false;
+			if ((Keyboard.RIGHT == false && Keyboard.LEFT == false) || Globals.aboveGround == true) this.walking = false;
+		}
 	};
 
 	animateIdle = () => {
-		if ((Keyboard.RIGHT == false || Keyboard.LEFT == false) && Globals.aboveGround == false && this.energy > 0 && Globals.bossDead != true) {
-			if (this.idleZ < 30) this.animateObject(ImageHub.PEPE.idle);
-			if (this.idleZ >= 30) {
-				this.animateObject(ImageHub.PEPE.longIdle);
-				Globals.longIdle = true;
+		if (Globals.pause == false) {
+			if ((Keyboard.RIGHT == false || Keyboard.LEFT == false) && Globals.aboveGround == false && this.energy > 0 && Globals.bossDead != true) {
+				if (this.idleZ < 30) this.animateObject(ImageHub.PEPE.idle);
+				if (this.idleZ >= 30) {
+					this.animateObject(ImageHub.PEPE.longIdle);
+					Globals.longIdle = true;
+				}
 			}
-		}
-		this.idleZ++;
-		if (Keyboard.RIGHT || Keyboard.LEFT || Globals.aboveGround) {
-			this.idleZ = 0;
-			Globals.longIdle = false;
+			this.idleZ++;
+			if (Keyboard.RIGHT || Keyboard.LEFT || Globals.aboveGround) {
+				this.idleZ = 0;
+				Globals.longIdle = false;
+			}
 		}
 	};
 
 	changePosition = () => {
-		if ((Keyboard.SPACE == true || Keyboard.UP == true) && Globals.aboveGround == false && this.energy > 0 && Globals.bossDead != true)
-			this.jump();
-		if (Keyboard.RIGHT == true && this.energy > 0 && Globals.bossX > this.x && Globals.bossDead != true) this.moveRight();
-		if (Keyboard.LEFT == true && this.energy > 0 && Globals.bossDead != true) this.moveLeft();
-		if (this.x < Globals.lvEnd - 1000) Globals.cameraX = -this.x;
+		if (Globals.pause == false) {
+			if ((Keyboard.SPACE == true || Keyboard.UP == true) && Globals.aboveGround == false && this.energy > 0 && Globals.bossDead != true)
+				this.jump();
+			if (Keyboard.RIGHT == true && this.energy > 0 && Globals.bossX > this.x && Globals.bossDead != true) this.moveRight();
+			if (Keyboard.LEFT == true && this.energy > 0 && Globals.bossDead != true) this.moveLeft();
+			if (this.x < Globals.lvEnd - 1000) Globals.cameraX = -this.x;
+		}
 	};
 
 	//auslagern in mo klasse

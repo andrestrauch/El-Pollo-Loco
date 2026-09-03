@@ -1,4 +1,5 @@
 import { AudioHub } from "./audio-hub.class.js";
+import { Globals } from "./globals.class.js";
 import { Keyboard } from "./keyboard.class.js";
 
 export class EventListener {
@@ -76,5 +77,26 @@ export class EventListener {
 		document.getElementById(`btnThrow`).addEventListener(`mouseup`, () => {
 			Keyboard.D = false;
 		});
+
+		document.getElementById(`pauseBtn`).addEventListener(`click`, () => {
+			if (Globals.pause == false) Globals.pause = true;
+			else Globals.pause = false;
+			EventListener.changePauseBtn();
+		});
+	}
+
+	static changePauseBtn() {
+		let pauseRef = document.getElementById(`pauseBtn`);
+		console.log("Test");
+		pauseRef.innerHTML = "";
+		if (Globals.pause) {
+			pauseRef.innerHTML = /*html*/ `
+				<img src="./assets/icons/play_button.png" alt="" />
+			`;
+		} else {
+			pauseRef.innerHTML = /*html*/ `
+				<img src="./assets/icons/pause_button.png" alt="" />
+			`;
+		}
 	}
 }
