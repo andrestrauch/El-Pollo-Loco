@@ -115,7 +115,7 @@ export class World {
 	setPepeHealth(enemy) {
 		if (Globals.level1.character.energy > 0 && enemy.energy > 0 && (Globals.isFalling == false || enemy instanceof Endboss)) {
 			Globals.isHurt = true;
-			Globals.level1.character.energy -= 2;
+			Globals.level1.character.energy -= 5;
 		}
 	}
 
