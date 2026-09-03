@@ -11,7 +11,7 @@ export function init() {
 	document.getElementById("startBtn").classList.add("d_none");
 	const canvas = document.getElementById("canvas");
 	let lvStart = -2;
-	let lvEnd = 7;
+	let lvEnd = 6;
 	Globals.cvsW = canvas.width;
 	Globals.cvsH = canvas.height;
 	Globals.lvStart = canvas.width * lvStart;

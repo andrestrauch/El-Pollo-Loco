@@ -32,7 +32,7 @@ export class Cloud extends MoveableObjects {
 	}
 
 	animate = () => {
-		if (this.x < -3000) this.x = 8100;
+		if (this.x < -3000) this.x = 8500;
 
 		if (Globals.pause == false) this.moveLeft();
 	};

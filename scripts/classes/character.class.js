@@ -126,13 +126,13 @@ export class Character extends MoveableObjects {
 				this.jump();
 			if (Keyboard.RIGHT == true && this.energy > 0 && Globals.bossX > this.x && Globals.bossDead != true) this.moveRight();
 			if (Keyboard.LEFT == true && this.energy > 0 && Globals.bossDead != true) this.moveLeft();
-			if (this.x < Globals.lvEnd - 1000) Globals.cameraX = -this.x;
+			if (this.x < Globals.lvEnd - 1200) Globals.cameraX = -this.x;
 		}
 	};
 
 	//auslagern in mo klasse
 	moveLeft() {
-		if (this.x > -2200) {
+		if (this.x > -2550) {
 			this.x -= (Globals.cvsW / 100) * 1;
 			Globals.currentX = this.x;
 		}

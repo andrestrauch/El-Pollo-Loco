@@ -19,7 +19,7 @@ export class World {
 	healthStatusBar = new Statusbar(75, -40, 275, 150, 100, 100, ImageHub.STATUSBAR.healthbar);
 	coinsStatusBar = new Statusbar(30, 30, 322, 150, 0, 100, ImageHub.STATUSBAR.coinsbar);
 	bottleStatusBar = new Statusbar(0, 100, 350, 150, 0, 5, ImageHub.STATUSBAR.bottlebar);
-	bossHealthStatusBar = new Statusbar(850, -150, 150, 150, 5, 5, ImageHub.STATUSBAR.bossHealthbar);
+	bossHealthStatusBar = new Statusbar(1050, -150, 150, 150, 5, 5, ImageHub.STATUSBAR.bossHealthbar);
 
 	constructor(canvas) {
 		this.canvas = canvas;
@@ -41,7 +41,7 @@ export class World {
 		}
 
 		if (Globals.titleReturn) {
-			this.ctx.clearRect(0, 0, 1200, 800);
+			this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		}
 	};
 
@@ -188,8 +188,10 @@ export class World {
 		if (Globals.level1.character.bottles == 0 && Globals.level1.bottles.length == 0) {
 			Globals.level1.bottles = [
 				new Collectables(-200, 600, "bottle"),
-				new Collectables(-1050, 600, "bottle"),
-				new Collectables(-2050, 600, "bottle"),
+				new Collectables(-1000, 600, "bottle"),
+				new Collectables(-1500, 600, "bottle"),
+				new Collectables(-2000, 600, "bottle"),
+				new Collectables(-2500, 600, "bottle"),
 			];
 		}
 	}

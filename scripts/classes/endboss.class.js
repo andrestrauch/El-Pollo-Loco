@@ -9,7 +9,7 @@ export class Endboss extends MoveableObjects {
 	firstEncounter = false;
 	constructor() {
 		super();
-		this.x = 8200;
+		this.x = Globals.lvEnd - 200;
 		Globals.bossX = this.x;
 		this.y = 10;
 		this.w = 500;
@@ -99,7 +99,7 @@ export class Endboss extends MoveableObjects {
 				this.moveLeft();
 			}
 
-			if (this.checkGap(1200, 8000, this.x, Globals.currentX) && this.energy > 0) {
+			if (this.checkGap(1200, 8400, this.x, Globals.currentX) && this.energy > 0) {
 				this.moveRight();
 			}
 		}
@@ -122,7 +122,7 @@ export class Endboss extends MoveableObjects {
 	};
 
 	moveRight() {
-		if (this.x < 8200) {
+		if (this.x < Globals.lvEnd) {
 			this.otherDirection = true;
 			this.x += (Globals.cvsW / 100) * 0.5;
 		}
