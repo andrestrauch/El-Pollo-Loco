@@ -172,7 +172,7 @@ export class World {
 	}
 
 	checkFalling(y) {
-		if (Globals.level1.character.y < -170) Globals.isFalling = true;
+		if (Globals.level1.character.y < 50) Globals.isFalling = true;
 	}
 
 	checkOnGround(y) {

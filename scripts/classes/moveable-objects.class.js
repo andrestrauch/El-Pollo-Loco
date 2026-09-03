@@ -73,7 +73,7 @@ export class MoveableObjects {
 		this.isAboveGround();
 		if (Globals.aboveGround == true || this.speedY > 0) {
 			this.y -= this.speedY;
-			this.speedY -= 1;
+			this.speedY -= 3;
 
 			if (this.y > 260) this.y = 260;
 		}
@@ -86,7 +86,7 @@ export class MoveableObjects {
 	}
 
 	jump() {
-		this.speedY = 28;
+		this.speedY = 32;
 	}
 
 	checkIdle = () => {

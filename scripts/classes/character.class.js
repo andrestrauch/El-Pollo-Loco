@@ -104,7 +104,7 @@ export class Character extends MoveableObjects {
 	};
 
 	animateIdle = () => {
-		if (Globals.pause == false) {
+		if (Globals.pause == false && Globals.isHurt == false) {
 			if ((Keyboard.RIGHT == false || Keyboard.LEFT == false) && Globals.aboveGround == false && this.energy > 0 && Globals.bossDead != true) {
 				if (this.idleZ < 30) this.animateObject(ImageHub.PEPE.idle);
 				if (this.idleZ >= 30) {
