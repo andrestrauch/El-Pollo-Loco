@@ -6,7 +6,7 @@ import { Level1 } from "./level/level1.js";
 import { World } from "./classes/world.class.js";
 import { AudioHub } from "./classes/audio-hub.class.js";
 
-playBackgroundSound();
+playBackgroundMusic();
 export function init() {
 	document.getElementById("startBtn").classList.add("d_none");
 	const canvas = document.getElementById("canvas");
@@ -16,6 +16,7 @@ export function init() {
 	Globals.cvsH = canvas.height;
 	Globals.lvStart = canvas.width * lvStart;
 	Globals.lvEnd = canvas.width * lvEnd;
+	Globals.TitleReturn = false;
 
 	Level1.addContent();
 	setTimeout(() => {
@@ -43,7 +44,6 @@ export function gameRestart() {
 	Globals.bossDead = false;
 	Globals.TitleReturn = false;
 	IntervalHub.stopAllIntervals();
-	console.log(Globals.TitleReturn);
 
 	setTimeout(() => {
 		AudioHub.stopOne(AudioHub.backgroundMusic);
@@ -52,7 +52,7 @@ export function gameRestart() {
 
 	setTimeout(() => {
 		init();
-		playBackgroundSound();
+		playBackgroundMusic();
 	}, 1000);
 }
 
@@ -81,7 +81,7 @@ export function setSoundBtn() {
 	}
 }
 
-export function playBackgroundSound() {
+export function playBackgroundMusic() {
 	setTimeout(() => {
 		AudioHub.playOne(AudioHub.backgroundMusic);
 		AudioHub.changeVolume(AudioHub.backgroundMusic);
@@ -90,6 +90,10 @@ export function playBackgroundSound() {
 
 export function backToStartscreen() {
 	Globals.TitleReturn = true;
+	Globals.isHurt = false;
+	Globals.isDead = false;
+	Globals.bossDead = false;
+	IntervalHub.stopAllIntervals();
 	document.getElementById("startBtn").classList.remove("d_none");
 	document.getElementById(`gameOver`).classList.remove(`d-flex`);
 	document.getElementById(`gameOver`).classList.add(`d_none`);
