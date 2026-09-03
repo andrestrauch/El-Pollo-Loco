@@ -12,7 +12,7 @@ canvas {
 
 body {
 	width: 100%;
-	height: calc(100svh + 50px);
+	height: calc(100svh + 80px + 60px);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -32,6 +32,7 @@ body {
 
 		h1 {
 			font-size: clamp(2rem, calc(1.464rem + 2.679vw), 3.88rem);
+			margin-top: 60px;
 			margin-bottom: 5px;
 			color: rgb(212, 175, 55);
 			text-shadow: 3px 5px 5px black;
@@ -42,9 +43,10 @@ body {
 .start-btn {
 	width: 200px;
 	height: 50px;
-	position: absolute;
-	bottom: auto;
-	top: 25%;
+	/* position: absolute; */
+	/* bottom: auto; */
+	bottom: clamp(160px, calc(0px + 50vw), 700px);
+	/* top: 100px; */
 	border-radius: 30px;
 	border: 3px solid black;
 	background-color: rgba(212, 175, 55, 1);
@@ -82,9 +84,9 @@ body {
 }
 
 .btn-section {
-	position: absolute;
-	top: 180px;
-	right: 19%;
+	/* position: absolute; */
+	bottom: clamp(200px, calc(42.222px + 55.556vw), 760px);
+	left: clamp(80px, calc(-74.074px + 48.148vw), 600px);
 	display: flex;
 	gap: 8px;
 
@@ -123,7 +125,7 @@ body {
 	align-items: center;
 	position: absolute;
 	top: 8%;
-	right: 13%;
+	right: 20%;
 	gap: 16px;
 
 	img {
@@ -139,7 +141,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	top: 10%;
+	top: 18%;
 	gap: 16px;
 
 	img {
@@ -244,7 +246,7 @@ body {
 
 .footer {
 	width: 100%;
-	height: 50px;
+	height: 60px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -256,7 +258,7 @@ body {
 		max-width: 1400px;
 		display: flex;
 		justify-content: space-between;
-		font-size: 24px;
+		font-size: 26px;
 		font-weight: bold;
 		color: rgb(237, 237, 124);
 
