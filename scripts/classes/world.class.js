@@ -19,7 +19,7 @@ export class World {
 	healthStatusBar = new Statusbar(75, -40, 275, 150, 100, 100, ImageHub.STATUSBAR.healthbar);
 	coinsStatusBar = new Statusbar(30, 30, 322, 150, 0, 100, ImageHub.STATUSBAR.coinsbar);
 	bottleStatusBar = new Statusbar(0, 100, 350, 150, 0, 5, ImageHub.STATUSBAR.bottlebar);
-	bossHealthStatusBar = new Statusbar(950, -150, 150, 150, 5, 5, ImageHub.STATUSBAR.bossHealthbar);
+	bossHealthStatusBar = new Statusbar(850, -150, 150, 150, 5, 5, ImageHub.STATUSBAR.bossHealthbar);
 
 	constructor(canvas) {
 		this.canvas = canvas;
@@ -30,13 +30,15 @@ export class World {
 	}
 
 	run = () => {
-		this.collectItems();
-		this.checkCollisions();
-		this.bottleThrow();
-		this.checkBossHealthbar();
-		this.checkHealing();
-		this.checkNewBottleSpawn();
-		this.checkGameEnd();
+		if (Globals.pause == false) {
+			this.collectItems();
+			this.checkCollisions();
+			this.bottleThrow();
+			this.checkBossHealthbar();
+			this.checkHealing();
+			this.checkNewBottleSpawn();
+			this.checkGameEnd();
+		}
 
 		if (Globals.titleReturn) {
 			this.ctx.clearRect(0, 0, 1200, 800);

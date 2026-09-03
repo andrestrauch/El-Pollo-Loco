@@ -87,7 +87,6 @@ export class EventListener {
 
 	static changePauseBtn() {
 		let pauseRef = document.getElementById(`pauseBtn`);
-		console.log("Test");
 		pauseRef.innerHTML = "";
 		if (Globals.pause) {
 			pauseRef.innerHTML = /*html*/ `
