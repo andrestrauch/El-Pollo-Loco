@@ -1,11 +1,14 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    position: relative;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+	position: relative;
 }
 
 html {
-    font-size: 16px;
+	font-size: 16px;
+	font-family: "EB Garamond";
+	font-style: normal;
+	font-weight: 700;
 }
