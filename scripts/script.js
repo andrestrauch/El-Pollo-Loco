@@ -7,6 +7,7 @@ import { World } from "./classes/world.class.js";
 import { AudioHub } from "./classes/audio-hub.class.js";
 
 playBackgroundMusic();
+
 export function init() {
 	document.getElementById("startBtn").classList.add("d_none");
 	const canvas = document.getElementById("canvas");

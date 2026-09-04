@@ -8,7 +8,6 @@ canvas {
 	border-radius: 40px;
 	overflow: hidden;
 	display: block;
-	margin-top: 80px;
 }
 
 body {
@@ -18,9 +17,9 @@ body {
 	overflow-y: auto;
 }
 
-body::-webkit-scrollbar {
-	display: none; /* Versteckt die Scrollleiste */
-}
+/* body::-webkit-scrollbar {
+	display: none;
+} */
 
 main {
 	width: 100%;
@@ -37,22 +36,22 @@ main {
 	background-size: cover;
 
 	.gamescreen {
-		width: 100%;
-		height: 100%;
+		width: 1400px;
+		height: 800px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		margin-top: 20px;
+		padding-bottom: 10px;
 	}
 }
 
 .start-btn {
 	width: 200px;
 	height: 50px;
-	/* position: absolute; */
-	/* bottom: auto; */
-	bottom: clamp(160px, calc(0px + 50vw), 700px);
-	/* top: 100px; */
+	position: absolute;
+	top: 15%;
 	border-radius: 30px;
 	border: 3px solid black;
 	background-color: rgba(212, 175, 55, 1);
@@ -90,9 +89,9 @@ main {
 }
 
 .btn-section {
-	/* position: absolute; */
-	bottom: clamp(200px, calc(42.222px + 55.556vw), 760px);
-	left: clamp(80px, calc(-74.074px + 48.148vw), 600px);
+	position: absolute;
+	top: 5%;
+	right: 4%;
 	display: flex;
 	gap: 8px;
 
@@ -131,7 +130,7 @@ main {
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	top: 8%;
+	top: 13%;
 	right: 20%;
 	gap: 16px;
 
@@ -148,7 +147,7 @@ main {
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	top: 18%;
+	top: 20%;
 	gap: 16px;
 
 	img {
