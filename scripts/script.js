@@ -43,6 +43,7 @@ export function gameRestart() {
 	Globals.isDead = false;
 	Globals.bossDead = false;
 	Globals.titleReturn = false;
+	Globals.pause = false;
 	IntervalHub.stopAllIntervals();
 
 	setTimeout(() => {
@@ -90,6 +91,7 @@ export function playBackgroundMusic() {
 
 export function backToStartscreen() {
 	Globals.titleReturn = true;
+	Globals.pause = false;
 	Globals.isHurt = false;
 	Globals.isDead = false;
 	Globals.bossDead = false;

@@ -51,12 +51,12 @@ export class Collectables extends MoveableObjects {
 	}
 
 	setBottleData() {
-		this.w = 100;
-		this.h = 150;
-		this.xOff = 40;
-		this.yOff = 30;
-		this.wOff = 80;
-		this.hOff = 30;
-		this.path = "assets/img/6_salsa_bottle/salsa_bottle.png";
+		this.w = 120;
+		this.h = 160;
+		this.xOff = 50;
+		this.yOff = 60;
+		this.wOff = 100;
+		this.hOff = 80;
+		this.path = "assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png";
 	}
 }

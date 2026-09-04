@@ -14,10 +14,10 @@ export class ThrowableObject extends MoveableObjects {
 
 		this.x = _x;
 		this.y = _y;
-		this.w = 100;
-		this.h = 150;
-		this.speedX = 25;
-		this.speedY = 30;
+		this.w = 120;
+		this.h = 160;
+		this.speedX = 30;
+		this.speedY = 22;
 
 		this.loadImage("assets/img/6_salsa_bottle/salsa_bottle.png");
 		this.loadImages(ImageHub.BOTTLE.throw);
@@ -28,25 +28,29 @@ export class ThrowableObject extends MoveableObjects {
 	}
 
 	getRealFrame = () => {
-		this.rX = this.x + 40;
+		this.rX = this.x + 50;
 		this.rY = this.y + 30;
-		this.rW = this.w - 80;
-		this.rH = this.h - 30;
+		this.rW = this.w - 90;
+		this.rH = this.h - 60;
 	};
 
 	throw = () => {
-		this.y -= this.speedY;
-		this.speedY -= 2;
-		this.x += this.speedX;
+		if (Globals.pause == false && Globals.bossDead == false && Globals.isDead == false) {
+			this.y -= this.speedY;
+			this.speedY -= 2;
+			this.x += this.speedX;
+		}
 	};
 
 	animateBottle = () => {
-		if (Globals.bottleContact == false) this.animateObject(ImageHub.BOTTLE.throw);
+		if (Globals.pause == false) {
+			if (Globals.bottleContact == false) this.animateObject(ImageHub.BOTTLE.throw);
 
-		if (this.y >= 610 || Globals.bottleContact == true) {
-			this.animateObject(ImageHub.BOTTLE.splash);
-			this.playBottleBreak();
-			this.break = true;
+			if (this.y >= 610 || Globals.bottleContact == true) {
+				this.animateObject(ImageHub.BOTTLE.splash);
+				this.playBottleBreak();
+				this.break = true;
+			}
 		}
 	};
 
@@ -56,7 +60,7 @@ export class ThrowableObject extends MoveableObjects {
 			setTimeout(() => {
 				AudioHub.stopOne(AudioHub.bottleBreak);
 				AudioHub.bottleBreak.isPlayed = false;
-			}, 100);
+			}, 200);
 		}
 	}
 }
