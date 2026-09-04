@@ -16,12 +16,16 @@
 			import { gameRestart } from "./scripts/script.js";
 			import { setSoundBtn } from "./scripts/script.js";
 			import { backToStartscreen } from "./scripts/script.js";
+			import { startDialog } from "./scripts/script.js";
+			import { endDialog } from "./scripts/script.js";
 			document.querySelector("#muteBtn").addEventListener("click", setSoundBtn);
 			document.querySelector("#startBtn").addEventListener("click", init);
 			document.querySelector("#restartBtn").addEventListener("click", gameRestart);
 			document.querySelector("#restartBtn2").addEventListener("click", gameRestart);
 			document.querySelector("#resetBtn").addEventListener("click", backToStartscreen);
 			document.querySelector("#resetBtn2").addEventListener("click", backToStartscreen);
+			document.querySelector("#impressumBtn").addEventListener("click", startDialog);
+			document.querySelector("#dialogBtn").addEventListener("click", endDialog);
 		</script>
 	</head>
 
@@ -88,8 +92,45 @@
 		<footer class="footer">
 			<section class="footer-content">
 				<p>(C) 2026 Andre Strauch</p>
-				<a href="">Impressum</a>
+				<button id="impressumBtn">Impressum</button>
 			</section>
 		</footer>
+
+		<dialog id="myDialog" aria-labelledby="dialogTitle">
+			<header class="dialog-header">
+				<h2 aria-label="Bild Name" tabindex="-1" id="dialogTitle">Impressum</h2>
+				<button class="closeBtn" aria-label="Dialog schließen" id="dialogBtn">X</button>
+			</header>
+
+			<section class="content-dialog" id="dialogContent">
+				<h3>Minigame von: <span>Andre Strauch</span></h3>
+				<br />
+				<p>
+					Platzhalter Straße <br />
+					24768 Rendsburg <br />
+					E-Mail: andrestrauch@gmx.de<br /><br />
+					<br />
+				</p>
+				<h4>Weiterbildung zum Fullstack Entwickler bei der</h4>
+				<br />
+				<p>
+					Developer Akademie GmbH <br />
+					Tassiloplatz 25<br />
+					81541 München <br /><br />
+
+					HRB 269921, AG München <br />
+				</p>
+				<h5>
+					Geschäftsführung:
+					<span>Linus Kauer, Arno Müller, Manuel Hinz</span>
+				</h5>
+				<br />
+				<p>E-Mail: info@developerakademie.com <br /><br /></p>
+			</section>
+
+			<footer class="dialog-footer" id="dialogFooter">
+				<p>(C) 2026 Andre Strauch</p>
+			</footer>
+		</dialog>
 	</body>
 </html>

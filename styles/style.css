@@ -264,21 +264,86 @@ main {
 	.footer-content {
 		width: 100%;
 		max-width: 1400px;
+		height: 50px;
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		font-size: 26px;
 		font-weight: bold;
 		color: rgb(237, 237, 124);
 
-		a {
+		button {
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: rgba(0, 0, 0, 0);
+			border: none;
 			color: rgb(237, 237, 124);
-			text-decoration: none;
+			font-size: 26px;
+			font-weight: bold;
 		}
 
-		a:hover {
+		button:hover {
 			text-decoration: underline;
 			cursor: pointer;
 		}
+	}
+}
+
+dialog.opened {
+	background-color: rgba(0, 0, 0, 0.8);
+	color: rgb(229, 229, 148);
+	width: 50%;
+	height: 80%;
+
+	margin: auto;
+	border-radius: 40px;
+	border: 5px solid rgba(212, 175, 55, 1);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.dialog-header {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 20px;
+		font-size: 42px;
+
+		.closeBtn {
+			width: 42px;
+			height: 42px;
+			border-radius: 50%;
+			font-size: 24px;
+			background-color: rgba(0, 0, 0, 0);
+			color: rgba(212, 175, 55, 1);
+			border: 1px solid rgba(212, 175, 55, 1);
+			position: absolute;
+			right: 2%;
+		}
+		.closeBtn:hover {
+			cursor: pointer;
+			border: 2px solid rgb(192, 192, 192);
+		}
+	}
+
+	.content-dialog {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		/* background-color: red; */
+		font-size: 25px;
+		text-align: center;
+		padding-top: 20px;
+	}
+
+	.dialog-footer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 }
 

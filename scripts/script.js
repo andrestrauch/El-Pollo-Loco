@@ -103,3 +103,32 @@ export function backToStartscreen() {
 	document.getElementById(`gameEnd`).classList.remove(`d-flex`);
 	document.getElementById(`gameEnd`).classList.add(`d_none`);
 }
+
+export function startDialog() {
+	const dialogRef = document.getElementById(`myDialog`);
+	dialogRef.showModal();
+	dialogRef.classList.add(`opened`);
+	Globals.pause = true;
+	EventListener.changePauseBtn();
+
+	document.addEventListener("keydown", function (event) {
+		if (event.key === "Escape") {
+			endDialog(event);
+		}
+	});
+	dialogRef.addEventListener("click", (event) => {
+		const rect = dialogRef.getBoundingClientRect();
+		const isInDialog = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+		if (!isInDialog) {
+			endDialog(event);
+		}
+	});
+}
+
+export function endDialog() {
+	const dialogRef = document.getElementById(`myDialog`);
+	dialogRef.close();
+	dialogRef.classList.remove(`opened`);
+	Globals.pause = false;
+	EventListener.changePauseBtn();
+}
