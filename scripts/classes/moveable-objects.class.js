@@ -70,12 +70,14 @@ export class MoveableObjects {
 	}
 
 	applyGravity = () => {
-		this.isAboveGround();
-		if (Globals.aboveGround == true || this.speedY > 0) {
-			this.y -= this.speedY;
-			this.speedY -= 3;
+		if (Globals.pause == false) {
+			this.isAboveGround();
+			if (Globals.aboveGround == true || this.speedY > 0) {
+				this.y -= this.speedY;
+				this.speedY -= 3;
 
-			if (this.y > 260) this.y = 260;
+				if (this.y > 260) this.y = 260;
+			}
 		}
 	};
 
@@ -95,6 +97,6 @@ export class MoveableObjects {
 	};
 
 	fallOutBottom = () => {
-		if (this.energy == 0 && this.y < 800) this.y += 0.1;
+		if (this.energy == 0 && this.y < 800 && Globals.pause == false) this.y += 0.1;
 	};
 }
