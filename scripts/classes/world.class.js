@@ -27,13 +27,13 @@ export class World {
 
 		this.draw();
 		IntervalHub.startInterval(this.run, 1000 / 60);
+		IntervalHub.startInterval(this.bottleThrow, 1000 / 10);
 	}
 
 	run = () => {
 		if (Globals.pause == false) {
 			this.collectItems();
 			this.checkCollisions();
-			this.bottleThrow();
 			this.checkBossHealthbar();
 			this.checkHealing();
 			this.checkNewBottleSpawn();
@@ -84,12 +84,15 @@ export class World {
 	}
 
 	checkBottleCollision(enemy) {
+		Globals.bottleContact = false;
 		if (this.throwBottles.length > 0) {
-			Globals.bottleContact = false;
-
 			if (this.throwBottles[this.throwBottles.length - 1].isColliding(enemy)) {
-				Globals.bottleContact = true;
-				if (enemy.energy > 0) enemy.energy -= 1;
+				if (enemy.energy > 0 && Globals.bottleContact == false) {
+					Globals.bottleContact = true;
+					enemy.energy -= 0.1;
+
+					if (enemy.energy <= 0) enemy.energy = 0;
+				}
 			}
 
 			this.checkBossBottleCollision(enemy);
@@ -115,7 +118,7 @@ export class World {
 	setPepeHealth(enemy) {
 		if (Globals.level1.character.energy > 0 && enemy.energy > 0 && (Globals.isFalling == false || enemy instanceof Endboss)) {
 			Globals.isHurt = true;
-			Globals.level1.character.energy -= 5;
+			Globals.level1.character.energy -= 1;
 		}
 	}
 
@@ -156,20 +159,23 @@ export class World {
 		}
 	}
 
-	bottleThrow() {
+	bottleThrow = () => {
+		let thrownBottle = false;
 		if (
 			Keyboard.D &&
 			Globals.level1.character.bottles > 0 &&
 			Globals.bossDead != true &&
 			Globals.level1.character.otherDirection == false &&
-			Globals.aboveGround == false
+			Globals.aboveGround == false &&
+			thrownBottle == false
 		) {
 			let bottle = new ThrowableObject(Globals.level1.character.x + 100, Globals.level1.character.y + 200);
 			this.throwBottles.push(bottle);
 			Globals.level1.character.bottles -= 1;
 			this.bottleStatusBar.setCurrentImg(Globals.level1.character.bottles);
+			thrownBottle = true;
 		}
-	}
+	};
 
 	checkFalling(y) {
 		if (Globals.level1.character.y < 50) Globals.isFalling = true;
@@ -203,7 +209,7 @@ export class World {
 			this.ctx.translate(Globals.cameraX, 0);
 			this.addObjToMap(Globals.level1.backgrounds);
 			this.addObjToMap(Globals.level1.clouds);
-			this.addObjToMap(Globals.level1.coins);
+			// this.addObjToMap(Globals.level1.coins);
 			this.addObjToMap(Globals.level1.bottles);
 			this.addObjToMap(Globals.level1.enemies);
 			this.addObjToMap(this.throwBottles);
