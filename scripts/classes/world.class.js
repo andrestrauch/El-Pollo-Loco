@@ -26,7 +26,7 @@ export class World {
 		this.ctx = canvas.getContext(`2d`);
 
 		this.draw();
-		IntervalHub.startInterval(this.run, 1000 / 5);
+		IntervalHub.startInterval(this.run, 1000 / 60);
 	}
 
 	run = () => {
