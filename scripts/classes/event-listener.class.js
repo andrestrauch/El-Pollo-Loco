@@ -80,8 +80,12 @@ export class EventListener {
 
 		document.getElementById(`pauseBtn`).addEventListener(`click`, () => {
 			if (Globals.pause == false) Globals.pause = true;
-			else Globals.pause = false;
+			else if (Globals.pause) Globals.pause = false;
 			EventListener.changePauseBtn();
+
+			// console.clear();
+			// console.log(Globals.pause);
+			// console.log("");
 		});
 	}
 
@@ -92,10 +96,14 @@ export class EventListener {
 			pauseRef.innerHTML = /*html*/ `
 				<img src="./assets/icons/play_button.png" alt="" />
 			`;
+			document.getElementById(`restartBtn3`).classList.remove(`d_none`);
+			document.getElementById(`restartBtn3`).classList.add(`d-flex`);
 		} else {
 			pauseRef.innerHTML = /*html*/ `
 				<img src="./assets/icons/pause_button.png" alt="" />
 			`;
+			document.getElementById(`restartBtn3`).classList.remove(`d-flex`);
+			document.getElementById(`restartBtn3`).classList.add(`d_none`);
 		}
 	}
 }

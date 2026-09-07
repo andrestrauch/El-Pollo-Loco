@@ -39,6 +39,8 @@ export function gameRestart() {
 	document.getElementById(`gameOver`).classList.add(`d_none`);
 	document.getElementById(`gameEnd`).classList.remove(`d-flex`);
 	document.getElementById(`gameEnd`).classList.add(`d_none`);
+	document.getElementById(`restartBtn3`).classList.remove(`d-flex`);
+	document.getElementById(`restartBtn3`).classList.add(`d_none`);
 
 	Globals.isHurt = false;
 	Globals.isDead = false;
@@ -46,6 +48,8 @@ export function gameRestart() {
 	Globals.titleReturn = false;
 	Globals.pause = false;
 	IntervalHub.stopAllIntervals();
+	EventListener.addEventListener();
+	EventListener.changePauseBtn();
 
 	setTimeout(() => {
 		AudioHub.stopOne(AudioHub.backgroundMusic);
@@ -87,7 +91,7 @@ export function playBackgroundMusic() {
 	setTimeout(() => {
 		AudioHub.playOne(AudioHub.backgroundMusic);
 		AudioHub.changeVolume(AudioHub.backgroundMusic);
-	}, 2000);
+	}, 3000);
 }
 
 export function backToStartscreen() {
@@ -97,6 +101,7 @@ export function backToStartscreen() {
 	Globals.isDead = false;
 	Globals.bossDead = false;
 	IntervalHub.stopAllIntervals();
+	EventListener.changePauseBtn();
 	document.getElementById("startBtn").classList.remove("d_none");
 	document.getElementById(`gameOver`).classList.remove(`d-flex`);
 	document.getElementById(`gameOver`).classList.add(`d_none`);
@@ -108,7 +113,8 @@ export function startDialog() {
 	const dialogRef = document.getElementById(`myDialog`);
 	dialogRef.showModal();
 	dialogRef.classList.add(`opened`);
-	Globals.pause = true;
+	if (Globals.pause == false) Globals.pause = true;
+	else Globals.pause = false;
 	EventListener.changePauseBtn();
 
 	document.addEventListener("keydown", function (event) {
@@ -116,6 +122,7 @@ export function startDialog() {
 			endDialog(event);
 		}
 	});
+
 	dialogRef.addEventListener("click", (event) => {
 		const rect = dialogRef.getBoundingClientRect();
 		const isInDialog = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
@@ -129,6 +136,6 @@ export function endDialog() {
 	const dialogRef = document.getElementById(`myDialog`);
 	dialogRef.close();
 	dialogRef.classList.remove(`opened`);
-	Globals.pause = false;
+	if (Globals.pause) Globals.pause = false;
 	EventListener.changePauseBtn();
 }
