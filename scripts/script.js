@@ -54,12 +54,12 @@ export function gameRestart() {
 	setTimeout(() => {
 		AudioHub.stopOne(AudioHub.backgroundMusic);
 		AudioHub.backgroundMusic.isPlayed = false;
-	}, 2000);
+	}, 3000);
 
 	setTimeout(() => {
 		init();
 		playBackgroundMusic();
-	}, 1000);
+	}, 2000);
 }
 
 function showFullscreen() {
@@ -91,7 +91,7 @@ export function playBackgroundMusic() {
 	setTimeout(() => {
 		AudioHub.playOne(AudioHub.backgroundMusic);
 		AudioHub.changeVolume(AudioHub.backgroundMusic);
-	}, 3000);
+	}, 2000);
 }
 
 export function backToStartscreen() {
@@ -101,6 +101,7 @@ export function backToStartscreen() {
 	Globals.isDead = false;
 	Globals.bossDead = false;
 	IntervalHub.stopAllIntervals();
+	EventListener.addEventListener();
 	EventListener.changePauseBtn();
 	document.getElementById("startBtn").classList.remove("d_none");
 	document.getElementById(`gameOver`).classList.remove(`d-flex`);

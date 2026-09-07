@@ -98,12 +98,16 @@ export class EventListener {
 			`;
 			document.getElementById(`restartBtn3`).classList.remove(`d_none`);
 			document.getElementById(`restartBtn3`).classList.add(`d-flex`);
+			document.getElementById(`resetBtn3`).classList.remove(`d_none`);
+			document.getElementById(`resetBtn3`).classList.add(`d-flex`);
 		} else {
 			pauseRef.innerHTML = /*html*/ `
 				<img src="./assets/icons/pause_button.png" alt="" />
 			`;
 			document.getElementById(`restartBtn3`).classList.remove(`d-flex`);
 			document.getElementById(`restartBtn3`).classList.add(`d_none`);
+			document.getElementById(`resetBtn3`).classList.remove(`d-flex`);
+			document.getElementById(`resetBtn3`).classList.add(`d_none`);
 		}
 	}
 }
