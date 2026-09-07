@@ -136,8 +136,38 @@ export function startDialog() {
 	});
 }
 
+export function startDialog2() {
+	const dialogRef = document.getElementById(`myDialog2`);
+	dialogRef.showModal();
+	dialogRef.classList.add(`opened`);
+	Globals.pause = true;
+	EventListener.changePauseBtn();
+
+	document.addEventListener("keydown", function (event) {
+		if (event.key === "Escape") {
+			endDialog2(event);
+		}
+	});
+
+	dialogRef.addEventListener("click", (event) => {
+		const rect = dialogRef.getBoundingClientRect();
+		const isInDialog = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+		if (!isInDialog) {
+			endDialog2(event);
+		}
+	});
+}
+
 export function endDialog() {
 	const dialogRef = document.getElementById(`myDialog`);
+	dialogRef.close();
+	dialogRef.classList.remove(`opened`);
+	Globals.pause = false;
+	EventListener.changePauseBtn();
+}
+
+export function endDialog2() {
+	const dialogRef = document.getElementById(`myDialog2`);
 	dialogRef.close();
 	dialogRef.classList.remove(`opened`);
 	Globals.pause = false;

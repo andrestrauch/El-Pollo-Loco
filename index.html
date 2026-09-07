@@ -18,6 +18,8 @@
 			import { backToStartscreen } from "./scripts/script.js";
 			import { startDialog } from "./scripts/script.js";
 			import { endDialog } from "./scripts/script.js";
+			import { startDialog2 } from "./scripts/script.js";
+			import { endDialog2 } from "./scripts/script.js";
 			document.querySelector("#muteBtn").addEventListener("click", setSoundBtn);
 			document.querySelector("#startBtn").addEventListener("click", init);
 			document.querySelector("#restartBtn").addEventListener("click", gameRestart);
@@ -28,6 +30,9 @@
 			document.querySelector("#resetBtn3").addEventListener("click", backToStartscreen);
 			document.querySelector("#impressumBtn").addEventListener("click", startDialog);
 			document.querySelector("#dialogBtn").addEventListener("click", endDialog);
+
+			document.querySelector("#infoBtn").addEventListener("click", startDialog2);
+			document.querySelector("#dialogBtn2").addEventListener("click", endDialog2);
 		</script>
 	</head>
 
@@ -37,7 +42,7 @@
 				<img src="./assets/img/4_enemie_boss_chicken/3_attack/G16.png" alt="" />
 				<h1 id="title">El Pollo Loco</h1>
 				<article class="right-content">
-					<p>Spielregeln</p>
+					<p id="infoBtn">Spielinfos</p>
 					<a href="https://github.com/andrestrauch" target="_blank">GitHub</a>
 				</article>
 			</section>
@@ -103,7 +108,7 @@
 
 		<dialog id="myDialog" aria-labelledby="dialogTitle">
 			<header class="dialog-header">
-				<h2 aria-label="Bild Name" tabindex="-1" id="dialogTitle">Impressum</h2>
+				<h2 id="dialogTitle">Impressum</h2>
 				<button class="closeBtn" aria-label="Dialog schließen" id="dialogBtn">X</button>
 			</header>
 
@@ -131,6 +136,52 @@
 				</h5>
 				<br />
 				<p>E-Mail: info@developerakademie.com <br /><br /></p>
+			</section>
+
+			<footer class="dialog-footer" id="dialogFooter">
+				<p>(C) 2026 Andre Strauch</p>
+			</footer>
+		</dialog>
+
+		<dialog id="myDialog2" aria-labelledby="dialogTitle">
+			<header class="dialog-header">
+				<h2 id="dialogTitle">Spielinfos</h2>
+				<button class="closeBtn" aria-label="Dialog schließen" id="dialogBtn2">X</button>
+			</header>
+
+			<section class="content-dialog" id="dialogContent">
+				<h3>Steuerung Desktop</h3>
+				<table>
+					<tr>
+						<td>Nach Links laufen</td>
+						<td>Pfeiltaste Links</td>
+					</tr>
+					<tr>
+						<td>Nach Rechts laufen</td>
+						<td>Pfeiltaste Rechts</td>
+					</tr>
+					<tr>
+						<td>Springen</td>
+						<td>Pfeiltaste Oben/Leertaste</td>
+					</tr>
+					<tr>
+						<td>Pflasche werfen</td>
+						<td>Taste D</td>
+					</tr>
+				</table>
+				<h4>Steuerung Mobil per Buttons</h3><br>
+
+				<h3>Ziel</h3>
+				<p>Endboss besiegen</p><br>
+
+				<h3>Features</h3>
+				<p>Flaschen & Münzen sammeln</p>
+				<p>Flaschen auf Gegner werfen</p>
+				<p>Große & kleine Hühnchen als Gegner</p>
+				<p>Hintergrundmusik & Sounds</p>
+				<p>Soundmute & Pause Button</p>
+				<p>Spiel Neustart & Zurück zum Startscreen Buttons</p><br>
+
 			</section>
 
 			<footer class="dialog-footer" id="dialogFooter">
