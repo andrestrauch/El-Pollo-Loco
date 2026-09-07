@@ -209,7 +209,7 @@ export class World {
 			this.ctx.translate(Globals.cameraX, 0);
 			this.addObjToMap(Globals.level1.backgrounds);
 			this.addObjToMap(Globals.level1.clouds);
-			// this.addObjToMap(Globals.level1.coins);
+			this.addObjToMap(Globals.level1.coins);
 			this.addObjToMap(Globals.level1.bottles);
 			this.addObjToMap(Globals.level1.enemies);
 			this.addObjToMap(this.throwBottles);
