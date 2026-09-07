@@ -132,14 +132,17 @@ export class Level1 {
 	}
 
 	static addBottle() {
-		Level1.bottles.push(new Collectables(-200, 600, "bottle"));
-		Level1.bottles.push(new Collectables(-1050, 600, "bottle"));
+		Level1.bottles.push(new Collectables(-2400, 600, "bottle"));
 		Level1.bottles.push(new Collectables(-2050, 600, "bottle"));
+		Level1.bottles.push(new Collectables(-1500, 600, "bottle"));
+		Level1.bottles.push(new Collectables(-1050, 600, "bottle"));
+		Level1.bottles.push(new Collectables(-200, 600, "bottle"));
+
 		Level1.bottles.push(new Collectables(200, 600, "bottle"));
-		Level1.bottles.push(new Collectables(1050, 600, "bottle"));
-		Level1.bottles.push(new Collectables(1950, 600, "bottle"));
-		Level1.bottles.push(new Collectables(2350, 600, "bottle"));
-		Level1.bottles.push(new Collectables(3050, 600, "bottle"));
-		Level1.bottles.push(new Collectables(3700, 600, "bottle"));
+		Level1.bottles.push(new Collectables(1000, 600, "bottle"));
+		Level1.bottles.push(new Collectables(2000, 600, "bottle"));
+		Level1.bottles.push(new Collectables(3000, 600, "bottle"));
+		Level1.bottles.push(new Collectables(4000, 600, "bottle"));
+		Level1.bottles.push(new Collectables(5000, 600, "bottle"));
 	}
 }
