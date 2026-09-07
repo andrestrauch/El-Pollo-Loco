@@ -15,7 +15,7 @@ export class Endboss extends MoveableObjects {
 		this.w = 500;
 		this.h = 800;
 		this.energy = this.energyMax;
-		this.speedX = 0.7;
+		this.speedX = 0.8;
 
 		this.imageLoading();
 		this.animate();
