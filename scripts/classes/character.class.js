@@ -126,7 +126,7 @@ export class Character extends MoveableObjects {
 				this.jump();
 			if (Keyboard.RIGHT == true && this.energy > 0 && Globals.bossX > this.x && Globals.bossDead != true) this.moveRight();
 			if (Keyboard.LEFT == true && this.energy > 0 && Globals.bossDead != true) this.moveLeft();
-			if (this.x < Globals.lvEnd - 1200) Globals.cameraX = -this.x;
+			if (this.x < Globals.lvEnd - Globals.cvsW) Globals.cameraX = -this.x;
 		}
 	};
 
@@ -142,40 +142,50 @@ export class Character extends MoveableObjects {
 	playWalking = () => {
 		if (this.walking) AudioHub.playOne(AudioHub.pepeRun);
 		else {
-			AudioHub.stopOne(AudioHub.pepeRun);
-			AudioHub.pepeRun.isPlayed = false;
+			if (AudioHub.pepeRun.isPlayed) {
+				AudioHub.stopOne(AudioHub.pepeRun);
+				AudioHub.pepeRun.isPlayed = false;
+			}
 		}
 	};
 
 	playJumping = () => {
 		if (Globals.aboveGround) AudioHub.playOne(AudioHub.pepeJump);
 		else {
-			AudioHub.stopOne(AudioHub.pepeJump);
-			AudioHub.pepeJump.isPlayed = false;
+			if (AudioHub.pepeJump.isPlayed) {
+				AudioHub.stopOne(AudioHub.pepeJump);
+				AudioHub.pepeJump.isPlayed = false;
+			}
 		}
 	};
 
 	playSleeping = () => {
 		if (Globals.longIdle) AudioHub.playOne(AudioHub.pepeSleep);
 		else {
-			AudioHub.stopOne(AudioHub.pepeSleep);
-			AudioHub.pepeSleep.isPlayed = false;
+			if (AudioHub.pepeSleep.isPlayed) {
+				AudioHub.stopOne(AudioHub.pepeSleep);
+				AudioHub.pepeSleep.isPlayed = false;
+			}
 		}
 	};
 
 	playHurting = () => {
 		if (Globals.isHurt) AudioHub.playOne(AudioHub.pepeDmg);
 		else {
-			AudioHub.stopOne(AudioHub.pepeDmg);
-			AudioHub.pepeDmg.isPlayed = false;
+			if (AudioHub.pepeDmg.isPlayed) {
+				AudioHub.stopOne(AudioHub.pepeDmg);
+				AudioHub.pepeDmg.isPlayed = false;
+			}
 		}
 	};
 
 	playDead = () => {
 		if (Globals.isDead) AudioHub.playOne(AudioHub.pepeDead);
 		else {
-			AudioHub.stopOne(AudioHub.pepeDead);
-			AudioHub.pepeDead.isPlayed = false;
+			if (AudioHub.pepeDead.isPlayed) {
+				AudioHub.stopOne(AudioHub.pepeDead);
+				AudioHub.pepeDead.isPlayed = false;
+			}
 		}
 	};
 }

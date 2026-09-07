@@ -6,7 +6,9 @@ import { Level1 } from "./level/level1.js";
 import { World } from "./classes/world.class.js";
 import { AudioHub } from "./classes/audio-hub.class.js";
 
-playBackgroundMusic();
+setTimeout(() => {
+	playBackgroundMusic();
+}, 3000);
 
 export function init() {
 	document.getElementById("startBtn").classList.add("d_none");
@@ -27,10 +29,6 @@ export function init() {
 		Globals.world = new World(canvas);
 		EventListener.addEventListener();
 		AudioHub.playOne(AudioHub.gameStart);
-		setTimeout(() => {
-			AudioHub.stopOne(AudioHub.gameStart);
-			AudioHub.gameStart.isPlayed = false;
-		}, 2000);
 	}, 250);
 }
 
@@ -51,10 +49,10 @@ export function gameRestart() {
 	EventListener.addEventListener();
 	EventListener.changePauseBtn();
 
-	setTimeout(() => {
-		AudioHub.stopOne(AudioHub.backgroundMusic);
-		AudioHub.backgroundMusic.isPlayed = false;
-	}, 3000);
+	AudioHub.stopOne(AudioHub.gameStart);
+	AudioHub.gameStart.isPlayed = false;
+	AudioHub.stopOne(AudioHub.backgroundMusic);
+	AudioHub.backgroundMusic.isPlayed = false;
 
 	setTimeout(() => {
 		init();
@@ -88,10 +86,8 @@ export function setSoundBtn() {
 }
 
 export function playBackgroundMusic() {
-	setTimeout(() => {
-		AudioHub.playOne(AudioHub.backgroundMusic);
-		AudioHub.changeVolume(AudioHub.backgroundMusic);
-	}, 2000);
+	AudioHub.playOne(AudioHub.backgroundMusic);
+	AudioHub.changeVolume(AudioHub.backgroundMusic);
 }
 
 export function backToStartscreen() {
@@ -100,9 +96,17 @@ export function backToStartscreen() {
 	Globals.isHurt = false;
 	Globals.isDead = false;
 	Globals.bossDead = false;
+	AudioHub.stopOne(AudioHub.backgroundMusic);
+	AudioHub.backgroundMusic.isPlayed = false;
+
+	setTimeout(() => {
+		playBackgroundMusic();
+	}, 2000);
+
 	IntervalHub.stopAllIntervals();
 	EventListener.addEventListener();
 	EventListener.changePauseBtn();
+
 	document.getElementById("startBtn").classList.remove("d_none");
 	document.getElementById(`gameOver`).classList.remove(`d-flex`);
 	document.getElementById(`gameOver`).classList.add(`d_none`);
@@ -114,8 +118,7 @@ export function startDialog() {
 	const dialogRef = document.getElementById(`myDialog`);
 	dialogRef.showModal();
 	dialogRef.classList.add(`opened`);
-	if (Globals.pause == false) Globals.pause = true;
-	else Globals.pause = false;
+	Globals.pause = true;
 	EventListener.changePauseBtn();
 
 	document.addEventListener("keydown", function (event) {
@@ -137,6 +140,6 @@ export function endDialog() {
 	const dialogRef = document.getElementById(`myDialog`);
 	dialogRef.close();
 	dialogRef.classList.remove(`opened`);
-	if (Globals.pause) Globals.pause = false;
+	Globals.pause = false;
 	EventListener.changePauseBtn();
 }

@@ -57,7 +57,7 @@ export class Chicken extends MoveableObjects {
 				setTimeout(() => {
 					AudioHub.stopOne(AudioHub.chickenDead);
 					AudioHub.chickenDead.isPlayed = false;
-				}, 400);
+				}, 500);
 			}
 		}
 	};

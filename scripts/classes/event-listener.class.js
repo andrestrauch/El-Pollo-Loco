@@ -79,13 +79,11 @@ export class EventListener {
 		});
 
 		document.getElementById(`pauseBtn`).addEventListener(`click`, () => {
-			if (Globals.pause == false) Globals.pause = true;
-			else if (Globals.pause) Globals.pause = false;
-			EventListener.changePauseBtn();
-
-			// console.clear();
-			// console.log(Globals.pause);
-			// console.log("");
+			if (Globals.bossDead != true && Globals.isDead != true) {
+				if (Globals.pause == false) Globals.pause = true;
+				else if (Globals.pause) Globals.pause = false;
+				EventListener.changePauseBtn();
+			}
 		});
 	}
 

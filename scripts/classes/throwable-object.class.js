@@ -60,7 +60,7 @@ export class ThrowableObject extends MoveableObjects {
 			setTimeout(() => {
 				AudioHub.stopOne(AudioHub.bottleBreak);
 				AudioHub.bottleBreak.isPlayed = false;
-			}, 200);
+			}, 500);
 		}
 	}
 }
