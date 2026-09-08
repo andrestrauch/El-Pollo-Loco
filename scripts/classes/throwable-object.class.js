@@ -38,7 +38,11 @@ export class ThrowableObject extends MoveableObjects {
 		if (Globals.pause == false && Globals.bossDead == false && Globals.isDead == false) {
 			this.y -= this.speedY;
 			this.speedY -= 2;
-			this.x += this.speedX;
+			if (Globals.level1.character.otherDirection == false) {
+				this.x += this.speedX;
+			} else {
+				this.x -= this.speedX;
+			}
 		}
 	};
 

@@ -161,14 +161,8 @@ export class World {
 
 	bottleThrow = () => {
 		let thrownBottle = false;
-		if (
-			Keyboard.D &&
-			Globals.level1.character.bottles > 0 &&
-			Globals.bossDead != true &&
-			Globals.level1.character.otherDirection == false &&
-			Globals.aboveGround == false &&
-			thrownBottle == false
-		) {
+		// Globals.level1.character.otherDirection == false &&
+		if (Keyboard.D && Globals.level1.character.bottles > 0 && Globals.bossDead != true && Globals.aboveGround == false && thrownBottle == false) {
 			let bottle = new ThrowableObject(Globals.level1.character.x + 100, Globals.level1.character.y + 200);
 			this.throwBottles.push(bottle);
 			Globals.level1.character.bottles -= 1;
