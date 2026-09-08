@@ -29,7 +29,7 @@ export class Endboss extends MoveableObjects {
 			AudioHub.playOne(AudioHub.bossEncounter);
 			setTimeout(() => {
 				if (AudioHub.bossEncounter.isPlayed) {
-					// AudioHub.stopOne(AudioHub.bossEncounter);
+					AudioHub.stopOne(AudioHub.bossEncounter);
 					AudioHub.bossEncounter.isPlayed = false;
 				}
 			}, 2000);
@@ -117,8 +117,10 @@ export class Endboss extends MoveableObjects {
 			this.animateObject(ImageHub.BOSS.dead);
 			AudioHub.playOne(AudioHub.bossDead);
 			setTimeout(() => {
-				AudioHub.stopOne(AudioHub.bossDead);
-				AudioHub.bossDead.isPlayed = false;
+				if (AudioHub.bossDead.isPlayed) {
+					AudioHub.stopOne(AudioHub.bossDead);
+					AudioHub.bossDead.isPlayed = false;
+				}
 			}, 500);
 		}
 	};

@@ -136,8 +136,10 @@ export class World {
 
 				AudioHub.playOne(AudioHub.collectCoin);
 				setTimeout(() => {
-					AudioHub.stopOne(AudioHub.collectCoin);
-					AudioHub.collectCoin.isPlayed = false;
+					if (AudioHub.collectCoin.isPlayed) {
+						AudioHub.stopOne(AudioHub.collectCoin);
+						AudioHub.collectCoin.isPlayed = false;
+					}
 				}, 500);
 			}
 		}
@@ -152,8 +154,10 @@ export class World {
 
 				AudioHub.playOne(AudioHub.collectBottle);
 				setTimeout(() => {
-					AudioHub.stopOne(AudioHub.collectBottle);
-					AudioHub.collectBottle.isPlayed = false;
+					if (AudioHub.collectBottle.isPlayed) {
+						AudioHub.stopOne(AudioHub.collectBottle);
+						AudioHub.collectBottle.isPlayed = false;
+					}
 				}, 500);
 			}
 		}
@@ -161,7 +165,6 @@ export class World {
 
 	bottleThrow = () => {
 		let thrownBottle = false;
-		// Globals.level1.character.otherDirection == false &&
 		if (Keyboard.D && Globals.level1.character.bottles > 0 && Globals.bossDead != true && Globals.aboveGround == false && thrownBottle == false) {
 			let bottle = new ThrowableObject(Globals.level1.character.x + 100, Globals.level1.character.y + 200);
 			this.throwBottles.push(bottle);

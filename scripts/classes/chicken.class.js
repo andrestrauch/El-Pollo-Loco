@@ -55,7 +55,7 @@ export class Chicken extends MoveableObjects {
 			if (this.isDead & (this.y < 551)) {
 				AudioHub.playOne(AudioHub.chickenDead);
 				setTimeout(() => {
-					AudioHub.stopOne(AudioHub.chickenDead);
+					if (AudioHub.chickenDead.isPlayed) AudioHub.stopOne(AudioHub.chickenDead);
 					AudioHub.chickenDead.isPlayed = false;
 				}, 500);
 			}

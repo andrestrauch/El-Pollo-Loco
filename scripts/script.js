@@ -1,14 +1,14 @@
 import { EventListener } from "./classes/event-listener.class.js";
 import { Globals } from "./classes/globals.class.js";
 import { IntervalHub } from "./classes/interval-hub.class.js";
+import { AudioHub } from "./classes/audio-hub.class.js";
 import { Level } from "./classes/level.class.js";
 import { Level1 } from "./level/level1.js";
 import { World } from "./classes/world.class.js";
-import { AudioHub } from "./classes/audio-hub.class.js";
 
 setTimeout(() => {
 	playBackgroundMusic();
-}, 3000);
+}, 2000);
 
 export function init() {
 	document.getElementById("startBtn").classList.add("d_none");
@@ -45,14 +45,15 @@ export function gameRestart() {
 	Globals.bossDead = false;
 	Globals.titleReturn = false;
 	Globals.pause = false;
-	IntervalHub.stopAllIntervals();
-	EventListener.addEventListener();
-	EventListener.changePauseBtn();
 
 	AudioHub.stopOne(AudioHub.gameStart);
 	AudioHub.gameStart.isPlayed = false;
 	AudioHub.stopOne(AudioHub.backgroundMusic);
 	AudioHub.backgroundMusic.isPlayed = false;
+
+	IntervalHub.stopAllIntervals();
+	EventListener.addEventListener();
+	EventListener.changePauseBtn();
 
 	setTimeout(() => {
 		init();
@@ -75,7 +76,6 @@ export function setSoundBtn() {
 				<img src="./assets/icons/sound_btn.png" alt="">
 			`;
 	} else {
-		// AudioHub.stopAll();
 		AudioHub.mute = true;
 		AudioHub.changeVolume(AudioHub.backgroundMusic);
 		soundRef.innerHTML = /*html*/ `
@@ -85,7 +85,7 @@ export function setSoundBtn() {
 	}
 }
 
-export function playBackgroundMusic() {
+function playBackgroundMusic() {
 	AudioHub.playOne(AudioHub.backgroundMusic);
 	AudioHub.changeVolume(AudioHub.backgroundMusic);
 }

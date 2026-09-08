@@ -41,15 +41,12 @@ export class AudioHub {
 	];
 
 	static playOne(sound) {
-		sound.file.currentTime = 0;
 		if ((sound.file.readyState > 0 || sound.isLoaded) && sound.isPlayed == false) {
-			if (AudioHub.mute) sound.file.volume = 0;
-			else sound.file.volume = 0.05;
 			sound.isLoaded = true;
 			sound.isPlayed = true;
+			sound.file.currentTime = 0;
+			AudioHub.changeVolume(sound);
 			sound.file.play();
-
-			// console.log("Sound wird abgespielt!");
 		}
 	}
 
@@ -66,5 +63,7 @@ export class AudioHub {
 	static changeVolume(sound) {
 		if (AudioHub.mute) sound.file.volume = 0;
 		else sound.file.volume = 0.05;
+		// if (AudioHub.mute) sound.volume = 0;
+		// else sound.volume = 0.05;
 	}
 }

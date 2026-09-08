@@ -62,8 +62,10 @@ export class ThrowableObject extends MoveableObjects {
 		if (this.break == false) {
 			AudioHub.playOne(AudioHub.bottleBreak);
 			setTimeout(() => {
-				AudioHub.stopOne(AudioHub.bottleBreak);
-				AudioHub.bottleBreak.isPlayed = false;
+				if (AudioHub.bottleBreak.isPlayed) {
+					AudioHub.stopOne(AudioHub.bottleBreak);
+					AudioHub.bottleBreak.isPlayed = false;
+				}
 			}, 500);
 		}
 	}
