@@ -46,10 +46,15 @@ export function gameRestart() {
 	Globals.titleReturn = false;
 	Globals.pause = false;
 
-	AudioHub.stopOne(AudioHub.gameStart);
-	AudioHub.gameStart.isPlayed = false;
-	AudioHub.stopOne(AudioHub.backgroundMusic);
-	AudioHub.backgroundMusic.isPlayed = false;
+	if (AudioHub.gameStart.isPlayed) {
+		AudioHub.stopOne(AudioHub.gameStart);
+		AudioHub.gameStart.isPlayed = false;
+	}
+
+	if (AudioHub.backgroundMusic.isPlayed) {
+		AudioHub.stopOne(AudioHub.backgroundMusic);
+		AudioHub.backgroundMusic.isPlayed = false;
+	}
 
 	IntervalHub.stopAllIntervals();
 	EventListener.addEventListener();
@@ -86,7 +91,7 @@ export function setSoundBtn() {
 }
 
 function playBackgroundMusic() {
-	AudioHub.playOne(AudioHub.backgroundMusic);
+	if (AudioHub.backgroundMusic.isPlayed == false) AudioHub.playOne(AudioHub.backgroundMusic);
 	AudioHub.changeVolume(AudioHub.backgroundMusic);
 }
 
@@ -96,8 +101,11 @@ export function backToStartscreen() {
 	Globals.isHurt = false;
 	Globals.isDead = false;
 	Globals.bossDead = false;
-	AudioHub.stopOne(AudioHub.backgroundMusic);
-	AudioHub.backgroundMusic.isPlayed = false;
+
+	if (AudioHub.backgroundMusic.isPlayed) {
+		AudioHub.stopOne(AudioHub.backgroundMusic);
+		AudioHub.backgroundMusic.isPlayed = false;
+	}
 
 	setTimeout(() => {
 		playBackgroundMusic();

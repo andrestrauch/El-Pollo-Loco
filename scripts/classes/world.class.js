@@ -90,11 +90,9 @@ export class World {
 				if (enemy.energy > 0 && Globals.bottleContact == false) {
 					Globals.bottleContact = true;
 					enemy.energy -= 0.1;
-
 					if (enemy.energy <= 0) enemy.energy = 0;
 				}
 			}
-
 			this.checkBossBottleCollision(enemy);
 		}
 	}
@@ -103,7 +101,6 @@ export class World {
 		if (enemy instanceof Endboss) {
 			this.bossHealthStatusBar.setCurrentImg(enemy.energy);
 			Globals.bossDead = false;
-
 			if (enemy.energy == 0) Globals.bossDead = true;
 		}
 	}
@@ -158,7 +155,7 @@ export class World {
 						AudioHub.stopOne(AudioHub.collectBottle);
 						AudioHub.collectBottle.isPlayed = false;
 					}
-				}, 500);
+				}, 1000);
 			}
 		}
 	}

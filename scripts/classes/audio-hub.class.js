@@ -2,6 +2,7 @@ class MyAudio {
 	file;
 	isLoaded = false;
 	isPlayed = false;
+	readyState = 0;
 
 	constructor(_file) {
 		this.file = new Audio(_file);
@@ -41,7 +42,7 @@ export class AudioHub {
 	];
 
 	static playOne(sound) {
-		if ((sound.file.readyState > 0 || sound.isLoaded) && sound.isPlayed == false) {
+		if ((sound.file.readyState == 4 || sound.isLoaded) && sound.isPlayed == false) {
 			sound.isLoaded = true;
 			sound.isPlayed = true;
 			sound.file.currentTime = 0;
