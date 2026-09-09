@@ -42,11 +42,12 @@ export class AudioHub {
 	];
 
 	static playOne(sound) {
-		if ((sound.file.readyState == 4 || sound.isLoaded) && sound.isPlayed == false) {
+		if ((sound.file.readyState > 0 || sound.isLoaded) && sound.isPlayed == false) {
 			sound.isLoaded = true;
 			sound.isPlayed = true;
 			sound.file.currentTime = 0;
 			AudioHub.changeVolume(sound);
+			// console.log(sound.file.readyState, sound.file);
 			sound.file.play();
 		}
 	}

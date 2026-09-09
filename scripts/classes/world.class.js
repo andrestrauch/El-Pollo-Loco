@@ -131,13 +131,13 @@ export class World {
 				Globals.level1.coins.splice(i, 1);
 				this.coinsStatusBar.setCurrentImg(Globals.level1.character.coins);
 
-				AudioHub.playOne(AudioHub.collectCoin);
+				if (AudioHub.collectCoin.isPlayed == false) AudioHub.playOne(AudioHub.collectCoin);
 				setTimeout(() => {
 					if (AudioHub.collectCoin.isPlayed) {
-						AudioHub.stopOne(AudioHub.collectCoin);
+						// AudioHub.stopOne(AudioHub.collectCoin);
 						AudioHub.collectCoin.isPlayed = false;
 					}
-				}, 500);
+				}, 250);
 			}
 		}
 	}
@@ -149,13 +149,13 @@ export class World {
 				Globals.level1.bottles.splice(i, 1);
 				this.bottleStatusBar.setCurrentImg(Globals.level1.character.bottles);
 
-				AudioHub.playOne(AudioHub.collectBottle);
-				setTimeout(() => {
-					if (AudioHub.collectBottle.isPlayed) {
-						AudioHub.stopOne(AudioHub.collectBottle);
-						AudioHub.collectBottle.isPlayed = false;
-					}
-				}, 1000);
+				// if (AudioHub.collectBottle.isPlayed == false) AudioHub.playOne(AudioHub.collectBottle);
+				// setTimeout(() => {
+				// 	if (AudioHub.collectBottle.isPlayed) {
+				// 		AudioHub.stopOne(AudioHub.collectBottle);
+				// 		AudioHub.collectBottle.isPlayed = false;
+				// 	}
+				// }, 500);
 			}
 		}
 	}
