@@ -8,6 +8,7 @@ export class ThrowableObject extends MoveableObjects {
 	x;
 	y;
 	break = false;
+	direction = false;
 
 	constructor(_x, _y) {
 		super();
@@ -18,6 +19,7 @@ export class ThrowableObject extends MoveableObjects {
 		this.h = 160;
 		this.speedX = 30;
 		this.speedY = 22;
+		this.direction = Globals.level1.character.otherDirection;
 
 		this.loadImage("assets/img/6_salsa_bottle/salsa_bottle.png");
 		this.loadImages(ImageHub.BOTTLE.throw);
@@ -38,10 +40,11 @@ export class ThrowableObject extends MoveableObjects {
 		if (Globals.pause == false && Globals.bossDead == false && Globals.isDead == false) {
 			this.y -= this.speedY;
 			this.speedY -= 2;
-			if (Globals.level1.character.otherDirection == false) {
-				this.x += this.speedX;
-			} else {
+
+			if (this.direction) {
 				this.x -= this.speedX;
+			} else {
+				this.x += this.speedX;
 			}
 		}
 	};
