@@ -149,13 +149,13 @@ export class World {
 				Globals.level1.bottles.splice(i, 1);
 				this.bottleStatusBar.setCurrentImg(Globals.level1.character.bottles);
 
-				// if (AudioHub.collectBottle.isPlayed == false) AudioHub.playOne(AudioHub.collectBottle);
-				// setTimeout(() => {
-				// 	if (AudioHub.collectBottle.isPlayed) {
-				// 		AudioHub.stopOne(AudioHub.collectBottle);
-				// 		AudioHub.collectBottle.isPlayed = false;
-				// 	}
-				// }, 500);
+				if (AudioHub.collectBottle.isPlayed == false) AudioHub.playOne(AudioHub.collectBottle);
+				setTimeout(() => {
+					if (AudioHub.collectBottle.isPlayed) {
+						AudioHub.stopOne(AudioHub.collectBottle);
+						AudioHub.collectBottle.isPlayed = false;
+					}
+				}, 500);
 			}
 		}
 	}

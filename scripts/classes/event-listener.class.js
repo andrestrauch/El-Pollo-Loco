@@ -48,6 +48,8 @@ export class EventListener {
 
 		document.getElementById(`btnLeft`).addEventListener(`mousedown`, () => {
 			Keyboard.LEFT = true;
+
+			console.log(Keyboard.LEFT);
 		});
 
 		document.getElementById(`btnLeft`).addEventListener(`mouseup`, () => {

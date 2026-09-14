@@ -6,21 +6,21 @@ import { Level } from "./classes/level.class.js";
 import { Level1 } from "./level/level1.js";
 import { World } from "./classes/world.class.js";
 
-function loadSounds() {
-	AudioHub.gameStart.file.load();
-	AudioHub.pepeRun.file.load();
-	AudioHub.pepeJump.file.load();
-	AudioHub.pepeSleep.file.load();
-	AudioHub.pepeDmg.file.load();
-	AudioHub.pepeDead.file.load();
-	AudioHub.collectCoin.file.load();
-	AudioHub.collectBottle.file.load();
-	AudioHub.bottleBreak.file.load();
-	AudioHub.bossEncounter.file.load();
-	AudioHub.bossDead.file.load();
-	AudioHub.chickenDead.file.load();
-	AudioHub.backgroundMusic.file.load();
-}
+// function loadSounds() {
+// 	AudioHub.gameStart.file.load();
+// 	AudioHub.pepeRun.file.load();
+// 	AudioHub.pepeJump.file.load();
+// 	AudioHub.pepeSleep.file.load();
+// 	AudioHub.pepeDmg.file.load();
+// 	AudioHub.pepeDead.file.load();
+// 	AudioHub.collectCoin.file.load();
+// 	AudioHub.collectBottle.file.load();
+// 	AudioHub.bottleBreak.file.load();
+// 	AudioHub.bossEncounter.file.load();
+// 	AudioHub.bossDead.file.load();
+// 	AudioHub.chickenDead.file.load();
+// 	AudioHub.backgroundMusic.file.load();
+// }
 
 // loadSounds();
 

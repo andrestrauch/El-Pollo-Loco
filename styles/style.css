@@ -260,7 +260,7 @@ main {
 	height: 50px;
 	display: flex;
 	justify-content: space-between;
-	touch-action: none;
+	/* touch-action: none; */
 
 	.mobil-btn {
 		width: 100%;
